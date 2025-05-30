@@ -1,0 +1,22 @@
+{
+    "rarities": {
+        "C": "Common",
+        "U": "Uncommon",
+        "R": "Rare",
+        "M": "Mythic"
+    },
+    "types": {
+        "BL": "Basic Land",
+        "S": "Scene",
+        "T": "Token",
+        "A": "Art",
+        "AS": "Signed Art"
+    },
+    "foils": {
+        "T": "Traditional"
+    },
+    "treatments": {
+        "S": "Showcase",
+        "BL": "Borderless"
+    }
+}

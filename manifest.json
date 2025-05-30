@@ -1,0 +1,17 @@
+{
+    "name": "MtabG",
+    "version": "1.0.0",
+    "description": "Replaces the default tab with Magic: The Gathering cards",
+    "manifest_version": 3,
+    "author": "giragon6",
+    "chrome_url_overrides": {
+        "newtab": "newtab.html"
+    },
+    "permissions": [
+        "storage",
+        "https://api.scryfall.com"
+    ],
+    "action": {
+        "default_popup": "popup.html"
+    }
+}
