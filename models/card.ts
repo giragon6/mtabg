@@ -1,109 +1,149 @@
-class Card {
-    artist: string;
-    collector_number: string;
-    foil: boolean;
-    frame: string;
-    full_art: boolean;
-    id: string;
-    illustration_id: string;
-    image_uris: Record<string, string>;
-    layout: string;
+interface CardFace {
     name: string;
-    nonfoil: boolean;
-    object: string;
-    oracle_id: string;
+    artist: string;
+    flavor_text: string;
     oracle_text: string;
-    prices: Record<string, number>;
-    promo: boolean;
-    rarity: string;
-    released_at: string;
-    reprint: boolean;
-    reserved: boolean;
-    set: string;
-    set_id: string;
-    set_name: string;
-    set_type: string;
-    type_line: string;
-    variation: boolean;
+    image_uris: Record<string, string>;
+}
+
+class Card {
+    id: string; // Scryfall ID
+    layout: string;
+
+    card_faces: CardFace[]; 
+    
+    effects: string[]; // e.g., finishes, frames, etc.
+
+    prices: Record<string, string>; 
+    
     created_at: string;
     updated_at: string;
+
+    price_updated_at: string;
 
     static deserialize(data) {
         if (!data) {
             return null;
         }
-        const card = new Card();
-        card.artist = data.artist || "";
-        card.collector_number = data.collector_number || "";
-        card.foil = data.foil || false;
-        card.frame = data.frame || "";
-        card.full_art = data.full_art || false;
-        card.id = data.id || "";
-        card.illustration_id = data.illustration_id || "";
-        card.image_uris = data.image_uris || {};
-        card.layout = data.layout || "normal";
-        card.name = data.name || "";
-        card.nonfoil = data.nonfoil || true;
-        card.object = data.object || "card";
-        card.oracle_id = data.oracle_id || "";
-        card.oracle_text = data.oracle_text || "";
-        card.prices = data.prices || {};
-        card.promo = data.promo || false;
-        card.rarity = data.rarity || "";
-        card.released_at = data.released_at || "";
-        card.reprint = data.reprint || false;
-        card.reserved = data.reserved || false;
-        card.set = data.set || "";
-        card.set_id = data.set_id || "";
-        card.set_name = data.set_name || "";
-        card.set_type = data.set_type || "";
-        card.type_line = data.type_line || "";
-        card.variation = data.variation || false;
 
-        card.created_at = data.created_at || new Date().toISOString();
-        card.updated_at = data.updated_at || new Date().toISOString();
+        const card = new Card();
+        card.id = data.id || "";
+        card.layout = data.layout || "normal";
+
+        card.card_faces = data.card_faces || [{
+            name: data.name || "",
+            artist: data.artist || "",
+            flavor_text: data.flavor_text || "",
+            oracle_text: data.oracle_text || "",
+            image_uris: data.image_uris || {}
+        }];
+
+        let effects: string[] = [];
+        if (data.promo_types) {
+            effects.push(...data.promo_types);
+        }
+        if (data.foil) {
+            effects.push("foil");
+        }
+        if (data.frame_effects.includes("etched")) {
+            effects.push("etched");
+        }
+        card.effects = effects;
+
+        card.prices = data.prices || {};
+
+        card.created_at = new Date().toISOString();
+        card.updated_at = new Date().toISOString();
+
+        card.price_updated_at = new Date().toISOString();
 
         return card;
     }
 
     constructor() {
-        this.artist = "";
-        this.collector_number = "";
-        this.foil = false;
-        this.frame = "";
-        this.full_art = false;
         this.id = "";
-        this.illustration_id = "";
-        this.image_uris = {};
         this.layout = "normal";
-        this.name = "";
-        this.nonfoil = true;
-        this.object = "card";
-        this.oracle_id = "";
-        this.oracle_text = "";
-        this.prices = {};
-        this.promo = false;
-        this.rarity = "";
-        this.released_at = "";
-        this.reprint = false;
-        this.reserved = false;
-        this.set = "";
-        this.set_id = "";
-        this.set_name = "";
-        this.set_type = "";
-        this.type_line = "";
-        this.variation = false;
 
-        // Timestamps
+        this.card_faces = [{
+            name: "",
+            artist: "",
+            flavor_text: "",
+            oracle_text: "",
+            image_uris: {}
+        }];
+
+        this.effects = [];
+        this.prices = {};
+
         this.created_at = new Date().toISOString();
         this.updated_at = new Date().toISOString();
+
+        this.price_updated_at = new Date().toISOString();
+    }
+
+    getImageURIs(index = 0) {
+        if (this.card_faces.length == 1) return this.card_faces[0].image_uris;
+        if (index < 0 || index >= this.card_faces.length) {
+            console.error("Invalid card face index.");
+            return null;
+        }
+        return this.card_faces[index].image_uris;
+    }
+
+    getName(index = 0) {
+        if (this.card_faces.length == 1) return this.card_faces[0].name;
+        if (index < 0 || index >= this.card_faces.length) {
+            console.error("Invalid card face index.");
+            return "";
+        }
+        return this.card_faces[index].name;
+    }
+
+    getArtist(index = 0) {
+        if (this.card_faces.length == 1) return this.card_faces[0].artist;
+        if (index < 0 || index >= this.card_faces.length) {
+            console.error("Invalid card face index.");
+            return "";
+        }
+        return this.card_faces[index].artist;
+    }
+
+    getFlavorText(index = 0) {
+        if (this.card_faces.length == 1) return this.card_faces[0].flavor_text;
+        if (index < 0 || index >= this.card_faces.length) {
+            console.error("Invalid card face index.");
+            return "";
+        }
+        return this.card_faces[index].flavor_text;
+    }
+
+    getOracleText(index = 0) {
+        if (this.card_faces.length == 1) return this.card_faces[0].oracle_text;
+        if (index < 0 || index >= this.card_faces.length) {
+            console.error("Invalid card face index.");
+            return "";
+        }
+        return this.card_faces[index].oracle_text;
+    }
+
+    updatePrices(prices: string) {
+        if (!this.prices) {
+            this.prices = {};
+        }
+        if (!prices || typeof prices !== "object") {
+            console.error("Invalid prices data.");
+            return;
+        }
+        this.prices = prices;
+        this.price_updated_at = new Date().toISOString();
     }
 
     displayCardImage(maxWidth = "200px") {
-        if (this.image_uris && this.image_uris.normal) {
+        let image_uris = this.getImageURIs();
+        if (image_uris && image_uris.normal) {
             const img = document.createElement("img");
-            img.src = this.image_uris.normal;
-            img.alt = this.name;
+            img.src = image_uris.normal;
+            img.alt = this.getName();
             img.style.maxWidth = maxWidth;
             document.body.appendChild(img);
         } else {
