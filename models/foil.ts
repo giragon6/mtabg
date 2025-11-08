@@ -1,0 +1,3 @@
+class Foil {
+  effect: string;
+}

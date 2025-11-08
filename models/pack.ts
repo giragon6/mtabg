@@ -1,23 +1,45 @@
+import Card from "./card.js"
+
+enum Rarity {
+  common,
+  uncommon,
+  rare,
+  mythic,
+}
+
+enum Frame {
+  showcase,
+  full_art,
+}
+
+type Special = 
+  | { name: string, query: string}
+  | { name: string, ids: string[] }
+
+type PackSlot = {
+  special?: number,
+  rarity?: Rarity,
+  frame?: Frame,
+  chance: number,
+}
+
+type PackData = {
+  type: string,
+  set: string,
+  slots: PackSlot[],
+  special: Special[],
+}
+
 class Pack {
-    id: number;
-    template: string;
-    cards: any[];
-    created_at: string;
-    updated_at: string;
+  packData: PackData
+  cards: Card[]
+  fetcher: CardFetcher
+  queryGenerator: SFQueryGenerator
 
-    constructor(id, type, cardParamsList) {
-        this.id = id || null;
-        this.template = type || null;
-        this.cards = [];
-        this.created_at = new Date().toISOString();
-        this.updated_at = new Date().toISOString();
-    }
+  constructor(packData: PackData) {
+    this.packData = packData
+  }
 
-
-    /**
-     * Fetches cards from Scryfall based on card parameters and saves to pack.
-     */
-    async populateCards() {
-
-    }
+  open(): Card[] {
+  }
 }
