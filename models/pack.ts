@@ -16,7 +16,9 @@ type Special =
   | { name: string, query: string}
   | { name: string, ids: string[] }
 
-type PackSlot = {
+type PackSlot = CardChance[]
+
+type CardChance = {
   special?: number,
   rarity?: Rarity,
   frame?: Frame,
@@ -34,12 +36,13 @@ class Pack {
   packData: PackData
   cards: Card[]
   fetcher: CardFetcher
-  queryGenerator: SFQueryGenerator
+  queryGenerator: QueryGenerator
 
   constructor(packData: PackData) {
     this.packData = packData
   }
 
   open(): Card[] {
+
   }
 }
