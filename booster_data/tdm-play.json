@@ -57,12 +57,12 @@
       },
       {
         "rarity": "rare",
-        "frame": "extendedart",
+        "frame": "full_art",
         "chance": 0.013
       },
       {
         "rarity": "mythic",
-        "frame": "extendedart",
+        "frame": "full_art",
         "chance": 0.002
       },
       {
@@ -105,12 +105,12 @@
       },
       {
         "rarity": "rare",
-        "frame": "extendedart",
+        "frame": "full_art",
         "chance": 0.064
       },
       {
         "rarity": "mythic",
-        "frame": "extendedart",
+        "frame": "full_art",
         "chance": 0.012
       },
       {
@@ -180,13 +180,13 @@
       {
         "foil": "foil",
         "rarity": "rare",
-        "frame": "extendedart",
+        "frame": "full_art",
         "chance": 0.005
       },
       {
         "foil": "foil",
         "rarity": "mythic",
-        "frame": "extendedart",
+        "frame": "full_art",
         "chance": 0.001
       },
       {
