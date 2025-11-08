@@ -1,0 +1,273 @@
+{
+  "type": "play",
+  "set": "tdm",
+  "slots": [
+    [ 
+      {
+        "special": 1,
+        "chance": 0.015
+      },
+      {
+        "rarity": "common",
+        "chance": 0.985
+      }
+    ],
+    [
+      {
+        "rarity": "uncommon",
+        "chance": 1.0
+      }
+    ],
+    [
+      {
+        "rarity": "common",
+        "chance": 0.125
+      },
+      {
+        "rarity": "uncommon",
+        "chance": 0.583
+      },
+      {
+        "rarity": "rare",
+        "chance": 0.156
+      },
+      {
+        "rarity": "mythic",
+        "chance": 0.026
+      },
+      {
+        "rarity": "common",
+        "frame": "showcase",
+        "chance": 0.046
+      },
+      {
+        "rarity": "uncommon",
+        "frame": "showcase",
+        "chance": 0.038
+      },
+      {
+        "rarity": "rare",
+        "frame": "showcase",
+        "chance": 0.002
+      },
+      {
+        "rarity": "mythic",
+        "frame": "showcase",
+        "chance": 0.001
+      },
+      {
+        "rarity": "rare",
+        "frame": "extendedart",
+        "chance": 0.013
+      },
+      {
+        "rarity": "mythic",
+        "frame": "extendedart",
+        "chance": 0.002
+      },
+      {
+        "special": 2,
+        "chance": 0.006
+      },
+      {
+        "special": 3,
+        "chance": 0.0005
+      },
+      {
+        "special": 4,
+        "rarity": "rare",
+        "chance": 0.002
+      },
+      {
+        "special": 4,
+        "rarity": "mythic",
+        "chance": 0.0005
+      }
+    ],
+    [
+      {
+        "rarity": "rare",
+        "chance": 0.75
+      },
+      {
+        "rarity": "rare",
+        "chance": 0.125
+      },
+      {
+        "rarity": "rare",
+        "frame": "showcase",
+        "chance": 0.008
+      },
+      {
+        "rarity": "mythic",
+        "frame": "showcase",
+        "chance": 0.006
+      },
+      {
+        "rarity": "rare",
+        "frame": "extendedart",
+        "chance": 0.064
+      },
+      {
+        "rarity": "mythic",
+        "frame": "extendedart",
+        "chance": 0.012
+      },
+      {
+        "special": 2,
+        "chance": 0.027
+      },
+      {
+        "special": 3,
+        "chance": 0.001
+      },
+      {
+        "special": 4,
+        "rarity": "rare",
+        "chance": 0.008
+      },
+      {
+        "special": 4,
+        "rarity": "mythic",
+        "chance": 0.009
+      }
+    ],
+    [
+      {
+        "foil": "foil",
+        "rarity": "common",
+        "chance": 0.565
+      },
+      {
+        "foil": "foil",
+        "rarity": "uncommon",
+        "chance": 0.32
+      },
+      {
+        "foil": "foil",
+        "rarity": "rare",
+        "chance": 6.4
+      },
+      {
+        "foil": "foil",
+        "rarity": "mythic",
+        "chance": 0.0011
+      },
+      {
+        "foil": "foil",
+        "rarity": "common",
+        "frame": "showcase",
+        "chance": 0.0016
+      },
+      {
+        "foil": "foil",
+        "rarity": "uncommon",
+        "frame": "showcase",
+        "chance": 0.0014
+      },
+      {
+        "foil": "foil",
+        "rarity": "rare",
+        "frame": "showcase",
+        "chance": 0.0007
+      },
+      {
+        "foil": "foil",
+        "rarity": "mythic",
+        "frame": "showcase",
+        "chance": 0.0003
+      },
+      {
+        "foil": "foil",
+        "rarity": "rare",
+        "frame": "extendedart",
+        "chance": 0.005
+      },
+      {
+        "foil": "foil",
+        "rarity": "mythic",
+        "frame": "extendedart",
+        "chance": 0.001
+      },
+      {
+        "special": 2,
+        "chance": 0.002
+      },
+      {
+        "special": 3,
+        "chance": 0.0005
+      },
+      {
+        "special": 4,
+        "chance": 0.001
+      },
+      {
+        "special": 4,
+        "chance": 0.0005
+      }
+    ],
+    [
+      {
+        "land": "basic",
+        "chance": 0.07
+      },
+      {
+        "land": "basic",
+        "full_art": true,
+        "chance": 0.035
+      },
+      {
+        "land": "basic",
+        "foil": "foil",
+        "chance": 0.017
+      },
+      {
+        "land": "basic",
+        "foil": "foil",
+        "full_art": true,
+        "chance": 0.009
+      },
+      {
+        "land": "twocolor",
+        "chance": 0.7
+      },
+      {
+        "land": "twocolor",
+        "foil": "foil",
+        "chance": 0.174
+      }
+    ]
+  ],
+  "special": [
+    {
+      "name": "special_guest",
+      "ids": [
+        "5dca6cae-b357-4ce5-a913-f4ff9cf032ed",
+        "66cc9980-be00-4351-b0d5-082a5a402a2a",
+        "565462a6-97ad-4a83-bd1d-1b51e9d6c315",
+        "fe51805f-a2e3-4c29-a6a7-ca99537d13a8",
+        "eddf05f8-9dcf-4e63-a411-6c2fc262f9c9",
+
+        "894105c4-d3ce-4d38-855b-24aa47b112c1",
+        "49515199-f53c-4595-94ba-3a3e46b86372",
+        "2cae1d08-5bda-4eeb-8134-bdb62ad6f44e",
+        "ed36429e-ec50-4bdf-9d07-03b4e4861661",
+        "2bd93079-b10e-4be3-9545-17fa3bc3bfd2"
+      ]
+    },
+    {
+      "name": "borderless Sagas, Sieges, and lands",
+      "query": "https://api.scryfall.com/cards/search?q=set:tdm+is:full_art+(t:saga OR t:land OR siege)+-t:creature+-t:basic"
+    }, 
+    {
+      "name": "borderless mythic rare Elspeth, Storm Slayer",
+      "ids": [
+        "1fdf9438-fd5f-4638-8f41-dae35ae8f257"
+      ]
+    },
+    {
+      "name": "borderless reversible dragon",
+      "query": "https://api.scryfall.com/cards/search?q=set:tdm+layout:reversible_card+is:full_art"
+    }
+  ]
+}
