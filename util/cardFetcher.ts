@@ -1,3 +1,5 @@
+import Card from "../models/card"
+
 class CardFetcher {
   readonly url = "https://api.scryfall.com/cards/"
   readonly headers = new Headers({
@@ -6,7 +8,7 @@ class CardFetcher {
   })
 
   async fetchCardsById(identifiers: string[]): Promise<JSON[]> {
-    let cardsJson: JSON[]
+    let cardsJson: JSON[] = []
     const body = {
       identifiers: identifiers.map(id => ({id}))
     }
@@ -52,10 +54,12 @@ class CardFetcher {
         console.error('Error fetching data: ', error);
       })
     }
-    let chosenCards: JSON[];
+    let chosenCards: JSON[] = [];
     for (let i = 0; i <= num; i++) {
       chosenCards.push(cardsJson[Math.floor(Math.random() * cardsJson.length)]);
     }
     return chosenCards;
   }
 }
+
+export default CardFetcher

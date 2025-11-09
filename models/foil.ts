@@ -1,3 +1,5 @@
+import { FoilType } from "../types/types";
+
 class Foil {
   effect: string;
   foilType: FoilType;
@@ -6,3 +8,5 @@ class Foil {
     this.foilType = foilType;
   }
 }
+
+export default Foil

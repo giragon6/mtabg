@@ -1,3 +1,5 @@
+import { CardChance, Special, FoilType, LandType } from "../types/types"
+
 class QueryGenerator {
   /**
    * 
@@ -24,3 +26,5 @@ class QueryGenerator {
     return query;
   }
 }
+
+export default QueryGenerator

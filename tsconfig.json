@@ -6,9 +6,14 @@
     "lib": [
       "es2019",
       "DOM"
-    ]
+    ],
+    "outDir": "./dist",
+    "rootDir": "./",
+    "strict": true,
+    "esModuleInterop": true
   },
   "exclude": [
     "node_modules"
-  ]
+  ],
+  "include": ["models/**/*", "util/**/*"]
 }

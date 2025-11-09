@@ -1,3 +1,6 @@
+import { FoilType } from "../types/types"
+import Foil from "./foil"
+
 class Card {
   id: string;
   foil: Foil;
@@ -9,7 +12,7 @@ class Card {
     this.price = price;
   }
 
-  static fromJson(cardJson: JSON, foilType: FoilType): Card {
+  static fromJson(cardJson: {[index: string]: any}, foilType: FoilType): Card {
     const price = cardJson["prices"][foilType == FoilType.foil ? "usd_foil" : "usd"];
     return new Card(cardJson["id"], foilType, price);
   }

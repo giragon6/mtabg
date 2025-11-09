@@ -1,36 +1,36 @@
-enum Rarity {
+export enum Rarity {
   common = "common",
   uncommon = "uncommon",
   rare = "rare",
   mythic = "mythic",
 }
 
-enum Frame {
+export enum Frame {
   showcase = "showcase",
   full_art = "full_art",
 }
 
-enum FoilType {
+export enum FoilType {
   foil = "foil"
 }
 
-enum LandType {
+export enum LandType {
   basic = "basic",
   gainland = "gainland"
 }
 
-type Special = { 
+export type Special = { 
   name: string, 
   query: string, 
   ids?: string[]
 }
 
-type PackSlot = {
+export type PackSlot = {
   amount: number,
   chances: CardChance[]
 }
 
-type CardChance = {
+export type CardChance = {
   special?: number,
   rarity?: Rarity,
   frame?: Frame,
@@ -39,9 +39,10 @@ type CardChance = {
   chance: number,
 }
 
-type PackData = {
+export type PackData = {
   type: string,
   set: string,
   slots: PackSlot[],
   special: Special[],
 }
+
