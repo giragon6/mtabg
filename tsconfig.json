@@ -4,7 +4,8 @@
     "strictPropertyInitialization": false,
     "target": "es5",
     "lib": [
-      "es2019"
+      "es2019",
+      "DOM"
     ]
   },
   "exclude": [
