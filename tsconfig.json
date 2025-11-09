@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "strictPropertyInitialization": false,
+    "target": "es5",
+    "lib": [
+      "es2019"
+    ]
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

@@ -12,11 +12,33 @@ class Pack {
     this.packData = packData
     this.set = packData.set
     this.special = packData.special
+    this.fetcher = new CardFetcher()
+    this.queryGenerator = new QueryGenerator()
   }
 
-  evalSlot(slot: PackSlot): CardChance {
-    const weights = slot.map(c => c.chance)
+  private evalSlot(slot: PackSlot): CardChance {
+    const weights = slot.chances.map(c => c.chance)
     const idx = weightedRandom(weights)
     return slot[idx]
+  }
+
+  private async openToJson(): Promise<JSON[]> {
+    // TODO: Consolidate same cards
+    const ccs = this.packData.slots.flatMap(s => (new Array(s.amount)).fill(s)).map(s => this.evalSlot(s));
+    let cardJsons: JSON[];
+    for (let cc of ccs) {
+      const query = this.queryGenerator.toQuery(cc, this.set, this.special);
+      let resp = Array.isArray(query) ? await this.fetcher.fetchCardsById(query) : await this.fetcher.fetchRandomCardsByQuery(query, 1);
+      if (cc.foil) resp["foil"] = cc.foil;
+      cardJsons.push.apply(resp);
+    }
+    return cardJsons;
+  }
+
+  async open(): Promise<Card[]> {
+    const cardJsons = await this.openToJson();
+    const cards: Card[] = cardJsons.map(j => Card.fromJson(j, j["foil"]));
+    this.cards = cards;
+    return cards;
   }
 }

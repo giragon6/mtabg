@@ -1,4 +1,11 @@
 class QueryGenerator {
+  /**
+   * 
+   * @param cc 
+   * @param set 
+   * @param special 
+   * @returns A list of ids or a query string
+   */
   toQuery(cc: CardChance, set: string, special: Special[]): string[] | string {
     let query = "s:" + set
     if (cc.special) {
