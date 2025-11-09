@@ -25,7 +25,10 @@ type Special = {
   ids?: string[]
 }
 
-type PackSlot = CardChance[]
+type PackSlot = {
+  amount: number,
+  chances: CardChance[]
+}
 
 type CardChance = {
   special?: number,

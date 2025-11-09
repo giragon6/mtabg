@@ -2,23 +2,40 @@
   "type": "play",
   "set": "tdm",
   "slots": [
-    [ 
-      {
-        "special": 1,
-        "chance": 0.015
-      },
-      {
-        "rarity": "common",
-        "chance": 0.985
-      }
-    ],
-    [
-      {
-        "rarity": "uncommon",
-        "chance": 1.0
-      }
-    ],
-    [
+    {
+      "amount": 1,
+      "chances": [ 
+        {
+          "special": 1,
+          "chance": 0.015
+        },
+        {
+          "rarity": "common",
+          "chance": 0.985
+        }
+      ]
+    },
+    {
+      "amount": 6,
+      "chances": [
+        {
+          "rarity": "common",
+          "chance": 1.0
+        }
+      ]
+    },
+    {
+    "amount": 1,
+    "chances": [
+        {
+          "rarity": "uncommon",
+          "chance": 1.0
+        }
+      ]
+    },
+    {
+      "amount": 1,
+      "chances": [
       {
         "rarity": "common",
         "chance": 0.125
@@ -83,8 +100,11 @@
         "rarity": "mythic",
         "chance": 0.0005
       }
-    ],
-    [
+      ]
+    },
+    {
+      "amount": 1,
+      "chances": [
       {
         "rarity": "rare",
         "chance": 0.75
@@ -131,8 +151,11 @@
         "rarity": "mythic",
         "chance": 0.009
       }
-    ],
-    [
+      ]
+    },
+    {
+      "amount": 1,
+      "chances": [
       {
         "foil": "foil",
         "rarity": "common",
@@ -205,8 +228,11 @@
         "special": 4,
         "chance": 0.0005
       }
-    ],
-    [
+      ]
+    },
+    {
+      "amount": 1,
+      "chances": [
       {
         "land": "basic",
         "chance": 0.07
@@ -236,7 +262,8 @@
         "foil": "foil",
         "chance": 0.174
       }
-    ]
+      ]
+    }
   ],
   "special": [
     {
