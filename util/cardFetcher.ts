@@ -42,7 +42,7 @@ class CardFetcher {
       .then(response => {
         if (!response.ok) throw new Error('Card response wasn\'t ok');
         return response.json();
-      }) 
+      })
       .then(data => {
         if (!data.data || !data.has_more) throw new Error('Response had unexpected structure');
         hasMore = data.has_more;

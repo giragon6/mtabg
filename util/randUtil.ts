@@ -4,6 +4,7 @@
  * @param { number[] } weights 
  */ 
 function weightedRandom(weights: number[]): number {
+
   const cumulativeWeights = [];
   for (let i = 0; i < weights.length; i++) {
     cumulativeWeights[i] = weights[i] + (cumulativeWeights[i-1] || 0);

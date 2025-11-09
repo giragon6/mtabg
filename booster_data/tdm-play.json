@@ -228,11 +228,11 @@
         "chance": 0.009
       },
       {
-        "land": "twocolor",
+        "land": "gainland",
         "chance": 0.7
       },
       {
-        "land": "twocolor",
+        "land": "gainland",
         "foil": "foil",
         "chance": 0.174
       }
@@ -257,7 +257,7 @@
     },
     {
       "name": "borderless Sagas, Sieges, and lands",
-      "query": "https://api.scryfall.com/cards/search?q=set:tdm+is:full_art+(t:saga OR t:land OR siege)+-t:creature+-t:basic"
+      "query": "set:tdm+is:full_art+(t:saga OR t:land OR siege)+-t:creature+-t:basic"
     }, 
     {
       "name": "borderless mythic rare Elspeth, Storm Slayer",
@@ -267,7 +267,7 @@
     },
     {
       "name": "borderless reversible dragon",
-      "query": "https://api.scryfall.com/cards/search?q=set:tdm+layout:reversible_card+is:full_art"
+      "query": "set:tdm+layout:reversible_card+is:full_art"
     }
   ]
 }
