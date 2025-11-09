@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "es2020",
     "strictPropertyInitialization": false,
     "target": "es5",
     "lib": [
@@ -15,5 +15,4 @@
   "exclude": [
     "node_modules"
   ],
-  "include": ["models/**/*", "util/**/*"]
 }

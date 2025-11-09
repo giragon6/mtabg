@@ -1,19 +1,19 @@
-const cardName = "Black Lotus"; // Example card name
-const apiUrl = `https://api.scryfall.com/cards/named?exact=${encodeURIComponent(cardName)}`;
+import { Pack } from './dist/models/pack.js';
 
-async function fetchCardImage() {
-    try {
-        const response = await fetch(apiUrl);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        console.log(data);
-        const newCard = Card.deserialize(data); 
+const cardsDiv = document.getElementById("cards");
+const openBtn = document.getElementById("open-pack-btn");
 
-
-        displayCardImage(imageUrl);
-    } catch (error) {
-        console.error("Error fetching card image:", error);
-    }
+async function openPack() {
+    const response = await fetch('./booster_data/tdm-play.json');
+    const packData = await response.json();
+    const pack = new Pack(packData);
+    const cards = pack.open();
+    cardsDiv.innerHTML = '';
+    for (let card of cards) {
+        let img = document.createElement("img");
+        img.src = card.imageUri;
+        cardsDiv.appendChild(img);
+    } 
 }
+
+openBtn.onclick = openPack;

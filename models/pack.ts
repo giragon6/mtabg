@@ -1,9 +1,9 @@
-import Card from "./card"
-import QueryGenerator from "../util/queryGenerator"
-import CardFetcher from "../util/cardFetcher"
-import { PackData, Special, PackSlot, CardChance } from "../types/types"
+import Card from "./card.js"
+import QueryGenerator from "../util/queryGenerator.js"
+import CardFetcher from "../util/cardFetcher.js"
+import { PackData, Special, PackSlot, CardChance } from "../types/types.js"
 
-class Pack {
+export class Pack {
   packData: PackData
   cards: Card[]
   fetcher: CardFetcher

@@ -1,4 +1,4 @@
-import { FoilType } from "../types/types";
+import { FoilType } from "../types/types.js";
 
 class Foil {
   effect: string;

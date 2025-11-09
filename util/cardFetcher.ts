@@ -1,5 +1,3 @@
-import Card from "../models/card"
-
 class CardFetcher {
   readonly url = "https://api.scryfall.com/cards/"
   readonly headers = new Headers({

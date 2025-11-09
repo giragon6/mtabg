@@ -1,4 +1,4 @@
-import { CardChance, Special, FoilType, LandType } from "../types/types"
+import { CardChance, Special, FoilType, LandType } from "../types/types.js"
 
 class QueryGenerator {
   /**
