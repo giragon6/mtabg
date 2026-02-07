@@ -1,8 +1,8 @@
 import Card from "./card.js"
-import QueryGenerator from "../util/queryGenerator.js"
-import CardFetcher from "../util/cardFetcher.js"
-import { weightedRandom } from "../util/randUtil.js"
-import { PackData, Special, PackSlot, CardChance } from "../types/types.js"
+import QueryGenerator from "../mtabg/src/lib/util/queryGenerator.js"
+import CardFetcher from "../mtabg/src/lib/util/cardFetcher.js"
+import { weightedRandom } from "../mtabg/src/lib/util/randUtil.js"
+import { PackData, Special, PackSlot, CardChance } from "../mtabg/src/lib/types/types.js"
 
 export class Pack {
   packData: PackData
