@@ -13,16 +13,17 @@ async function openPack() {
             console.log(packData);
             pack = new Pack(packData);
             console.log(pack);
-            const cards = pack.open();
-            console.log("got cards!")
-            console.log(cards);
-            cardsDiv.innerHTML = '';
-            for (let card of cards) {
-                let img = document.createElement("img");
-                img.src = card.imageUri;
-                console.log(img.src)
-                cardsDiv.appendChild(img);
-            }
+            pack.open().then((cards) => {
+                console.log("got cards!")
+                console.log(cards);
+                cardsDiv.innerHTML = '';
+                for (let card of cards) {
+                    let img = document.createElement("img");
+                    img.src = card.imageUri;
+                    console.log(img.src)
+                    cardsDiv.appendChild(img);
+                }
+            })
         })
         .catch((err) => console.log(`Error opening pack: ${err}`))
 }

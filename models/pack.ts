@@ -31,25 +31,20 @@ export class Pack {
   private async openToJson(): Promise<JSON[]> {
     // TODO: Consolidate same cards
     const ccs = this.packData.slots.flatMap(s => (new Array(s.amount)).fill(s)).map(s => this.evalSlot(s));
-    let cardJsons: JSON[] = [];
+    let cardJsons = [];
     for (let cc of ccs) {
       const query = this.queryGenerator.toQuery(cc, this.set, this.special);
-      let resp: {[index: string]: any} = Array.isArray(query) ? await this.fetcher.fetchCardsById(query) : await this.fetcher.fetchRandomCardsByQuery(query, 1);
-      if (cc.foil) resp["foil"] = cc.foil;
-      cardJsons.push.apply(resp);
+      let resp = Array.isArray(query) ? await this.fetcher.fetchCardsById(query) : await this.fetcher.fetchRandomCardsByQuery(query, 1);
+      if (cc.foil) resp[0]["foil"] = cc.foil; //resp will only be one card for now
+      cardJsons.push(...resp);
     }
     return cardJsons;
   }
 
-  open(): Card[] {
+  async open(): Promise<Card[]> {
     console.log(`Opening pack of set ${this.set}...`)
-    this.openToJson()
-      .then((cardJsons: {[index: string]: any}[]) => 
-        (cardJsons.map(j => Card.fromJson(j, j["foil"])))
-      )
-      .then((cards: Card[]) => {
-        this.cards = cards
-      })
+    const cardJsons: {[k: string]: any}[] = await this.openToJson();
+    this.cards = cardJsons.map(j => Card.fromJson(j, j["foil"]));
     console.log('returning cards')
     return this.cards;
   }
