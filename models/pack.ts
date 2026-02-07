@@ -1,6 +1,7 @@
 import Card from "./card.js"
 import QueryGenerator from "../util/queryGenerator.js"
 import CardFetcher from "../util/cardFetcher.js"
+import { weightedRandom } from "../util/randUtil.js"
 import { PackData, Special, PackSlot, CardChance } from "../types/types.js"
 
 export class Pack {
@@ -17,6 +18,8 @@ export class Pack {
     this.special = packData.special;
     this.fetcher = new CardFetcher();
     this.queryGenerator = new QueryGenerator();
+
+    console.log(`Pack of set ${this.set} created`)
   }
 
   private evalSlot(slot: PackSlot): CardChance {
@@ -38,10 +41,16 @@ export class Pack {
     return cardJsons;
   }
 
-  async open(): Promise<Card[]> {
-    const cardJsons: {[index: string]: any}[] = await this.openToJson();
-    const cards: Card[] = cardJsons.map(j => Card.fromJson(j, j["foil"]));
-    this.cards = cards;
-    return cards;
+  open(): Card[] {
+    console.log(`Opening pack of set ${this.set}...`)
+    this.openToJson()
+      .then((cardJsons: {[index: string]: any}[]) => 
+        (cardJsons.map(j => Card.fromJson(j, j["foil"])))
+      )
+      .then((cards: Card[]) => {
+        this.cards = cards
+      })
+    console.log('returning cards')
+    return this.cards;
   }
 }

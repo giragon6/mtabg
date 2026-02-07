@@ -3,7 +3,7 @@
  * (cumulative sum)
  * @param { number[] } weights 
  */ 
-function weightedRandom(weights: number[]): number {
+export function weightedRandom(weights: number[]): number {
   const cumulativeWeights: number[] = [];
   for (let i = 0; i < weights.length; i++) {
     cumulativeWeights[i] = weights[i] + (cumulativeWeights[i-1] || 0);
