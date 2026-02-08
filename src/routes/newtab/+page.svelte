@@ -6,6 +6,10 @@
     import { Pack } from '$lib/models/pack';
     import Card from '$lib/models/card'
     import CardDisplay from './components/CardDisplay.svelte';
+	import BoosterButton from './components/BoosterButton.svelte';
+
+    import type { PackData } from '$lib/types/types';
+    import packData from '$lib/booster_data/tdm-play.json';
 
     let cards: Card[];
     let loading: boolean = false;
@@ -15,14 +19,9 @@
     cards = [];
     err = null;
     loading = true;
-    let pack;
+    let pack = new Pack(packData as PackData);
+    console.log(pack);
     try {
-        const res = await fetch('./booster_data/tdm-play.json');
-        if (!res) throw new Error("Response was null!")
-        const packData = await res.json();
-        if (!packData) throw new Error("Pack data was undefined!")
-        pack = new Pack(packData);
-        console.log(pack);
         cards = await pack.open();
         console.log("got cards!")
         console.log(cards);
@@ -42,7 +41,7 @@
 
 <div class="container">
     <div class="error">{err}</div>
-    <button class="open-pack" disabled={loading} onclick={openPack}>Open Pack</button>
+    <BoosterButton loading={loading} onclick={openPack} />
     <div class="cards-container">
         {#each cards as c}
             <CardDisplay imageUri={c.imageUri} name={c.name} isFoil={c.foil.foilType == 'foil'} />
@@ -59,7 +58,11 @@
 
     .container {
         min-height: 100%;
+        padding: 2%;
         background: linear-gradient(#5d00b4, #0064b7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .cards-container {
