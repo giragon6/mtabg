@@ -28,6 +28,9 @@ class QueryGenerator {
         queryList.push(("is:" + cc.land));
       }
     }
+    for (let i = 0; i < queryList.length; i++) {
+      queryList[i] = encodeURIComponent(queryList[i]);
+    }
     let query = queryList.join('+');
     return query;
   }

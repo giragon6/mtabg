@@ -51,7 +51,7 @@ class CardFetcher {
   }
 
   async fetchRandomCardsByQuery(query: string, num: number): Promise<any[]> {
-    let currentUrl = this.url + "search?q=" + encodeURIComponent(query);
+    let currentUrl = this.url + "search?q=" + query;
     console.log(currentUrl)
     let hasMore = true;
     let cardsJson: JSON[] = []
