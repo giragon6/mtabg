@@ -5,7 +5,7 @@ class CardFetcher {
     "User-Agent"  : "MTabG/1.0"
   })
   readonly FETCH_LIMIT = 100; //prevent infinite loop but jankily
-  readonly FETCH_DELAY = 10; //ms
+  readonly FETCH_DELAY = 50; //ms
   
   private sleep(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -21,8 +21,10 @@ class CardFetcher {
     const collectionUrl = this.url + "collection"
     console.log(`POSTing to ${collectionUrl} with body ${body}`)
     try {
-      await this.sleep(this.FETCH_DELAY);
-      const data: {[k: string]: any} = await this.fetchFromUrl(collectionUrl, "POST");
+      const body = {
+        "identifiers": identifiers
+      }
+      const data: {[k: string]: any} = await this.fetchFromUrl(collectionUrl, "POST", body);
       if (!data || !data.data) throw new Error('Response had unexpected structure');
       console.log(data.data);
       cardsJson = data.data;
@@ -32,9 +34,11 @@ class CardFetcher {
     return cardsJson
   }
 
-  private async fetchFromUrl(url: string, method: "GET" | "POST"): Promise<any> {
+  private async fetchFromUrl(url: string, method: "GET" | "POST", body?: {[k: string]: any}): Promise<any> {
+    await this.sleep(this.FETCH_DELAY);
     return fetch(url, {
       headers: this.headers,
+      body: JSON.stringify(body),
       method: method,
     })
     .then(response => {
@@ -56,7 +60,6 @@ class CardFetcher {
     while (hasMore && counter < this.FETCH_LIMIT) {
       counter++;
       try {
-        await this.sleep(this.FETCH_DELAY)
         const data: {[k: string]: any} = await this.fetchFromUrl(currentUrl, "GET");
         if (!data || !data.data) throw new Error('Response had unexpected structure');
         console.log('Got some data');
