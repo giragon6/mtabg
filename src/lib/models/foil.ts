@@ -1,7 +1,7 @@
-import { FoilType } from "../mtabg/src/lib/types/types.js";
+import { FoilType } from "$lib/types/types";
 
 class Foil {
-  effect: string;
+  effect: string = '';
   foilType: FoilType;
 
   constructor(foilType: FoilType) {

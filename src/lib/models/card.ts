@@ -1,4 +1,4 @@
-import { FoilType } from "../mtabg/src/lib/types/types.js"
+import { FoilType } from "$lib/types/types"
 import Foil from "./foil.js"
 
 class Card {

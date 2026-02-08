@@ -1,12 +1,12 @@
 import Card from "./card.js"
-import QueryGenerator from "../mtabg/src/lib/util/queryGenerator.js"
-import CardFetcher from "../mtabg/src/lib/util/cardFetcher.js"
-import { weightedRandom } from "../mtabg/src/lib/util/randUtil.js"
-import { PackData, Special, PackSlot, CardChance } from "../mtabg/src/lib/types/types.js"
+import QueryGenerator from "$lib/util/queryGenerator.js"
+import CardFetcher from "$lib/util/cardFetcher.js"
+import { weightedRandom } from "$lib/util/randUtil.js"
+import type { PackData, Special, PackSlot, CardChance } from "$lib/types/types"
 
 export class Pack {
   packData: PackData
-  cards: Card[]
+  cards: Card[] = []
   fetcher: CardFetcher
   queryGenerator: QueryGenerator
   set: string // TODO: Make enum?
