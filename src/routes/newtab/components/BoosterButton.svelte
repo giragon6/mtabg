@@ -6,9 +6,9 @@
   export let loading: boolean;
 </script>
 
-<HoverTilt tiltFactor={1.1} scaleFactor={1} style="width: fit-content;" glareMask="url(/booster_pack_bitmasks/tdm-bitmask.png)" glareMaskMode="luminance">
+<HoverTilt tiltFactor={1.1} scaleFactor={1.4} glareMask="url(/booster_pack_bitmasks/tdm-smaller-bitmask.png)" glareMaskMode="luminance">
   <button disabled={loading} onclick={onclick} title="Open pack">
-    <img class="pack" src={img} alt="Booster pack" width=456>
+    <img class="pack" src={img} alt="Booster pack" width=342>
   </button>
 </HoverTilt>
 

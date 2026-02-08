@@ -14,34 +14,38 @@
     let cards: Card[];
     let loading: boolean = false;
     let err: string | null = null;
+    let packVisible: boolean = true;
 
     async function openPack() {
-    cards = [];
-    err = null;
-    loading = true;
-    let pack = new Pack(packData as PackData);
-    console.log(pack);
-    try {
-        cards = await pack.open();
-        console.log("got cards!")
-        console.log(cards);
-    } catch(e) {
-        if (typeof e === "string") {
-            err = e;
-        } else if (e instanceof Error) {
-            err = e.message
-        } else {
-            err = String(e);
+        cards = [];
+        err = null;
+        loading = true;
+        let pack = new Pack(packData as PackData);
+        console.log(pack);
+        try {
+            cards = await pack.open();
+            console.log("got cards!")
+            console.log(cards);
+            packVisible = false;
+        } catch(e) {
+            if (typeof e === "string") {
+                err = e;
+            } else if (e instanceof Error) {
+                err = e.message
+            } else {
+                err = String(e);
+            }
+            console.log(`Error opening pack: ${err}`)
         }
-        console.log(`Error opening pack: ${err}`)
-    }
         loading = false;
     }
 </script>
 
 <div class="container">
     <div class="error">{err}</div>
-    <BoosterButton loading={loading} onclick={openPack} />
+    {#if packVisible}
+        <BoosterButton loading={loading} onclick={openPack} />
+    {/if}
     <div class="cards-container">
         {#each cards as c}
             <CardDisplay imageUri={c.imageUri} name={c.name} isFoil={c.foil.foilType == 'foil'} />
@@ -68,6 +72,8 @@
     .cards-container {
         display: flex;
         flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
         gap: 20px;
         margin: 5%;
     }
