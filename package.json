@@ -33,6 +33,7 @@
 		"vite": "^7.3.1"
 	},
 	"dependencies": {
+		"hover-tilt": "^1.0.0",
 		"mtabg": "link:"
 	}
 }
