@@ -44,18 +44,9 @@
     <div class="error">{err}</div>
     <button class="open-pack" disabled={loading} onclick={openPack}>Open Pack</button>
     <div class="cards-container">
-            <!-- {#each cards as c}
-                <CardDisplay imageUri={c.imageUri} name={c.name} />
-            {/each} -->
-        <CardDisplay imageUri="https://cards.scryfall.io/large/front/0/3/031afea3-fbfb-4663-a8cc-9b7eb7b16020.jpg?1743204949" name="Dragonfire Blade" />
-        <CardDisplay imageUri="https://cards.scryfall.io/large/front/0/3/031afea3-fbfb-4663-a8cc-9b7eb7b16020.jpg?1743204949" name="Dragonfire Blade" />
-        <CardDisplay imageUri="https://cards.scryfall.io/large/front/0/3/031afea3-fbfb-4663-a8cc-9b7eb7b16020.jpg?1743204949" name="Dragonfire Blade" />
-        <CardDisplay imageUri="https://cards.scryfall.io/large/front/0/3/031afea3-fbfb-4663-a8cc-9b7eb7b16020.jpg?1743204949" name="Dragonfire Blade" />
-        <CardDisplay imageUri="https://cards.scryfall.io/large/front/0/3/031afea3-fbfb-4663-a8cc-9b7eb7b16020.jpg?1743204949" name="Dragonfire Blade" />
-        <CardDisplay imageUri="https://cards.scryfall.io/large/front/0/3/031afea3-fbfb-4663-a8cc-9b7eb7b16020.jpg?1743204949" name="Dragonfire Blade" />
-        <CardDisplay imageUri="https://cards.scryfall.io/large/front/0/3/031afea3-fbfb-4663-a8cc-9b7eb7b16020.jpg?1743204949" name="Dragonfire Blade" />
-        <CardDisplay imageUri="https://cards.scryfall.io/large/front/0/3/031afea3-fbfb-4663-a8cc-9b7eb7b16020.jpg?1743204949" name="Dragonfire Blade" />
-        <CardDisplay imageUri="https://cards.scryfall.io/large/front/0/3/031afea3-fbfb-4663-a8cc-9b7eb7b16020.jpg?1743204949" name="Dragonfire Blade" />            
+        {#each cards as c}
+            <CardDisplay imageUri={c.imageUri} name={c.name} isFoil={c.foil.foilType == 'foil'} />
+        {/each}
     </div>
 </div>
 

@@ -11,6 +11,7 @@ export enum Frame {
 }
 
 export enum FoilType {
+  none = "none",
   foil = "foil"
 }
 

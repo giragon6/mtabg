@@ -35,7 +35,11 @@ export class Pack {
     for (let cc of ccs) {
       const query = this.queryGenerator.toQuery(cc, this.set, this.special);
       let resp = Array.isArray(query) ? await this.fetcher.fetchCardsById(query) : await this.fetcher.fetchRandomCardsByQuery(query, 1);
-      if (cc.foil) resp[0]["foil"] = cc.foil; //resp will only be one card for now
+      if (cc.foil) {
+        resp[0]["foil"] = cc.foil; //resp will only be one card for now
+      } else {
+        resp[0]["foil"] = 'none';
+      }
       cardJsons.push(...resp);
     }
     return cardJsons;
