@@ -25,8 +25,10 @@ class QueryGenerator {
       if (cc.land == LandType.basic) {
         queryList.push("t:" + cc.land);
       } else {
-        queryList.push(("is:" + cc.land));
+        queryList.push("is:" + cc.land);
       }
+    } else {
+      queryList.push("-t:land") // dont include lands if not explicitly included in slot
     }
     for (let i = 0; i < queryList.length; i++) {
       queryList[i] = encodeURIComponent(queryList[i]);
