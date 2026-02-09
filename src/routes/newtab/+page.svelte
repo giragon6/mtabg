@@ -11,10 +11,14 @@
     import type { PackData } from '$lib/types/types';
     import packData from '$lib/booster_data/tdm-play.json';
 
-    let cards: Card[];
-    let loading: boolean = false;
-    let err: string | null = null;
-    let packVisible: boolean = true;
+    let cards: Card[] = $state([]);
+    let loading: boolean = $state(false);
+    let err: string | null = $state(null);
+    let packVisible: boolean = $state(true);
+
+    let dragStartIndex = $state(-1)
+    let dragEnterIndex = $state(-1)
+    let dropIndex = $state(-1)
 
     async function openPack() {
         cards = [];
@@ -39,16 +43,58 @@
         }
         loading = false;
     }
+    
+    function handleDragStart(index: number) {
+        dragStartIndex = index;
+    }
+
+    function handleDragEnter(index: number) {
+        dragEnterIndex = index;
+    }
+
+    function handleDragEnd() {
+        dragStartIndex = -1;
+    }
+
+    function handleDrop() {
+        if (dragStartIndex === dropIndex) return;
+        const draggedItem = cards[dragStartIndex];
+        cards.splice(dragStartIndex, 1);
+        cards.splice(dropIndex, 0, draggedItem);
+    }
+
+    function handleDragOver(e: DragEvent) {
+        e.preventDefault()
+        //@ts-ignore
+        const targRect = e.target.getBoundingClientRect();
+        const targLeft = targRect.left;
+        const targWidth = targRect.width;
+        const xLoc = e.clientX - targLeft;
+        if (xLoc < targWidth / 2) {
+            dropIndex = dragEnterIndex;
+        } else {
+            dropIndex = dragEnterIndex + 1;
+        }
+    }
 </script>
 
 <div class="container">
     <div class="error">{err}</div>
     {#if packVisible}
-        <BoosterButton loading={loading} onclick={openPack} />
+        <BoosterButton 
+            loading={loading} 
+            onclick={openPack} />
     {/if}
-    <div class="cards-container">
-        {#each cards as c}
-            <CardDisplay imageUri={c.imageUri} name={c.name} isFoil={c.foil.foilType == 'foil'} />
+    <div class="cards-container" ondrop={handleDrop} ondragover={handleDragOver} role="region">
+        {#each cards as c, i}
+            <CardDisplay 
+                imageUri={c.imageUri} 
+                name={c.name} 
+                isFoil={c.foil.foilType == 'foil'}
+                index={i} 
+                handleDragStart={handleDragStart}
+                handleDragEnd={handleDragEnd}
+                handleDragEnter={handleDragEnter} />
         {/each}
     </div>
 </div>
