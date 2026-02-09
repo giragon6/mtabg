@@ -5,12 +5,12 @@
 <script lang='ts'>
     import { Pack } from '$lib/models/pack';
     import Card from '$lib/models/card'
-    import CardDisplay from './components/CardDisplay.svelte';
 	import BoosterButton from './components/BoosterButton.svelte';
 
     import type { PackData } from '$lib/types/types';
     import { MtGSet, BoosterType, getBoosterTypesForSet, toFullName } from '$lib/types/boosters'
 	import { titleCase } from '$lib/util/formatUtil';
+	import CardContainer from './components/CardContainer.svelte';
 
     let cards: Card[] = $state([]);
     let loading: boolean = $state(false);
@@ -21,15 +21,11 @@
     let boosterType: BoosterType = $state(BoosterType.play);
     let availableSets: MtGSet[] = Object.values(MtGSet);
 
-    let dragStartIndex = $state(-1)
-    let dragEnterIndex = $state(-1)
-    let dropIndex = $state(-1)
-
     async function openPack() {
         let packData: PackData;
         try {
-            const res = await fetch(`$lib/booster_data/${set}-${boosterType}.json`);
-            if (!res) throw new Error("Pack data response was null");
+            const res = await fetch(`booster_data/${set}-${boosterType}.json`);
+            if (!res.ok) throw new Error("Pack data response wasn't ok");
             packData = await res.json();
             if (!packData) throw new Error("Pack data was null")
         } catch(e) {
@@ -57,39 +53,6 @@
         }
         loading = false;
     }
-    
-    function handleDragStart(index: number) {
-        dragStartIndex = index;
-    }
-
-    function handleDragEnter(index: number) {
-        dragEnterIndex = index;
-    }
-
-    function handleDragEnd() {
-        dragStartIndex = -1;
-    }
-
-    function handleDrop() {
-        if (dragStartIndex === dropIndex) return;
-        const draggedItem = cards[dragStartIndex];
-        cards.splice(dragStartIndex, 1);
-        cards.splice(dropIndex, 0, draggedItem);
-    }
-
-    function handleDragOver(e: DragEvent) {
-        e.preventDefault()
-        //@ts-ignore
-        const targRect = e.target.getBoundingClientRect();
-        const targLeft = targRect.left;
-        const targWidth = targRect.width;
-        const xLoc = e.clientX - targLeft;
-        if (xLoc < targWidth / 2) {
-            dropIndex = dragEnterIndex;
-        } else {
-            dropIndex = dragEnterIndex + 1;
-        }
-    }
 </script>
 
 <div class="container">
@@ -109,18 +72,7 @@
             loading={loading} 
             onclick={openPack} />
     {/if}
-    <div class="cards-container" ondrop={handleDrop} ondragover={handleDragOver} role="region">
-        {#each cards as c, i}
-            <CardDisplay 
-                imageUri={c.imageUri} 
-                name={c.name} 
-                isFoil={c.foil.foilType == 'foil'}
-                index={i} 
-                handleDragStart={handleDragStart}
-                handleDragEnd={handleDragEnd}
-                handleDragEnter={handleDragEnter} />
-        {/each}
-    </div>
+    <CardContainer cards={cards} />
 </div>
 
 <style>
@@ -137,14 +89,5 @@
         display: flex;
         align-items: center;
         justify-content: center;
-    }
-
-    .cards-container {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
-        gap: 20px;
-        margin: 5%;
     }
 </style>
