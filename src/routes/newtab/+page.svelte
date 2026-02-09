@@ -56,23 +56,30 @@
 </script>
 
 <div class="container">
+    <h1>Magic: The Gathering Booster Pack Simulator</h1>
+    <h3>Gamble without going bankrupt!</h3>
     <div class="error">{err}</div>
-    <select name="set" bind:value={set}>
-        {#each availableSets as s}
-            <option value={s}>{toFullName(s)}</option>
-        {/each}
-    </select>
-    <select name="type" bind:value={boosterType}>
-        {#each getBoosterTypesForSet(set) as bt}
-            <option value={bt}>{titleCase(bt)}</option>
-        {/each}
-    </select>
+    <div class="selects">
+        <select name="set" bind:value={set}>
+            {#each availableSets as s}
+                <option value={s}>{toFullName(s)}</option>
+            {/each}
+        </select>
+        <select name="type" bind:value={boosterType}>
+            {#each getBoosterTypesForSet(set) as bt}
+                <option value={bt}>{titleCase(bt)}</option>
+            {/each}
+        </select>
+    </div>
     {#if packVisible}
         <BoosterButton 
             loading={loading} 
             onclick={openPack} />
     {/if}
     <CardContainer cards={cards} />
+    <footer>
+        Magic: The Gathering is the intellectual property of Wizards of the Coast LLC, a subsidiary of Hasbro, Inc. Card API by Scryfall.
+    </footer>
 </div>
 
 <style>
@@ -80,14 +87,42 @@
         height: 100%;
         width: 100%;
         margin: 0;
+        font-family: 'Courier New', Courier, monospace;
+    }
+
+    h1 {
+        color: #c93b28;
+        -webkit-text-stroke: #e3e3e3 1px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    h3 {
+        color: #e3e3e3;
+    }
+
+    footer {
+        text-align: center;
+    }
+
+    select {
+        font-size: medium;
+    }
+
+    .selects {
+        display: flex;
+        flex-direction: row;
+        gap: 10%;
+        margin-bottom: 50px;
     }
 
     .container {
         min-height: 100%;
         padding: 2%;
-        background: linear-gradient(#5d00b4, #0064b7);
+        background: linear-gradient(#222a68, #574ae2);
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-direction: column;
     }
 </style>
