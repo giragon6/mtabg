@@ -53,6 +53,11 @@
         }
         loading = false;
     }
+
+    function reset() {
+        cards = [];
+        packVisible = true;
+    }
 </script>
 
 <div class="container">
@@ -75,6 +80,8 @@
         <BoosterButton 
             loading={loading} 
             onclick={openPack} />
+    {:else}
+        <button onclick={reset} class="open-another">Open another!</button>
     {/if}
     <CardContainer cards={cards} />
     <footer>
@@ -106,6 +113,10 @@
     }
 
     select {
+        font-size: medium;
+    }
+
+    .open-another {
         font-size: medium;
     }
 
