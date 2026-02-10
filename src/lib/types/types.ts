@@ -8,11 +8,15 @@ export enum Rarity {
 export enum Frame {
   showcase = "showcase",
   full_art = "full_art",
+  borderless = "borderless"
 }
 
 export enum FoilType {
   none = "none",
-  foil = "foil"
+  foil = "foil",
+  dragonscale = "dragonscale",
+  double_rainbow = "double_rainbow",
+  halo = "halo"
 }
 
 export enum LandType {
@@ -37,6 +41,7 @@ export type CardChance = {
   frame?: Frame,
   foil?: FoilType,
   land?: LandType,
+  include_nonbasic_lands?: boolean,
   chance: number,
 }
 

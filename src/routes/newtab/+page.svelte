@@ -79,7 +79,9 @@
     {#if packVisible}
         <BoosterButton 
             loading={loading} 
-            onclick={openPack} />
+            onclick={openPack}
+            set={set}
+            boosterType={boosterType} />
     {:else}
         <button onclick={reset} class="open-another">Open another!</button>
     {/if}

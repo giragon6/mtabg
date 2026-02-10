@@ -8,7 +8,7 @@ export enum BoosterType {
 }
 
 const boosterAvailabilityMap: Record<MtGSet, Set<BoosterType>> = {
-  [MtGSet.tdm]: new Set([BoosterType.play])
+  [MtGSet.tdm]: new Set([BoosterType.play, BoosterType.collector])
 }
 
 const setFullnameMap: Record<MtGSet, String> = {

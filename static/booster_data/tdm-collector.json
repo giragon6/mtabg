@@ -1,0 +1,313 @@
+{
+  "type": "collector",
+  "set": "tdm",
+  "slots": [
+    {
+      "amount": 4,
+      "chances": [
+        {
+          "rarity": "common",
+          "chance": 1.0,
+          "foil": "foil",
+          "include_nonbasic_lands": true
+        }
+      ]
+    },
+    {
+      "amount": 3,
+      "chances": [
+        {
+          "rarity": "uncommon",
+          "chance": 1.0,
+          "foil": "foil"
+        }
+      ]
+    },
+    {
+      "amount": 1,
+      "chances": [
+        {
+          "rarity": "common",
+          "frame": "showcase",
+          "chance": 0.546
+        },
+        {
+          "rarity": "uncommon",
+          "frame": "showcase",
+          "chance": 0.454
+        }
+      ]
+    },
+    {
+      "amount": 1,
+      "chances": [
+        {
+          "rarity": "common",
+          "frame": "showcase",
+          "foil": "foil",
+          "chance": 0.546
+        },
+        {
+          "rarity": "uncommon",
+          "frame": "showcase",
+          "foil": "foil",
+          "chance": 0.454
+        }
+      ]
+    },
+    {
+      "amount": 1,
+      "chances": [
+        {
+          "special": 0,
+          "chance": 0.167
+        },
+        {
+          "special": 0,
+          "foil": "foil",
+          "chance": 0.083
+        },
+        {
+          "special": 1,
+          "foil": "foil",
+          "chance": 0.75
+        }
+      ]
+    },
+    {
+      "amount": 1,
+      "chances": [
+        {
+          "rarity": "rare",
+          "foil": "foil",
+          "chance": 0.857
+        },
+        {
+          "rarity": "mythic",
+          "foil": "foil",
+          "chance": 0.143
+        }
+      ]
+    },
+    {
+      "amount": 1,
+      "chances": [
+        {
+          "special": 2,
+          "rarity": "mythic",
+          "frame": "full_art",
+          "chance": 0.111
+        },
+        {
+          "special": 2,
+          "rarity": "rare",
+          "frame": "extendedart",
+          "chance": 0.889
+        }
+      ]
+    },
+    {
+      "amount": 2,
+      "chances": [
+        {
+          "rarity": "rare",
+          "frame": "showcase",
+          "chance": 0.064
+        },
+        {
+          "rarity": "mythic",
+          "frame": "showcase",
+          "chance": 0.046
+        },
+        {
+          "rarity": "rare",
+          "special": 4,
+          "chance": 0.515
+        },
+        {
+          "rarity": "mythic",
+          "special": 4,
+          "chance": 0.082
+        },
+        {
+          "rarity": "rare",
+          "special": 5,
+          "chance": 0.215
+        },
+        {
+          "special": 6,
+          "chance": 0.007
+        },
+        {
+          "rarity": "rare",
+          "special": 7,
+          "chance": 0.064
+        },
+        {
+          "rarity": "mythic",
+          "special": 7,
+          "chance": 0.007
+        }
+      ]
+    },
+    {
+      "amount": 1,
+      "chances": [
+        {
+          "rarity": "rare",
+          "foil": "foil",
+          "frame": "showcase",
+          "chance": 0.05299
+        },
+        {
+          "rarity": "mythic",
+          "foil": "foil",
+          "frame": "showcase",
+          "chance": 0.039
+        },
+        {
+          "rarity": "rare",
+          "foil": "foil",
+          "special": 4,
+          "chance": 0.427
+        },
+        {
+          "rarity": "mythic",
+          "foil": "foil",
+          "special": 4,
+          "chance": 0.068
+        },
+        {
+          "rarity": "rare",
+          "foil": "foil",
+          "special": 5,
+          "chance": 0.178
+        },
+        {
+          "special": 6,
+          "foil": "foil",
+          "chance": 0.006
+        },
+        {
+          "special": 7,
+          "foil": "foil",
+          "chance": 0.053
+        },
+        {
+          "special": 7,
+          "foil": "foil",
+          "chance": 0.006
+        },
+        {
+          "special": 10,
+          "foil": "foil",
+          "chance": 0.09
+        },
+        {
+          "special": 11,
+          "foil": "halo",
+          "chance": 0.01
+        },
+        {
+          "special": 8,
+          "foil": "foil",
+          "chance": 0.06
+        },
+        {
+          "special": 9,
+          "foil": "dragonscale",
+          "chance": 0.01
+        },
+        {
+          "special": 3,
+          "foil": "double_rainbow",
+          "chance": 0.0001
+        }
+      ]
+    }
+  ],
+  "special": [
+    {
+      "name": "0.dragon's eye basics",
+      "ids": [
+        "7e33e540-2828-46ad-a441-366552843d9c",
+        "b300be80-6618-4284-b5c3-95c1ab373e6f",
+        "a4db1b7a-93f2-40a5-b649-80a099ddeb62",
+        "3e8c67e5-587a-43b2-af47-bbad1f8b52e9",
+        "57da24a0-89a7-4756-b4ca-4dea132e8f67"
+      ]
+    },
+    {
+      "name": "1.dragon's presence basics",
+      "ids": [
+        "48811e13-5774-4da1-95ec-6ea5dc4976ad",
+        "4208e66c-8c98-4c48-ab07-8523c0b26ca4",
+        "fe0865ba-47c0-40bc-b0c6-e1ea5ae08a98",
+        "0d0f1dd6-9564-4adc-af7d-f83252e8581a",
+        "ef235170-8276-4ef0-bdfd-ba68d5b218ec"
+      ]
+    },
+    {
+      "name": "2.Tarkir: Dragonstorm commander card",
+      "query": "set:tdc"
+    },
+    {
+      "name": "3.double rainbow foil serialized retro frame Mox Jasper",
+      "ids": [
+        "ec33ea23-c8e8-4066-91b9-5e0ad191bcdb"
+      ]
+    },
+    {
+      "name": "4.borderless clan cards",
+      "query": "set:tdm+is:borderless+-layout:reversible_card+-t:saga+-dsiege+-esiege+-fsiege+-gsiege+-ksiege+-elspeth"
+    },
+    {
+      "name": "5.borderless Sagas, Sieges, and lands",
+      "query": "set:tdm+is:full_art+(t:saga OR t:land OR siege)+-t:creature+-t:basic"
+    }, 
+    {
+      "name": "6.borderless mythic rare Elspeth, Storm Slayer",
+      "ids": [
+        "1fdf9438-fd5f-4638-8f41-dae35ae8f257"
+      ]
+    },
+    {
+      "name": "7.borderless reversible dragon",
+      "query": "set:tdm+layout:reversible_card+is:full_art+-t:saga+-(Slayer)"
+    },
+    {
+      "name": "8.special_guest",
+      "ids": [
+        "5dca6cae-b357-4ce5-a913-f4ff9cf032ed",
+        "66cc9980-be00-4351-b0d5-082a5a402a2a",
+        "565462a6-97ad-4a83-bd1d-1b51e9d6c315",
+        "fe51805f-a2e3-4c29-a6a7-ca99537d13a8",
+        "eddf05f8-9dcf-4e63-a411-6c2fc262f9c9",
+
+        "894105c4-d3ce-4d38-855b-24aa47b112c1",
+        "49515199-f53c-4595-94ba-3a3e46b86372",
+        "2cae1d08-5bda-4eeb-8134-bdb62ad6f44e",
+        "ed36429e-ec50-4bdf-9d07-03b4e4861661",
+        "2bd93079-b10e-4be3-9545-17fa3bc3bfd2"
+      ]
+    },
+    {
+      "name": "9.special guest fetch lands",
+      "ids": [
+        "894105c4-d3ce-4d38-855b-24aa47b112c1",
+        "49515199-f53c-4595-94ba-3a3e46b86372",
+        "2cae1d08-5bda-4eeb-8134-bdb62ad6f44e",
+        "ed36429e-ec50-4bdf-9d07-03b4e4861661",
+        "2bd93079-b10e-4be3-9545-17fa3bc3bfd2"
+      ]
+    },
+    {
+      "name": "10.ghostfire cards",
+      "query": "set:tdm+cn>398+cn<409"
+    },
+    {
+      "name": "11.ghostfire halo foil cards",
+      "query": "set:tdm+is:halofoil"
+    }
+  ]
+}
