@@ -3,13 +3,14 @@ import QueryGenerator from "$lib/util/queryGenerator.js"
 import CardFetcher from "$lib/util/cardFetcher.js"
 import { weightedRandom } from "$lib/util/randUtil.js"
 import type { PackData, Special, PackSlot, CardChance } from "$lib/types/types"
+import type { MtGSet } from "$lib/types/boosters.js"
 
 export class Pack {
   packData: PackData
   cards: Card[] = []
   fetcher: CardFetcher
   queryGenerator: QueryGenerator
-  set: string // TODO: Make enum?
+  set: MtGSet
   special: Special[]
 
   constructor(packData: PackData) {

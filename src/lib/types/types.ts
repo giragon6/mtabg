@@ -1,3 +1,5 @@
+import type { MtGSet } from "./boosters"
+
 export enum Rarity {
   common = "common",
   uncommon = "uncommon",
@@ -47,7 +49,7 @@ export type CardChance = {
 
 export type PackData = {
   type: string,
-  set: string,
+  set: MtGSet,
   slots: PackSlot[],
   special: Special[],
 }
