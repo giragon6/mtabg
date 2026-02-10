@@ -1,6 +1,7 @@
 class CardFetcher {
   readonly url = "https://api.scryfall.com/cards/"
   readonly headers = new Headers({
+    "content-type": "application/json",
     "Accept"      : "*/*",
     "User-Agent"  : "MTabG/1.0"
   })
@@ -13,17 +14,15 @@ class CardFetcher {
 
   //TODO: proper function signatures
 
-  async fetchCardsById(identifiers: string[]): Promise<any[]> {
+  async fetchRandomCardsById(identifiers: string[], num: number): Promise<any[]> {
     let cardsJson: JSON[] = []
     const body = {
       identifiers: identifiers.map(id => ({id}))
     }
     const collectionUrl = this.url + "collection"
-    console.log(`POSTing to ${collectionUrl} with body ${body}`)
+    console.log(`POSTing to ${collectionUrl} with body:`)
+    console.log(JSON.stringify(body)) 
     try {
-      const body = {
-        "identifiers": identifiers
-      }
       const data: {[k: string]: any} = await this.fetchFromUrl(collectionUrl, "POST", body);
       if (!data || !data.data) throw new Error('Response had unexpected structure');
       console.log(data.data);
@@ -31,15 +30,26 @@ class CardFetcher {
     } catch (error) {
       console.error('Error fetching data: ', error);
     }
-    return cardsJson
+    let chosenCards: JSON[] = [];
+    if (!cardsJson || cardsJson.length == 0) {
+      console.error('Error fetching data: no cards retrieved');
+    } else {
+      for (let i = 0; i < num; i++) {
+        chosenCards.push(cardsJson[Math.floor(Math.random() * cardsJson.length)]);
+      }
+      console.log('returning chosencards')
+    }
+    console.log(chosenCards)
+    return chosenCards;
   }
 
   private async fetchFromUrl(url: string, method: "GET" | "POST", body?: {[k: string]: any}): Promise<any> {
     await this.sleep(this.FETCH_DELAY);
+    console.log(JSON.stringify(body))
     return fetch(url, {
       headers: this.headers,
-      body: JSON.stringify(body),
       method: method,
+      body: body ? JSON.stringify(body) : null
     })
     .then(response => {
       if (!response.ok) throw new Error('URL response wasn\'t ok');

@@ -10,15 +10,15 @@ class QueryGenerator {
    * @returns A list of ids or a query string
    */
   toQuery(cc: CardChance, set: string, special: Special[]): string[] | string {
-    let queryList = ["s:" + set]
-    if (cc.special) {
-      const sp = special[cc.special]
-      if (sp.ids) {
-        return sp.ids
-      }
-      return sp.query
+    let queryList = []
+
+    // some slots provide a list of ids rather than a query
+    // because the specific cards cant be isolated with queries
+    if (cc.special && special[cc.special].ids) {
+      return special[cc.special].ids!
     }
-    if (cc.rarity) queryList.push("r:" + cc.rarity);
+
+    if (cc.rarity) queryList.push("r:" + cc.rarity); 
     if (cc.frame) queryList.push("is:" + cc.frame);
     if (cc.foil && cc.foil == FoilType.foil) queryList.push("is:" + cc.foil);
     if (cc.land) {
@@ -28,13 +28,23 @@ class QueryGenerator {
         queryList.push("is:" + cc.land);
       }
     } else {
-      queryList.push("-t:land") // dont include lands if not explicitly included in slot
+      if (cc.include_nonbasic_lands) {
+        queryList.push("-t:basic")
+      } else {
+        queryList.push("-t:land") // dont include lands if not explicitly included in slot
+      }
+    }
+    // we already checked if the special included id list
+    // so it must include query
+    if (cc.special) {
+      queryList.push(...special[cc.special].query.split('+'))
+    } else {
+      queryList.push("s:" + set) // special queries already include set
     }
     for (let i = 0; i < queryList.length; i++) {
       queryList[i] = encodeURIComponent(queryList[i]);
     }
-    let query = queryList.join('+');
-    return query;
+    return queryList.join('+');
   }
 }
 
