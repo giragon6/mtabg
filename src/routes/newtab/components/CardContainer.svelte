@@ -44,6 +44,7 @@
     {#each cards as c, i}
         <CardDisplay 
             imageUri={c.imageUri} 
+            flipImageUri={c.flipImageUri}
             name={c.name} 
             isFoil={c.foil.foilType == 'foil'}
             index={i} 
