@@ -6,7 +6,7 @@
       "amount": 1,
       "chances": [ 
         {
-          "special": 1,
+          "special": 0,
           "chance": 0.015
         },
         {
@@ -74,29 +74,29 @@
       },
       {
         "rarity": "rare",
-        "frame": "full_art",
+        "special": 4,
         "chance": 0.013
       },
       {
         "rarity": "mythic",
-        "frame": "full_art",
+        "special": 4,
         "chance": 0.002
       },
       {
-        "special": 2,
+        "special": 1,
         "chance": 0.006
       },
       {
-        "special": 3,
+        "special": 2,
         "chance": 0.0005
       },
       {
-        "special": 4,
+        "special": 3,
         "rarity": "rare",
         "chance": 0.002
       },
       {
-        "special": 4,
+        "special": 3,
         "rarity": "mythic",
         "chance": 0.0005
       }
@@ -125,29 +125,29 @@
       },
       {
         "rarity": "rare",
-        "frame": "full_art",
+        "special": 4,
         "chance": 0.064
       },
       {
         "rarity": "mythic",
-        "frame": "full_art",
+        "special": 4,
         "chance": 0.012
       },
       {
-        "special": 2,
+        "special": 1,
         "chance": 0.027
       },
       {
-        "special": 3,
+        "special": 2,
         "chance": 0.001
       },
       {
-        "special": 4,
+        "special": 3,
         "rarity": "rare",
         "chance": 0.008
       },
       {
-        "special": 4,
+        "special": 3,
         "rarity": "mythic",
         "chance": 0.009
       }
@@ -203,29 +203,33 @@
       {
         "foil": "foil",
         "rarity": "rare",
-        "frame": "full_art",
+        "special": 4,
         "chance": 0.005
       },
       {
         "foil": "foil",
         "rarity": "mythic",
-        "frame": "full_art",
+        "special": 4,
         "chance": 0.001
       },
       {
-        "special": 2,
+        "special": 1,
+        "foil": "foil",
         "chance": 0.002
       },
       {
-        "special": 3,
+        "special": 2,
+        "foil": "foil",
         "chance": 0.0005
       },
       {
-        "special": 4,
+        "special": 3,
+        "foil": "foil",
         "chance": 0.001
       },
       {
-        "special": 4,
+        "special": 3,
+        "foil": "foil",
         "chance": 0.0005
       }
       ]
@@ -294,7 +298,11 @@
     },
     {
       "name": "borderless reversible dragon",
-      "query": "set:tdm+layout:reversible_card+is:full_art"
+      "query": "set:tdm+layout:reversible_card+is:full_art+-t:saga+-(Slayer)"
+    },
+    {
+      "name": "borderless clan cards",
+      "query": "set:tdm+is:borderless+-layout:reversible_card+-t:saga+-dsiege+-esiege+-fsiege+-gsiege+-ksiege+-elspeth"
     }
   ]
 }
