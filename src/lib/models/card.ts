@@ -18,7 +18,9 @@ class Card {
 
   static fromJson(cardJson: {[index: string]: any}, foilType: FoilType): Card {
     const price: number = cardJson["prices"][foilType == FoilType.foil ? "usd_foil" : "usd"];
-    const imageUri: string = cardJson["image_uris"]["large"];
+    const cardImageUris = cardJson["image_uris"] ? cardJson["image_uris"] : cardJson["card_faces"][0]
+    // TODO: handle double faced cards
+    const imageUri: string = cardImageUris["large"];
     const name: string = cardJson["name"]
     return new Card(cardJson["id"], foilType, name, price, imageUri);
   }
