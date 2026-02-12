@@ -40,6 +40,7 @@
             cards = await pack.open();
             console.log("got cards!")
             console.log(cards);
+            await new Promise(r => setTimeout(r, 500)); //wait for animation to finish (and build suspense?) 
             packVisible = false;
         } catch(e) {
             if (typeof e === "string") {
@@ -84,8 +85,8 @@
             boosterType={boosterType} />
     {:else}
         <button onclick={reset} class="open-another">Open another!</button>
+        <CardContainer cards={cards} />
     {/if}
-    <CardContainer cards={cards} />
     <footer>
         Magic: The Gathering is the intellectual property of Wizards of the Coast LLC, a subsidiary of Hasbro, Inc. Card API by Scryfall.
     </footer>
@@ -126,7 +127,6 @@
         display: flex;
         flex-direction: row;
         gap: 10%;
-        margin-bottom: 50px;
     }
 
     .container {
