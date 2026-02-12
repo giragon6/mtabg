@@ -1,3 +1,4 @@
+import type { ScryfallCard } from "@scryfall/api-types"
 import type { MtGSet } from "./boosters"
 
 export enum Rarity {
@@ -54,3 +55,10 @@ export type PackData = {
   special: Special[],
 }
 
+export type ScryfallResponse = {
+  object: string,
+  total_cards: number,
+  has_more: boolean,
+  next_page?: string,
+  data: ScryfallCard.Any[]
+}

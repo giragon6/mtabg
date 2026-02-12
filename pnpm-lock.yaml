@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@scryfall/api-types':
+        specifier: 1.0.0-alpha.4
+        version: 1.0.0-alpha.4
       hover-tilt:
         specifier: ^1.0.0
         version: 1.0.0(svelte@5.50.0)
@@ -448,6 +451,9 @@ packages:
     resolution: {integrity: sha512-mxRFDdHIWRxg3UfIIAwCm6NzvxG0jDX/wBN6KsQFTvKFqqg9vTrWUE68qEjHt19A5wwx5X5aUi2zuZT7YR0jrA==}
     cpu: [x64]
     os: [win32]
+
+  '@scryfall/api-types@1.0.0-alpha.4':
+    resolution: {integrity: sha512-uxoJPA5r0va3xo1h5Su+0J8ptG1BS7+Uw+67sV7NTBIhR7Ly9cYrRv0un4Q3Z/h+D8jjTWNwablUbDG6zULcVA==}
 
   '@standard-schema/spec@1.1.0':
     resolution: {integrity: sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w==}
@@ -1399,6 +1405,8 @@ snapshots:
 
   '@rollup/rollup-win32-x64-msvc@4.57.1':
     optional: true
+
+  '@scryfall/api-types@1.0.0-alpha.4': {}
 
   '@standard-schema/spec@1.1.0': {}
 

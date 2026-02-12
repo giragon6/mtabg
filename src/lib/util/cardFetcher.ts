@@ -1,3 +1,6 @@
+import type { ScryfallResponse } from "$lib/types/types";
+import type { ScryfallCard } from "@scryfall/api-types";
+
 class CardFetcher {
   readonly url = "https://api.scryfall.com/cards/"
   readonly headers = new Headers({
@@ -12,10 +15,8 @@ class CardFetcher {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  //TODO: proper function signatures
-
-  async fetchRandomCardsById(identifiers: string[]): Promise<any[]> {
-    let cardsJson: JSON[] = []
+  async fetchRandomCardsById(identifiers: string[]): Promise<ScryfallCard.Any[]> {
+    let cardsJson: ScryfallCard.Any[] = []
     const body = {
       identifiers: identifiers.map(id => ({id}))
     }
@@ -23,7 +24,7 @@ class CardFetcher {
     console.log(`POSTing to ${collectionUrl} with body:`)
     console.log(JSON.stringify(body)) 
     try {
-      const data: {[k: string]: any} = await this.fetchFromUrl(collectionUrl, "POST", body);
+      const data: ScryfallResponse = await this.fetchFromUrl(collectionUrl, "POST", body);
       if (!data || !data.data) throw new Error('Response had unexpected structure');
       console.log(data.data);
       cardsJson = data.data;
@@ -36,7 +37,7 @@ class CardFetcher {
     return cardsJson;
   }
 
-  private async fetchFromUrl(url: string, method: "GET" | "POST", body?: {[k: string]: any}): Promise<any> {
+  private async fetchFromUrl(url: string, method: "GET" | "POST", body?: {[k: string]: any}): Promise<ScryfallResponse> {
     await this.sleep(this.FETCH_DELAY);
     console.log(JSON.stringify(body))
     return fetch(url, {
@@ -53,22 +54,22 @@ class CardFetcher {
     })
   }
 
-  async fetchRandomCardsByQuery(query: string): Promise<any[]> {
+  async fetchRandomCardsByQuery(query: string): Promise<ScryfallCard.Any[]> {
     let currentUrl = this.url + "search?q=" + query;
     console.log(currentUrl)
     let hasMore = true;
-    let cardsJson: JSON[] = []
+    let cardsJson: ScryfallCard.Any[] = []
     console.log(`GETting from ${currentUrl}`)
     let counter = 0;
     while (hasMore && counter < this.FETCH_LIMIT) {
       counter++;
       try {
-        const data: {[k: string]: any} = await this.fetchFromUrl(currentUrl, "GET");
+        const data: ScryfallResponse = await this.fetchFromUrl(currentUrl, "GET");
         if (!data || !data.data) throw new Error('Response had unexpected structure');
         console.log('Got some data');
         console.log(data.data);
         hasMore = data.has_more;
-        if (hasMore) currentUrl = data.next_page;
+        if (hasMore && data.next_page) currentUrl = data.next_page;
         cardsJson.push(...data.data);
         console.log('pushed cards');
       } catch (error) {

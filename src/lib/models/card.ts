@@ -9,7 +9,12 @@ class Card {
   imageUri: string;
   flipImageUri: string | undefined;
 
-  constructor(id: string, foilType: FoilType, name: string, price: number, imageUri: string, flipImageUri?: string | undefined) {
+  constructor(id: string, 
+              foilType: FoilType, 
+              name: string, 
+              price: number, 
+              imageUri: string, 
+              flipImageUri?: string | undefined) {
     this.id = id;
     this.foil = new Foil(foilType);
     this.name = name;
@@ -18,6 +23,7 @@ class Card {
     this.flipImageUri = flipImageUri;
   }
 
+  // TODO: find a way to use Scryfall API types without typescript sliming me out
   static fromJson(cardJson: {[index: string]: any}, foilType: FoilType): Card {
     const price: number = cardJson["prices"][foilType == FoilType.foil ? "usd_foil" : "usd"];
     let imageUri: string;
