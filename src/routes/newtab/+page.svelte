@@ -40,7 +40,7 @@
             cards = await pack.open();
             console.log("got cards!")
             console.log(cards);
-            await new Promise(r => setTimeout(r, 500)); //wait for animation to finish (and build suspense?) 
+            await new Promise(r => setTimeout(r, 1000)); //wait for animation to finish (and build suspense?) 
             packVisible = false;
         } catch(e) {
             if (typeof e === "string") {

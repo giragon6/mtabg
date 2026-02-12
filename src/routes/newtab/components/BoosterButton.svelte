@@ -29,31 +29,48 @@
     width: fit-content;
   }
 
-  .laser-open{
+  .laser-open {
     overflow: hidden;
   }
 
-  .laser-open::before{
+  .laser-open::before {
+    border-radius: 50%;
     z-index: 100;
-    box-shadow: 0px 2px 14px 2px #ff0000;
+    box-shadow: 0 0 4px 4px #ff0000;
+    animation: laser-slide 1s linear 1;
     content: "";
     position: absolute;
     left: 50%;
-    top: -55%;
+    top: -147%;
     width: 6px;
-    height: 50%;
+    height: 1%;
     transform: translateX(-50%);
-    background: linear-gradient(180deg, rgba(255, 149, 0, 0.9), #ff0000);
-    pointer-events: none;
-    animation: laser-slide .5s linear 1;
+   background: #ffffff;
     opacity: 0.95;
   }
 
+  .laser-open::after {
+    z-index: 99;
+    animation: laser-slide-trail 1s linear 1;
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: -147%;
+    width: 6px;
+    height: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(360deg, #ffffff, transparent);
+    opacity: 0.95;    
+  }
+
+  @keyframes laser-slide-trail {
+    0%    { top: -50%; opacity: 1; }
+    100%  { top: 40%; opacity: 1; }
+  }
+
   @keyframes laser-slide {
-    0%    { top: -50%; opacity: 0; }
-    10%   { opacity: 1; }
-    50%   { top: 0%; opacity: 1; }
-    100%  { top: 50%; opacity: 0; }
+    0%    { top: 0%; opacity: 1; }
+    100%  { top: 90%; opacity: 1; }
   }
 
   button {
