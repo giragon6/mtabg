@@ -29,19 +29,39 @@ export class Pack {
     return slot.chances[idx];
   }
 
+  private chooseRandomCards(cards: any[], num: number): any[] {
+    let chosenCards = [];
+    for (let i = 0; i < num; i++) {
+      chosenCards.push(cards[Math.floor(Math.random() * cards.length)]);
+    }
+    return chosenCards;
+  }
+
   private async openToJson(): Promise<JSON[]> {
-    // TODO: Consolidate same cards
     const ccs = this.packData.slots.flatMap(s => (new Array(s.amount)).fill(s)).map(s => this.evalSlot(s));
-    let cardJsons = [];
+    // reuse responses with the same query
+    let responseMap: { [query: string]: any[] } = {};
+    let cardJsons: any[] = []; 
     for (let cc of ccs) {
       const query = this.queryGenerator.toQuery(cc, this.set, this.special);
-      let resp = Array.isArray(query) ? await this.fetcher.fetchRandomCardsById(query, 1) : await this.fetcher.fetchRandomCardsByQuery(query, 1);
-      if (cc.foil) {
-        resp[0]["foil"] = cc.foil; //resp will only be one card for now
+      const isIds = Array.isArray(query);
+      const key = isIds ? query.join(",") : query;
+      let resp;
+      if (responseMap[key]) {
+        // the query has already been made, so use "cached" results
+        resp = responseMap[key];
       } else {
-        resp[0]["foil"] = 'none';
+        // the query is new, so ask scryfall
+        resp = isIds ? await this.fetcher.fetchRandomCardsById(query) : await this.fetcher.fetchRandomCardsByQuery(query);
+        responseMap[key] = resp;
       }
-      cardJsons.push(...resp);
+      let chosenCard = this.chooseRandomCards(resp, 1)[0]; // returns only one card
+      if (cc.foil) {
+        chosenCard["foil"] = cc.foil;
+      } else {
+        chosenCard["foil"] = 'none';
+      }
+      cardJsons.push(chosenCard);
     }
     return cardJsons;
   }

@@ -14,7 +14,7 @@ class CardFetcher {
 
   //TODO: proper function signatures
 
-  async fetchRandomCardsById(identifiers: string[], num: number): Promise<any[]> {
+  async fetchRandomCardsById(identifiers: string[]): Promise<any[]> {
     let cardsJson: JSON[] = []
     const body = {
       identifiers: identifiers.map(id => ({id}))
@@ -30,17 +30,10 @@ class CardFetcher {
     } catch (error) {
       console.error('Error fetching data: ', error);
     }
-    let chosenCards: JSON[] = [];
     if (!cardsJson || cardsJson.length == 0) {
       console.error('Error fetching data: no cards retrieved');
-    } else {
-      for (let i = 0; i < num; i++) {
-        chosenCards.push(cardsJson[Math.floor(Math.random() * cardsJson.length)]);
-      }
-      console.log('returning chosencards')
     }
-    console.log(chosenCards)
-    return chosenCards;
+    return cardsJson;
   }
 
   private async fetchFromUrl(url: string, method: "GET" | "POST", body?: {[k: string]: any}): Promise<any> {
@@ -60,7 +53,7 @@ class CardFetcher {
     })
   }
 
-  async fetchRandomCardsByQuery(query: string, num: number): Promise<any[]> {
+  async fetchRandomCardsByQuery(query: string): Promise<any[]> {
     let currentUrl = this.url + "search?q=" + query;
     console.log(currentUrl)
     let hasMore = true;
@@ -84,16 +77,10 @@ class CardFetcher {
       }
     }
     console.log(cardsJson);
-    let chosenCards: JSON[] = [];
     if (!cardsJson || cardsJson.length == 0) {
       console.error('Error fetching data: no cards retrieved');
-    } else {
-      for (let i = 0; i < num; i++) {
-        chosenCards.push(cardsJson[Math.floor(Math.random() * cardsJson.length)]);
-      }
-      console.log('returning chosencards')
-    }
-    return chosenCards;
+    } 
+    return cardsJson;
   }
 }
 
