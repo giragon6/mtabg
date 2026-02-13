@@ -65,7 +65,7 @@ class Card {
       price: this.price,
       imageUri: this.imageUri,
       flipImageUri: this.flipImageUri,
-      quantity: 1 // if it's being added to the db, it's the first one
+      quantity: 0 // db will auto increment to 1 when adding the card
     }
   }
 
