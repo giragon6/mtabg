@@ -19,12 +19,12 @@ class Card {
     this.foil = new Foil(foilType);
     this.name = name;
     this.price = price;
-    this.imageUri = imageUri;
+    this.imageUri = imageUri; 
     this.flipImageUri = flipImageUri;
   }
 
   // TODO: find a way to use Scryfall API types without typescript sliming me out
-  static fromJson(cardJson: {[index: string]: any}, foilType: FoilType): Card {
+  static fromScryfall(cardJson: {[index: string]: any}, foilType: FoilType): Card {
     const price: number = cardJson["prices"][foilType == FoilType.foil ? "usd_foil" : "usd"];
     let imageUri: string;
     let flipImageUri: string | undefined = undefined;
@@ -39,6 +39,31 @@ class Card {
     const name: string = cardJson["name"]
     return new Card(cardJson["id"], foilType, name, price, imageUri, flipImageUri);
   }
+
+  static fromIDB(cardJson: {[index: string]: any}): Card {
+    return new Card(cardJson.id, 
+                    cardJson.foil, 
+                    cardJson.name, 
+                    cardJson.price, 
+                    cardJson.imageUri, 
+                    cardJson.flipImageUri);
+  }
+
+  static hash(card: Card | {[index: string]: any}): string {
+    return card.id + '_' + card.foil;
+  }
+
+  static idFoilFromHash(hash: string): {id: string, foil: string} {
+    const components = hash.split('_');
+    return {id: components[0], foil: components[1]}
+  }
+
+  toIDB(): {[index: string]: any} {
+    return {
+      quantity: 1 // if it's being added to the db, it's the first one
+    }
+  }
+
 } 
 
 export default Card;
