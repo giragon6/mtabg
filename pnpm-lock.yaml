@@ -11,12 +11,12 @@ importers:
       '@scryfall/api-types':
         specifier: 1.0.0-alpha.4
         version: 1.0.0-alpha.4
+      dexie:
+        specifier: ^4.3.0
+        version: 4.3.0
       hover-tilt:
         specifier: ^1.0.0
         version: 1.0.0(svelte@5.50.0)
-      idb:
-        specifier: ^8.0.3
-        version: 8.0.3
       mtabg:
         specifier: 'link:'
         version: 'link:'
@@ -668,6 +668,9 @@ packages:
   devalue@5.6.2:
     resolution: {integrity: sha512-nPRkjWzzDQlsejL1WVifk5rvcFi/y1onBRxjaFMjZeR9mFpqu2gmAZ9xUB9/IEanEP/vBtGeGganC/GO1fmufg==}
 
+  dexie@4.3.0:
+    resolution: {integrity: sha512-5EeoQpJvMKHe6zWt/FSIIuRa3CWlZeIl6zKXt+Lz7BU6RoRRLgX9dZEynRfXrkLcldKYCBiz7xekTEylnie1Ug==}
+
   esbuild@0.27.3:
     resolution: {integrity: sha512-8VwMnyGCONIs6cWue2IdpHxHnAjzxnw2Zr7MkVxB2vjmQ2ivqGFb4LEG3SMnv0Gb2F/G/2yA8zUaiL1gywDCCg==}
     engines: {node: '>=18'}
@@ -803,9 +806,6 @@ packages:
     resolution: {integrity: sha512-uU8H0hWyhudaKOum9KeS3HRAGxJcmK2j44pYF4cFPYff8hsbzpQkxSHlBHOdFgGNyF7wgjywGukxK7fMW52LRQ==}
     peerDependencies:
       svelte: ^5.0.0
-
-  idb@8.0.3:
-    resolution: {integrity: sha512-LtwtVyVYO5BqRvcsKuB2iUMnHwPVByPCXFXOpuU96IZPPoPN6xjOGxZQ74pgSVVLQWtUOYgyeL4GE98BY5D3wg==}
 
   ignore@5.3.2:
     resolution: {integrity: sha512-hsBTNUqQTDwkWtcdYI2i06Y/nUBEsNEDJKjWdigLvegy8kDuJAS8uRlpkkcQpyEXL0Z/pjDy5HBmMjRCJ2gq+g==}
@@ -1638,6 +1638,8 @@ snapshots:
 
   devalue@5.6.2: {}
 
+  dexie@4.3.0: {}
+
   esbuild@0.27.3:
     optionalDependencies:
       '@esbuild/aix-ppc64': 0.27.3
@@ -1807,8 +1809,6 @@ snapshots:
   hover-tilt@1.0.0(svelte@5.50.0):
     dependencies:
       svelte: 5.50.0
-
-  idb@8.0.3: {}
 
   ignore@5.3.2: {}
 

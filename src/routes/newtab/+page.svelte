@@ -5,13 +5,12 @@
 <script lang='ts'>
     import { Pack } from '$lib/models/pack';
     import Card from '$lib/models/card'
-    import { MTabGStorage } from '$lib/storage/storage';
 	import BoosterButton from './components/BoosterButton.svelte';
+	import CardContainer from './components/CardContainer.svelte';
 
     import type { PackData } from '$lib/types/types';
     import { MtGSet, BoosterType, getBoosterTypesForSet, toFullName } from '$lib/types/boosters'
 	import { titleCase } from '$lib/util/formatUtil';
-	import CardContainer from './components/CardContainer.svelte';
 
     let cards: Card[] = $state([]);
     let loading: boolean = $state(false);
@@ -40,8 +39,8 @@
         try {
             cards = await pack.open();
             console.log('storing cards')
-            await MTabGStorage.addCards(cards);
-            console.log(await MTabGStorage.getAllCards())
+            // await MTabGStorage.addCards(cards);
+            // console.log(await MTabGStorage.getAllCards())
             await new Promise(r => setTimeout(r, 1000)); //wait for animation to finish (and build suspense?) 
             packVisible = false;
         } catch(e) {
