@@ -10,7 +10,11 @@ Supported sets:
 Current features:
 - Open packs with accurate card chances
 - View cards with cool effects
+- Not going bankrupt
 
 Planned features:
 - Build a collection with accurate card prices
 - Better UI
+- Going bankrupt with fake money
+
+LET'S GO GAMBLING!!!
