@@ -14,6 +14,9 @@ importers:
       hover-tilt:
         specifier: ^1.0.0
         version: 1.0.0(svelte@5.50.0)
+      idb:
+        specifier: ^8.0.3
+        version: 8.0.3
       mtabg:
         specifier: 'link:'
         version: 'link:'
@@ -800,6 +803,9 @@ packages:
     resolution: {integrity: sha512-uU8H0hWyhudaKOum9KeS3HRAGxJcmK2j44pYF4cFPYff8hsbzpQkxSHlBHOdFgGNyF7wgjywGukxK7fMW52LRQ==}
     peerDependencies:
       svelte: ^5.0.0
+
+  idb@8.0.3:
+    resolution: {integrity: sha512-LtwtVyVYO5BqRvcsKuB2iUMnHwPVByPCXFXOpuU96IZPPoPN6xjOGxZQ74pgSVVLQWtUOYgyeL4GE98BY5D3wg==}
 
   ignore@5.3.2:
     resolution: {integrity: sha512-hsBTNUqQTDwkWtcdYI2i06Y/nUBEsNEDJKjWdigLvegy8kDuJAS8uRlpkkcQpyEXL0Z/pjDy5HBmMjRCJ2gq+g==}
@@ -1801,6 +1807,8 @@ snapshots:
   hover-tilt@1.0.0(svelte@5.50.0):
     dependencies:
       svelte: 5.50.0
+
+  idb@8.0.3: {}
 
   ignore@5.3.2: {}
 

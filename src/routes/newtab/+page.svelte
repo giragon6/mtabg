@@ -5,6 +5,7 @@
 <script lang='ts'>
     import { Pack } from '$lib/models/pack';
     import Card from '$lib/models/card'
+    import { MTabGStorage } from '$lib/storage/storage';
 	import BoosterButton from './components/BoosterButton.svelte';
 
     import type { PackData } from '$lib/types/types';
@@ -38,8 +39,9 @@
         console.log(pack);
         try {
             cards = await pack.open();
-            console.log("got cards!")
-            console.log(cards);
+            console.log('storing cards')
+            await MTabGStorage.addCards(cards);
+            console.log(await MTabGStorage.getAllCards())
             await new Promise(r => setTimeout(r, 1000)); //wait for animation to finish (and build suspense?) 
             packVisible = false;
         } catch(e) {

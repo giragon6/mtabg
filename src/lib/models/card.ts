@@ -1,4 +1,4 @@
-import { FoilType } from "$lib/types/types"
+import { FoilType, type CardStore } from "$lib/types/types"
 import Foil from "./foil.js"
 
 class Card {
@@ -58,8 +58,13 @@ class Card {
     return {id: components[0], foil: components[1]}
   }
 
-  toIDB(): {[index: string]: any} {
+  toIDB(): CardStore {
     return {
+      hash: Card.hash(this),
+      name: this.name,
+      price: this.price,
+      imageUri: this.imageUri,
+      flipImageUri: this.flipImageUri,
       quantity: 1 // if it's being added to the db, it's the first one
     }
   }

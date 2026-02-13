@@ -35,6 +35,7 @@
 	"dependencies": {
 		"@scryfall/api-types": "1.0.0-alpha.4",
 		"hover-tilt": "^1.0.0",
+		"idb": "^8.0.3",
 		"mtabg": "link:"
 	}
 }

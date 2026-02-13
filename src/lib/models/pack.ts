@@ -69,7 +69,7 @@ export class Pack {
   async open(): Promise<Card[]> {
     console.log(`Opening pack of set ${this.set}...`)
     const cardJsons: {[k: string]: any}[] = await this.openToJson();
-    this.cards = cardJsons.map(j => Card.fromJson(j, j["foil"]));
+    this.cards = cardJsons.map(j => Card.fromScryfall(j, j["foil"]));
     console.log('returning cards')
     return this.cards;
   }

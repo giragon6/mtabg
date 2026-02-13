@@ -62,3 +62,12 @@ export type ScryfallResponse = {
   next_page?: string,
   data: ScryfallCard.Any[]
 }
+
+export type CardStore = {
+  hash: string,
+  name: string,
+  price: number,
+  imageUri: string, 
+  flipImageUri: string | undefined,
+  quantity: number
+}
