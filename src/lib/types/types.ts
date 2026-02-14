@@ -71,3 +71,8 @@ export type CardStore = {
   flipImageUri: string | undefined,
   quantity: number
 }
+
+export type QuotaReport = {
+  quota: number | undefined,
+  usage: number | undefined
+}

@@ -1,5 +1,4 @@
-import type { CardStore } from "$lib/types/types";
-import { AsyncFunction } from "$lib/types/objectDefs"
+import type { CardStore, QuotaReport } from "$lib/types/types";
 import Card from "$lib/models/card";
 import Dexie, { type EntityTable } from "dexie";
 
@@ -20,7 +19,23 @@ export namespace MTabGStorage {
 
   function handleStorageError(err: Error) {
     console.error(`IDB transaction failed! Error: ${err.stack}`);
-    
+    if (err instanceof Dexie.QuotaExceededError) {
+      quotaReached = true;
+    }
+  }
+
+  // indexeddb has limited storage
+  export async function getEstimatedQuota(): Promise<QuotaReport> {
+    let quotaRes = undefined;
+    let usageRes = undefined;
+    if (navigator.storage && navigator.storage.estimate) {
+      const estimation = await navigator.storage.estimate();
+      quotaRes = estimation.quota;
+      usageRes = estimation.usage;
+    } else {
+      console.error("StorageManager not found");
+    }
+    return { quota: quotaRes, usage: usageRes }
   }
 
   export async function addCard(card: Card): Promise<boolean> {
@@ -48,12 +63,23 @@ export namespace MTabGStorage {
   }
 
   export async function getCard(hash: string): Promise<Card | undefined> {
-    const cardStore = await db.cards.get(hash);
+    let cardStore;
+    try {
+      cardStore = await db.cards.get(hash);
+    } catch(err: any) {
+      handleStorageError(err);
+    }
     return cardStore ? Card.fromIDB(cardStore) : undefined;
   }
 
   export async function getCards(hashes: string[]): Promise<(Card | undefined)[]> {
-    const cardStores = await db.cards.bulkGet(hashes);
+    // since function should return array of same size even if error
+    let cardStores = new Array(hashes.length).fill(undefined);
+    try {
+      cardStores = await db.cards.bulkGet(hashes);
+    } catch(err: any) {
+      handleStorageError(err);
+    }
     return cardStores.map(c => c ? Card.fromIDB(c) : undefined)
   }
 
