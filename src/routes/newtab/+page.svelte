@@ -5,8 +5,8 @@
 <script lang='ts'>
     import { Pack } from '$lib/models/pack';
     import Card from '$lib/models/card'
+	import CardContainer from '$lib/components/card/CardContainer.svelte';
 	import BoosterButton from './components/BoosterButton.svelte';
-	import CardContainer from './components/CardContainer.svelte';
 
     import type { PackData } from '$lib/types/types';
     import { MtGSet, BoosterType, getBoosterTypesForSet, toFullName } from '$lib/types/boosters'
@@ -63,45 +63,33 @@
     }
 </script>
 
-<div class="container">
-    <h1>Magic: The Gathering Booster Pack Simulator</h1>
-    <h3>Gamble without going bankrupt!</h3>
-    <div class="error">{err}</div>
-    <div class="selects">
-        <select name="set" bind:value={set}>
-            {#each availableSets as s}
-                <option value={s}>{toFullName(s)}</option>
-            {/each}
-        </select>
-        <select name="type" bind:value={boosterType}>
-            {#each getBoosterTypesForSet(set) as bt}
-                <option value={bt}>{titleCase(bt)}</option>
-            {/each}
-        </select>
-    </div>
-    {#if packVisible}
-        <BoosterButton 
-            loading={loading} 
-            onclick={openPack}
-            set={set}
-            boosterType={boosterType} />
-    {:else}
-        <button onclick={reset} class="open-another">Open another!</button>
-        <CardContainer cards={cards} />
-    {/if}
-    <footer>
-        Magic: The Gathering is the intellectual property of Wizards of the Coast LLC, a subsidiary of Hasbro, Inc. Card API by Scryfall.
-    </footer>
+<h1>Magic: The Gathering Booster Pack Simulator</h1>
+<h3>Gamble without going bankrupt!</h3>
+<div class="error">{err}</div>
+<div class="selects">
+    <select name="set" bind:value={set}>
+        {#each availableSets as s}
+            <option value={s}>{toFullName(s)}</option>
+        {/each}
+    </select>
+    <select name="type" bind:value={boosterType}>
+        {#each getBoosterTypesForSet(set) as bt}
+            <option value={bt}>{titleCase(bt)}</option>
+        {/each}
+    </select>
 </div>
+{#if packVisible}
+    <BoosterButton 
+        loading={loading} 
+        onclick={openPack}
+        set={set}
+        boosterType={boosterType} />
+{:else}
+    <button onclick={reset} class="open-another">Open another!</button>
+    <CardContainer cards={cards} />
+{/if}
 
 <style>
-    :global(html, body) {
-        height: 100%;
-        width: 100%;
-        margin: 0;
-        font-family: 'Courier New', Courier, monospace;
-    }
-
     h1 {
         color: #c93b28;
         -webkit-text-stroke: #e3e3e3 1px;
@@ -111,10 +99,6 @@
 
     h3 {
         color: #e3e3e3;
-    }
-
-    footer {
-        text-align: center;
     }
 
     select {
@@ -129,15 +113,5 @@
         display: flex;
         flex-direction: row;
         gap: 10%;
-    }
-
-    .container {
-        min-height: 100%;
-        padding: 2%;
-        background: linear-gradient(#222a68, #574ae2);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
     }
 </style>
