@@ -57,7 +57,6 @@ export namespace MTabGStorage {
       success = true;
     }).catch(err => {
       handleStorageError(err);
-      success = false;
     })
     return success
   }

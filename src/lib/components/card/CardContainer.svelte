@@ -42,15 +42,17 @@
 
 <div class="cards-container" ondrop={handleDrop} ondragover={handleDragOver} role="region">
     {#each cards as c, i}
-        <CardDisplay 
-            imageUri={c.imageUri} 
-            flipImageUri={c.flipImageUri}
-            name={c.name} 
-            isFoil={c.foil.foilType == 'foil'}
-            index={i} 
-            handleDragStart={handleDragStart}
-            handleDragEnd={handleDragEnd}
-            handleDragEnter={handleDragEnter} />
+        {#each { length: c.quantity > 0 ? c.quantity : 1 }}
+          <CardDisplay 
+              imageUri={c.imageUri} 
+              flipImageUri={c.flipImageUri}
+              name={c.name} 
+              isFoil={c.foil.foilType == 'foil'}
+              index={i} 
+              handleDragStart={handleDragStart}
+              handleDragEnd={handleDragEnd}
+              handleDragEnter={handleDragEnter} />
+          {/each}
     {/each}
 </div>
 

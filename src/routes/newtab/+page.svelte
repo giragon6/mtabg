@@ -16,6 +16,7 @@
     let cards: Card[] = $state([]);
     let loading: boolean = $state(false);
     let err: string | null = $state(null);
+    let quotaReachedMsg: string | null = $state(null);
     let packVisible: boolean = $state(true);
 
     let set: MtGSet = $state(MtGSet.tdm);
@@ -39,9 +40,12 @@
         console.log(pack);
         try {
             cards = await pack.open();
-            console.log('storing cards')
-            await MTabGStorage.addCards(cards);
-            console.log(await MTabGStorage.getAllCards())
+            if (!MTabGStorage.quotaReached) {
+                console.log('storing cards')
+                await MTabGStorage.addCards(cards);
+            } else {
+                quotaReachedMsg = "IndexedDB quota reached! New cards opened will not be saved. Try deleting some!"
+            }
             await new Promise(r => setTimeout(r, 1000)); //wait for animation to finish (and build suspense?) 
             packVisible = false;
         } catch(e) {
@@ -66,6 +70,10 @@
 <h1>Magic: The Gathering Booster Pack Simulator</h1>
 <h3>Gamble without going bankrupt!</h3>
 <div class="error">{err}</div>
+<a href="/collection">
+    <button>Go to collection</button>
+</a>
+<br>
 <div class="selects">
     <select name="set" bind:value={set}>
         {#each availableSets as s}
@@ -78,6 +86,9 @@
         {/each}
     </select>
 </div>
+{#if quotaReachedMsg}
+    <div class="quota-reached">{quotaReachedMsg}</div>
+{/if}
 {#if packVisible}
     <BoosterButton 
         loading={loading} 

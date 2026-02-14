@@ -23,6 +23,10 @@
     background: linear-gradient(#222a68, #574ae2) no-repeat fixed;
   }
 
+  :global(button) {
+    font-size: medium;
+  }
+
   footer {
     text-align: center;
     color: white;
