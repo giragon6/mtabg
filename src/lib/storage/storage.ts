@@ -1,7 +1,6 @@
 import type { CardStore, QuotaReport } from "$lib/types/types";
 import Card from "$lib/models/card";
 import Dexie, { type EntityTable } from "dexie";
-import { hash } from "crypto";
 
 const DB_NAME = 'MTabGDatabase';
 const DB_VERSION = 1;
