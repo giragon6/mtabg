@@ -8,19 +8,22 @@ class Card {
   price: number;
   imageUri: string;
   flipImageUri: string | undefined;
+  quantity: number;
 
   constructor(id: string, 
               foilType: FoilType, 
               name: string, 
               price: number, 
               imageUri: string, 
-              flipImageUri?: string | undefined) {
+              flipImageUri?: string | undefined,
+              quantity: number = 0) {
     this.id = id;
     this.foil = new Foil(foilType);
     this.name = name;
     this.price = price;
     this.imageUri = imageUri; 
     this.flipImageUri = flipImageUri;
+    this.quantity = quantity;
   }
 
   // TODO: find a way to use Scryfall API types without typescript sliming me out
@@ -40,22 +43,24 @@ class Card {
     return new Card(cardJson["id"], foilType, name, price, imageUri, flipImageUri);
   }
 
-  static fromIDB(cardJson: {[index: string]: any}): Card {
-    return new Card(cardJson.id, 
-                    cardJson.foil, 
-                    cardJson.name, 
-                    cardJson.price, 
-                    cardJson.imageUri, 
-                    cardJson.flipImageUri);
+  static fromIDB(cardStore: CardStore): Card {
+    const idFoil = Card.idFoilFromHash(cardStore.hash)
+    return new Card(idFoil.id, 
+                    idFoil.foil, 
+                    cardStore.name, 
+                    cardStore.price, 
+                    cardStore.imageUri, 
+                    cardStore.flipImageUri,
+                    cardStore.quantity);
   }
 
   static hash(card: Card | {[index: string]: any}): string {
     return card.id + '_' + card.foil;
   }
 
-  static idFoilFromHash(hash: string): {id: string, foil: string} {
+  static idFoilFromHash(hash: string): {id: string, foil: FoilType} {
     const components = hash.split('_');
-    return {id: components[0], foil: components[1]}
+    return {id: components[0], foil: components[1] as FoilType}
   }
 
   toIDB(): CardStore {
