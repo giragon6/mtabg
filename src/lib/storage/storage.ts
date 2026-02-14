@@ -1,6 +1,7 @@
 import type { CardStore, QuotaReport } from "$lib/types/types";
 import Card from "$lib/models/card";
 import Dexie, { type EntityTable } from "dexie";
+import { hash } from "crypto";
 
 const DB_NAME = 'MTabGDatabase';
 const DB_VERSION = 1;
@@ -84,7 +85,44 @@ export namespace MTabGStorage {
   }
 
   export async function getAllCards(): Promise<Card[]> {
-    const cardStores = await db.cards.toArray();
+    let cardStores: CardStore[] = [];
+    try {
+      cardStores = await db.cards.toArray();
+    } catch(err: any) {
+      handleStorageError(err);
+    }
     return cardStores.map(c => Card.fromIDB(c))
+  }
+
+  export async function removeCard(hash: string): Promise<boolean> {
+    let success = false;
+    try {
+      await db.cards.delete(hash);
+      success = true;
+    } catch(err: any) {
+      handleStorageError(err);
+    }
+    return success;
+  }
+
+  export async function removeCards(hashes: string[]): Promise<boolean> {
+    let success = false;
+    try {
+      await db.cards.bulkDelete(hashes);
+      success = true;
+    } catch(err: any) {
+      handleStorageError(err);
+    }
+    return success;
+  }
+
+  export async function removeAllCards(): Promise<boolean> {
+    let success = false;
+    try {
+      await db.cards.clear();
+    } catch(err: any) {
+      handleStorageError(err);
+    }
+    return success;
   }
 }
