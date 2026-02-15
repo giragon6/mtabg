@@ -1,4 +1,4 @@
-import type { CardStore, QuotaReport, SortOption } from "$lib/types/types";
+import { SortOption, type CardStore, type QuotaReport } from "$lib/types/types";
 import Card from "$lib/models/card";
 import Dexie, { type EntityTable } from "dexie";
 
@@ -83,7 +83,7 @@ export namespace MTabGStorage {
     return cardStores.map(c => c ? Card.fromIDB(c) : undefined)
   }
 
-  export async function getAllCards(sortBy: SortOption = "colors"): Promise<Card[]> {
+  export async function getAllCards(sortBy: SortOption = SortOption.colors): Promise<Card[]> {
     let cardStores: CardStore[] = [];
     try {
       cardStores = await db.cards.orderBy(sortBy).toArray();

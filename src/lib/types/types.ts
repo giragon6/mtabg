@@ -35,6 +35,19 @@ export enum MtGColor {
   G = "G" //green
 }
 
+export enum SortOption {
+  name = "name",
+  price = "price", 
+  rarity = "rarity", 
+  set = "set",
+  colors = "colors", 
+  color_identity = "color_identity", 
+  power = "power", 
+  toughness = "toughness", 
+  mana_cost = "mana_cost", 
+  cmc = "cmc"
+}
+
 export type Special = { 
   name: string, 
   query: string, 
@@ -92,15 +105,3 @@ export type QuotaReport = {
   quota: number | undefined,
   usage: number | undefined
 }
-
-export type SortOption = 
-  "name" | 
-  "price" | 
-  "rarity" | 
-  "set" | 
-  "colors" | 
-  "color_identity" | 
-  "power" | 
-  "toughness" | 
-  "mana_cost" | 
-  "cmc";
