@@ -9,6 +9,7 @@
   import { titleCase } from '$lib/util/formatUtil'
   import { MTabGStorage } from '$lib/storage/storage'
   import { SortOption, sortOrders } from '$lib/types/types'
+  import { capitalismState } from '$lib/capitalism/capitalismMode.svelte.ts'
   
   import { onMount } from 'svelte';
 
