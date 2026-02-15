@@ -86,8 +86,6 @@ class Card {
 
   static fromIDB(cardStore: CardStore): Card {
     const idFoil = Card.idFoilFromHash(cardStore.hash)
-    console.log(idFoil)
-    console.log(new Foil(idFoil.foil))
     return new Card(idFoil.id, 
                     idFoil.foil, 
                     cardStore.name, 
@@ -112,7 +110,6 @@ class Card {
 
   static idFoilFromHash(hash: string): {id: string, foil: FoilType} {
     const components = hash.split('_');
-    console.log(components)
     return {id: components[0], foil: components[1] as FoilType}
   }
 

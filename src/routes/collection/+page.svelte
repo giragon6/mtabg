@@ -5,6 +5,7 @@
 <script lang="ts">
 	import CardContainer from '$lib/components/card/CardContainer.svelte';
   import QuotaStatus from './components/QuotaStatus.svelte'
+  import ValueStatus from './components/ValueStatus.svelte'
   import { titleCase } from '$lib/util/formatUtil'
   import { MTabGStorage } from '$lib/storage/storage'
   import { SortOption, sortOrders } from '$lib/types/types'
@@ -68,10 +69,22 @@
   </select>
 </div>
 
+<ValueStatus cards={cards} /> 
+
 <CardContainer cards={cards} />
 
 <style>
   label {
     color: white;
+  }
+
+  select {
+    font-size: medium;
+  }
+
+  .sortFilterOptions {
+    display: flex;
+    flex-direction: row;
+    gap: 10%;
   }
 </style>

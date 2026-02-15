@@ -1,6 +1,7 @@
 import { SortOption, type CardStore, type QuotaReport } from "$lib/types/types";
 import Card from "$lib/models/card";
 import Dexie, { type EntityTable } from "dexie";
+import CardFetcher from "$lib/util/cardFetcher";
 
 const DB_NAME = 'MTabGDatabase';
 const DB_VERSION = 2;
@@ -22,6 +23,23 @@ export namespace MTabGStorage {
     if (err instanceof Dexie.QuotaExceededError) {
       quotaReached = true;
     }
+  }
+
+  export async function syncCardPrices(cards: Card[]): Promise<boolean> {
+    let success = false;
+    const cardChanges = cards.map(c => {return {
+      key: Card.hash(c),
+      changes: {
+        "price": c.price
+      }
+    }})
+    try {
+      db.cards.bulkUpdate(cardChanges);
+      success = true;
+    } catch(err: any) {
+      handleStorageError(err);
+    }
+    return success;
   }
 
   // indexeddb has limited storage
