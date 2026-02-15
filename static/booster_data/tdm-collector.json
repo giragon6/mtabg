@@ -8,8 +8,7 @@
         {
           "rarity": "common",
           "chance": 1.0,
-          "foil": "foil",
-          "include_nonbasic_lands": true
+          "foil": "foil"
         }
       ]
     },
