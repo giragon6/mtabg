@@ -7,6 +7,10 @@ class Foil {
   constructor(foilType: FoilType) {
     this.foilType = foilType;
   }
+
+  public toString(): string {
+    return this.foilType;
+  }
 }
 
 export default Foil
