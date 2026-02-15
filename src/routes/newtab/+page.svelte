@@ -7,6 +7,7 @@
     import Card from '$lib/models/card'
 	import CardContainer from '$lib/components/card/CardContainer.svelte';
 	import BoosterButton from './components/BoosterButton.svelte';
+    import ValueStatus from '$lib/components/ValueStatus.svelte'
 
     import type { PackData } from '$lib/types/types';
     import { MtGSet, BoosterType, getBoosterTypesForSet, toFullName } from '$lib/types/boosters'
@@ -89,6 +90,7 @@
 {#if quotaReachedMsg}
     <div class="quota-reached">{quotaReachedMsg}</div>
 {/if}
+<ValueStatus />
 {#if packVisible}
     <BoosterButton 
         loading={loading} 
