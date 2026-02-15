@@ -15,7 +15,7 @@ class CardFetcher {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  async fetchRandomCardsById(identifiers: string[]): Promise<ScryfallCard.Any[]> {
+  async fetchCardsById(identifiers: string[]): Promise<ScryfallCard.Any[]> {
     let cardsJson: ScryfallCard.Any[] = []
     const body = {
       identifiers: identifiers.map(id => ({id}))
@@ -54,7 +54,7 @@ class CardFetcher {
     })
   }
 
-  async fetchRandomCardsByQuery(query: string): Promise<ScryfallCard.Any[]> {
+  async fetchCardsByQuery(query: string): Promise<ScryfallCard.Any[]> {
     let currentUrl = this.url + "search?q=" + query;
     console.log(currentUrl)
     let hasMore = true;
