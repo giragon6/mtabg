@@ -118,6 +118,7 @@ export namespace MTabGStorage {
     let success = false;
     try {
       await db.cards.clear();
+      success = true;
     } catch(err: any) {
       handleStorageError(err);
     }

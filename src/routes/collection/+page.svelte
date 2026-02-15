@@ -15,16 +15,16 @@
   })
 
   async function clearCards() {
-    const confirm = window.confirm("Really clear your collection?");
+    const confirm = window.confirm("Really clear your collection? This can't be undone!");
     if (confirm) {
       const success = await MTabGStorage.removeAllCards();
       if (success) {
-        cards = [];
+        cards = []; 
       }
     }
   }
 </script>
 
 <a href="/newtab"><button>Go back</button></a>
-<button onclick={clearCards}>Clear collection</button>
+<button on:click={clearCards}>Clear collection</button>
 <CardContainer cards={cards} />
