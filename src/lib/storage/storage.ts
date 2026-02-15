@@ -1,9 +1,9 @@
-import type { CardStore, QuotaReport } from "$lib/types/types";
+import type { CardStore, QuotaReport, SortOption } from "$lib/types/types";
 import Card from "$lib/models/card";
 import Dexie, { type EntityTable } from "dexie";
 
 const DB_NAME = 'MTabGDatabase';
-const DB_VERSION = 1;
+const DB_VERSION = 2;
 
 export namespace MTabGStorage {
   export const db = new Dexie(DB_NAME) as Dexie & {
@@ -14,7 +14,7 @@ export namespace MTabGStorage {
 
   db.version(DB_VERSION).stores({
     meta: '',
-    cards: 'hash'
+    cards: 'hash,name,price,rarity,set,colors,color_identity,power,toughness,mana_cost,cmc'
   });
 
   function handleStorageError(err: Error) {
@@ -32,6 +32,7 @@ export namespace MTabGStorage {
       const estimation = await navigator.storage.estimate();
       quotaRes = estimation.quota;
       usageRes = estimation.usage;
+      console.log(quotaRes, usageRes)
     } else {
       console.error("StorageManager not found");
     }
@@ -70,7 +71,7 @@ export namespace MTabGStorage {
     }
     return cardStore ? Card.fromIDB(cardStore) : undefined;
   }
-
+ 
   export async function getCards(hashes: string[]): Promise<(Card | undefined)[]> {
     // since function should return array of same size even if error
     let cardStores = new Array(hashes.length).fill(undefined);
@@ -82,10 +83,10 @@ export namespace MTabGStorage {
     return cardStores.map(c => c ? Card.fromIDB(c) : undefined)
   }
 
-  export async function getAllCards(): Promise<Card[]> {
+  export async function getAllCards(sortBy: SortOption = "colors"): Promise<Card[]> {
     let cardStores: CardStore[] = [];
     try {
-      cardStores = await db.cards.toArray();
+      cardStores = await db.cards.orderBy(sortBy).toArray();
     } catch(err: any) {
       handleStorageError(err);
     }

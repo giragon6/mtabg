@@ -27,6 +27,14 @@ export enum LandType {
   gainland = "gainland"
 }
 
+export enum MtGColor {
+  W = "W", // white
+  U = "U", // blue
+  B = "B", // black
+  R = "R", // red
+  G = "G" //green
+}
+
 export type Special = { 
   name: string, 
   query: string, 
@@ -68,6 +76,14 @@ export type CardStore = {
   name: string,
   price: number,
   imageUri: string, 
+  rarity: Rarity,
+  set: MtGSet,
+  colors: MtGColor[],
+  color_identity: MtGColor[],
+  power: number,
+  toughness: number,
+  mana_cost: string,
+  cmc: number,
   flipImageUri: string | undefined,
   quantity: number
 }
@@ -76,3 +92,15 @@ export type QuotaReport = {
   quota: number | undefined,
   usage: number | undefined
 }
+
+export type SortOption = 
+  "name" | 
+  "price" | 
+  "rarity" | 
+  "set" | 
+  "colors" | 
+  "color_identity" | 
+  "power" | 
+  "toughness" | 
+  "mana_cost" | 
+  "cmc";
