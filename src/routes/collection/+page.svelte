@@ -69,7 +69,9 @@
   </select>
 </div>
 
-<ValueStatus cards={cards} /> 
+{#if capitalismState.capitalismMode}
+  <ValueStatus cards={cards} /> 
+{/if}
 
 <CardContainer cards={cards} />
 

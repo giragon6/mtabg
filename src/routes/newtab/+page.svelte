@@ -3,16 +3,17 @@
 </svelte:head>
 
 <script lang='ts'>
-    import { Pack } from '$lib/models/pack';
+    import { Pack } from '$lib/models/pack'
     import Card from '$lib/models/card'
-	import CardContainer from '$lib/components/card/CardContainer.svelte';
-	import BoosterButton from './components/BoosterButton.svelte';
+	import CardContainer from '$lib/components/card/CardContainer.svelte'
+	import BoosterButton from './components/BoosterButton.svelte'
     import ValueStatus from '$lib/components/ValueStatus.svelte'
+    import { capitalismState } from '$lib/capitalism/capitalismMode.svelte.ts'
 
-    import type { PackData } from '$lib/types/types';
+    import type { PackData } from '$lib/types/types'
     import { MtGSet, BoosterType, getBoosterTypesForSet, toFullName } from '$lib/types/boosters'
-	import { titleCase } from '$lib/util/formatUtil';
-	import { MTabGStorage } from '$lib/storage/storage';
+	import { titleCase } from '$lib/util/formatUtil'
+	import { MTabGStorage } from '$lib/storage/storage'
 
     let cards: Card[] = $state([]);
     let loading: boolean = $state(false);
@@ -75,6 +76,10 @@
     <button>Go to collection</button>
 </a>
 <br>
+<button onclick={capitalismState.capitalismMode = !capitalismState.capitalismMode}>
+    {capitalismState.capitalismMode ? "Dis" : "En"}able capitalism mode
+</button>
+<br>
 <div class="selects">
     <select name="set" bind:value={set}>
         {#each availableSets as s}
@@ -87,10 +92,15 @@
         {/each}
     </select>
 </div>
+
 {#if quotaReachedMsg}
     <div class="quota-reached">{quotaReachedMsg}</div>
 {/if}
+
+{#if capitalismState.capitalismMode}
 <ValueStatus />
+{/if}
+
 {#if packVisible}
     <BoosterButton 
         loading={loading} 

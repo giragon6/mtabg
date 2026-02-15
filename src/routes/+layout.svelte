@@ -13,12 +13,15 @@
       0
     ); 
     capitalismState.collectionValue = collectionValue;
-    console.log(collectionValue)
   }
 
   onMount(async () => {
-    await updateCollectionValue();
-    afterNavigate(async () => await updateCollectionValue());
+    if (capitalismState.capitalismMode) await updateCollectionValue();
+    afterNavigate(async () => {
+      if (capitalismState.capitalismMode) {
+        await updateCollectionValue()
+      }
+    });
   })
 </script>
 
