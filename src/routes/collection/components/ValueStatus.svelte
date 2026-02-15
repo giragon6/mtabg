@@ -1,8 +1,10 @@
 <script lang='ts'>
   import CardFetcher from '$lib/util/cardFetcher'
+  import { FoilType } from '$lib/types/types'
 
   import { onMount } from 'svelte';
 
+  let loading: boolean = $state(false);
   let { cards = [] } = $props();
   let cardsVal: number = $derived(cards.reduce(
       (acc, cur) => acc + Number(cur.price),
@@ -10,10 +12,13 @@
     ));
   const fetcher = new CardFetcher();
 
+
   async function refreshCardVals() { 
+    loading = true;
     const cardIds = cards.map(c => c.id);
+    let cardsResp;
     try {
-      const cardsResp = await fetcher.fetchCardsById(cardIds);
+      cardsResp = await fetcher.fetchCardsById(cardIds);
     } catch(err: any) {
       console.error("Failed to refresh card prices!")
       return
@@ -42,11 +47,14 @@
         }
       }
     }
-    console.log(`Updated ${cards.length - unupdatedCards.length} cards' prices. Couldn't find ${unupdatedCards.length} cards' prices.`)
+    console.log(`Updated ${cards.length - unupdatedCards.length} card prices. Couldn't find ${unupdatedCards.length} card prices.`)
+    await new Promise(r => setTimeout(r, 2000)); // prevent refresh spam
+    loading = false;
   }
 </script>
 
 <p class="cardsValue">Collection value: ${cardsVal.toFixed(2)}</p>
+<button onclick={refreshCardVals} disabled={loading}>Refresh Prices</button>
 
 <style>
   .cardsValue {
