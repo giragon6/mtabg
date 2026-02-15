@@ -69,7 +69,7 @@
   </select>
 </div>
 
-<ValueStatus /> 
+<ValueStatus cards={cards} /> 
 
 <CardContainer cards={cards} />
 

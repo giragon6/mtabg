@@ -1,4 +1,5 @@
-import type Card from "$lib/models/card";
+import Card from "$lib/models/card";
+import { MTabGStorage } from "$lib/storage/storage";
 import { FoilType } from "$lib/types/types";
 import CardFetcher from "$lib/util/cardFetcher";
 
@@ -6,7 +7,7 @@ export const collectionValueState = $state({value: 0.0});
 
 const fetcher = new CardFetcher();
 
-async function refreshCardVals(cards: Card[]): Promise<Card[]> { 
+export async function refreshCardVals(cards: Card[]): Promise<Card[]> { 
   const cardIds = cards.map(c => c.id);
   const newCards = cards;
   let cardsResp;
@@ -44,4 +45,13 @@ async function refreshCardVals(cards: Card[]): Promise<Card[]> {
   }
   console.log(`Updated ${cards.length - unupdatedCards.length} card prices. Couldn't find ${unupdatedCards.length} card prices.`)
   return newCards;
+}
+
+export async function refreshAndSyncCardVals(cards: Card[] | null | undefined): Promise<boolean> {
+  if (!cards || cards.length === 0) {
+    cards = await MTabGStorage.getAllCards();
+  }
+  const newCards = await refreshCardVals(cards);
+  const success = await MTabGStorage.syncCardPrices(cards);
+  return success
 }
