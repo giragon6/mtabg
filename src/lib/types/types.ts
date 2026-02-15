@@ -7,6 +7,21 @@ export enum Rarity {
   rare = "rare",
   mythic = "mythic",
 }
+export const sortOrders: Record<string, Record<string, number>> = {
+  "rarity": {
+    "common": 0,
+    "uncommon": 1,
+    "rare": 2,
+    "mythic": 3
+  },
+  "mtgcolor": {
+    "W": 0,
+    "U": 1,
+    "B": 2,
+    "R": 3,
+    "G": 4
+  }
+}
 
 export enum Frame {
   showcase = "showcase",

@@ -32,7 +32,6 @@ export namespace MTabGStorage {
       const estimation = await navigator.storage.estimate();
       quotaRes = estimation.quota;
       usageRes = estimation.usage;
-      console.log(quotaRes, usageRes)
     } else {
       console.error("StorageManager not found");
     }

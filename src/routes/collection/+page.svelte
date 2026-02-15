@@ -5,12 +5,16 @@
 <script lang="ts">
 	import CardContainer from '$lib/components/card/CardContainer.svelte';
   import QuotaStatus from './components/QuotaStatus.svelte'
+  import { titleCase } from '$lib/util/formatUtil'
   import { MTabGStorage } from '$lib/storage/storage'
+  import { SortOption, sortOrders } from '$lib/types/types'
   
   import { onMount } from 'svelte';
 
   let cards: Card[] = $state([]);
   let storageUsedProgress: number | null = $state(null);
+  let sortBy: SortOption = $state(SortOption.color)
+  let isAscendingSort: boolean = $state(true);
 
   onMount(async () => {
     cards = await MTabGStorage.getAllCards();
@@ -29,12 +33,41 @@
       }
     }
   }
+
+  // not sure if it's better to do this via the dexie backend or manually like this
+  function sortCards() {
+    // TODO: less janky way of doing this
+    const sortByKey = sortBy as keyof Card;
+    const sbkeyString = sortByKey.toString();
+    const sortSpecialOrder = (a, b) => {
+      return sortOrders[sbkeyString][a[sortByKey]] < sortOrders[sbkeyString][b[sortByKey]] ? -1 : 1
+    };
+    const sortNormal = (a, b) => {
+      return a[sortByKey] < b[sortByKey] ? -1 : 1
+    };
+    cards = cards.sort(Object.keys(sortOrders).includes(sbkeyString) ? sortSpecialOrder : sortNormal)
+    if (!isAscendingSort) {
+      cards = cards.reverse();
+    }
+  }
 </script>
 
 <a href="/newtab"><button>Go back</button></a>
 <button onclick={clearCards}>Clear collection</button><br>
 <label for="storageUsed">Browser storage used:</label>
-<QuotaStatus id="storageUsed" progress={storageUsedProgress} />
+<QuotaStatus id="storageUsed" progress={storageUsedProgress} /><br>
+<div class="sortFilterOptions">
+  <select name="sortBy" bind:value={sortBy} onchange={sortCards}>
+    {#each Object.values(SortOption) as s}
+        <option value={s}>{titleCase(s)}</option>
+    {/each}
+  </select>
+  <select name="isAscendingSort" bind:value={isAscendingSort} onchange={sortCards}>
+    <option value={true}>Ascending</option>
+    <option value={false}>Descending</option>
+  </select>
+</div>
+
 <CardContainer cards={cards} />
 
 <style>
