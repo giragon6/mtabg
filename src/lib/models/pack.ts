@@ -52,7 +52,7 @@ export class Pack {
         resp = responseMap[key];
       } else {
         // the query is new, so ask scryfall
-        resp = isIds ? await this.fetcher.fetchRandomCardsById(query) : await this.fetcher.fetchRandomCardsByQuery(query);
+        resp = isIds ? await this.fetcher.fetchCardsById(query) : await this.fetcher.fetchCardsByQuery(query);
         responseMap[key] = resp;
       }
       let chosenCard = this.chooseRandomCards(resp, 1)[0]; // returns only one card
