@@ -3,8 +3,6 @@ import { MTabGStorage } from "$lib/storage/storage";
 import { FoilType } from "$lib/types/types";
 import CardFetcher from "$lib/util/cardFetcher";
 
-export const collectionValueState = $state({value: 0.0});
-
 const fetcher = new CardFetcher();
 
 export async function refreshCardVals(cards: Card[]): Promise<Card[]> { 

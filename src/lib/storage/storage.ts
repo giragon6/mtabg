@@ -1,7 +1,6 @@
-import { SortOption, type CardStore, type QuotaReport } from "$lib/types/types";
+import { SortOption, type CardStore, type MetaTable, type QuotaReport } from "$lib/types/types";
 import Card from "$lib/models/card";
 import Dexie, { type EntityTable } from "dexie";
-import CardFetcher from "$lib/util/cardFetcher";
 
 const DB_NAME = 'MTabGDatabase';
 const DB_VERSION = 2;
@@ -9,6 +8,7 @@ const DB_VERSION = 2;
 export namespace MTabGStorage {
   export const db = new Dexie(DB_NAME) as Dexie & {
     cards: EntityTable<CardStore, 'hash'>;
+    meta: MetaTable;
   };
 
   export let quotaReached = false;

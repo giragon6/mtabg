@@ -1,5 +1,6 @@
 <script lang='ts'>
-  import { collectionValueState, refreshAndSyncCardVals } from '$lib/capitalism/collectionValue.svelte.ts'
+  import { capitalismState } from '$lib/capitalism/capitalismMode.svelte.ts'
+  import { refreshAndSyncCardVals } from '$lib/capitalism/collectionValue.svelte.ts'
   let { cards = [] } = $props();
 
   let loading: boolean = $state(false);
@@ -19,7 +20,7 @@
   }
 </script>
 
-<p class="cardsValue">Collection value: ${collectionValueState.value.toFixed(2)}</p>
+<p class="cardsValue">Collection value: ${capitalismState.collectionValue.toFixed(2)}</p>
 <button onclick={async () => await refreshCollectionValue()} disabled={loading}>Refresh Collection Value</button>
 {#if errMsg}
   <p class="errorMessage">Collection value error: {errMsg}</p>

@@ -1,0 +1,1 @@
+export const capitalismState = $state({capitalismMode: true, collectionValue: 0.0});

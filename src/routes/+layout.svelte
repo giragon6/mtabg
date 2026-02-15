@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { collectionValueState } from '$lib/capitalism/collectionValue.svelte.ts'
+  import { capitalismState } from '$lib/capitalism/capitalismMode.svelte.ts'
   import { afterNavigate } from '$app/navigation'
   import { MTabGStorage } from '$lib/storage/storage'
 
@@ -12,7 +12,7 @@
       (acc, cur) => acc + Number(cur.price),
       0
     ); 
-    collectionValueState.value = collectionValue;
+    capitalismState.collectionValue = collectionValue;
     console.log(collectionValue)
   }
 
