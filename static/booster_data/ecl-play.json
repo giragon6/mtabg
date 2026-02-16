@@ -1,0 +1,230 @@
+{
+  "type": "play",
+  "set": "tdm",
+  "slots": [
+    {
+      "amount": 1,
+      "chances": [
+        {
+          "special": 0,
+          "chance": 0.0181818181818
+        },
+        {
+          "rarity": "common",
+          "chance": 0.981818181818
+        }
+      ]
+    },
+    {
+      "amount": 6,
+      "chances": [
+        {
+          "rarity": "common",
+          "chance": 1.0
+        }
+      ]
+    },
+    {
+      "amount": 3,
+      "chances": [
+        {
+          "rarity": "uncommon",
+          "chance": 96.6667
+        },
+        {
+          "special": 1,
+          "chance": 3.3333 
+        }
+      ]
+    },
+    {
+      "amount": 1,
+      "chances": [
+        {
+          "rarity": "common",
+          "chance": 0.18
+        },
+        {
+          "rarity": "uncommon",
+          "chance": 0.58
+        },
+        {
+          "rarity": "rare",
+          "chance": 0.19
+        },
+        {
+          "rarity": "mythic",
+          "chance": 0.02
+        },
+        {
+          "rarity": "uncommon",
+          "special": 1,
+          "chance": 0.02
+        },
+        {
+          "rarity": "rare",
+          "special": 1,
+          "chance": 0.0067
+        },
+        {
+          "rarity": "mythic",
+          "special": 1,
+          "chance": 0.0033
+        },
+        {
+          "rarity": "rare",
+          "special": 2,
+          "chance": 0.01
+        },
+        {
+          "rarity": "mythic",
+          "special": 2,
+          "chance": 0.005
+        },
+        {
+          "special": 3,
+          "chance": 0.005
+        }
+      ]
+    },
+    {
+      "amount": 1,
+      "chances": [
+        {
+          "rarity": "rare",
+          "chance": 0.782
+        },
+        {
+          "rarity": "mythic",
+          "chance": 0.136
+        },
+        {
+          "rarity": "rare",
+          "special": 1,
+          "chance": 0.046
+        },
+        {
+          "rarity": "mythic",
+          "special": 1,
+          "chance": 0.012
+        },
+        {
+          "rarity": "rare",
+          "special": 2,
+          "chance": 0.0067
+        },
+        {
+          "rarity": "mythic",
+          "special": 2,
+          "chance": 0.0033
+        },
+        {
+          "special": 3,
+          "chance": 0.005
+        }
+      ]
+    },
+    {
+      "amount": 1,
+      "chances": [
+        {
+          "rarity": "common",
+          "foil": "foil",
+          "chance": 0.604
+        },
+        {
+          "rarity": "uncommon",
+          "foil": "foil",
+          "chance": 0.298
+        },
+        {
+          "rarity": "rare",
+          "foil": "foil",
+          "chance": 0.065
+        },
+        {
+          "rarity": "mythic",
+          "foil": "foil",
+          "chance": 0.011
+        },
+        {
+          "rarity": "uncommon",
+          "foil": "foil",
+          "special": 1,
+          "chance": 0.01
+        },
+        {
+          "rarity": "rare",
+          "foil": "foil",
+          "special": 1,
+          "chance": 0.01
+        },
+        {
+          "rarity": "mythic",
+          "foil": "foil",
+          "special": 1,
+          "chance": 0.005
+        },
+        {
+          "rarity": "rare",
+          "foil": "foil",
+          "special": 2,
+          "chance": 0.0025
+        },
+        {
+          "rarity": "mythic",
+          "foil": "foil",
+          "special": 2,
+          "chance": 0.0013
+        },
+        {
+          "special": 3,
+          "chance": 0.0012
+        }
+      ]
+    },
+    {
+      "amount": 1,
+      "chances": [
+        {
+          "land": "basic",
+          "chance": 0.4
+        },
+        {
+          "land": "basic",
+          "foil": "foil",
+          "chance": 0.1
+        },
+        {
+          "land": "basic",
+          "full_art": true,
+          "chance": 0.4
+        },
+        {
+          "land": "basic",
+          "full_art": true,
+          "foil": "foil",
+          "chance": 0.1
+        }
+      ]
+    }
+  ],
+  "special": [
+    {
+      "name": "0.special guest",
+      "query": "e:spg+cn>=129+cn<=148"
+    },
+    {
+      "name": "1.fable frame",
+      "query": "s:ecl+cn>=297+cn<=346"
+    },
+    {
+      "name": "2.borderless nonland",
+      "query": "s:ecl+cn>=284+cn<=296"
+    },
+    {
+      "name": "3.borderless reversible shock land",
+      "query": "s:ecl+cn>=347+cn<=351"
+    }
+  ]
+}

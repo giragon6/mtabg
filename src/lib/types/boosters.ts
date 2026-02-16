@@ -1,5 +1,6 @@
 export enum MtGSet {
-  tdm = "tdm"
+  tdm = "tdm",
+  ecl = "ecl"
 }
 
 export enum BoosterType {
@@ -8,11 +9,13 @@ export enum BoosterType {
 }
 
 const boosterAvailabilityMap: Record<MtGSet, Set<BoosterType>> = {
-  [MtGSet.tdm]: new Set([BoosterType.play, BoosterType.collector])
+  [MtGSet.tdm]: new Set([BoosterType.play, BoosterType.collector]),
+  [MtGSet.ecl]: new Set([BoosterType.play])
 }
 
 const setFullnameMap: Record<MtGSet, String> = {
-  [MtGSet.tdm]: "Tarkir: Dragonstorm"
+  [MtGSet.tdm]: "Tarkir: Dragonstorm",
+  [MtGSet.ecl]: "Lorwyn Eclipsed"
 }
 
 export const toFullName = (set: MtGSet) => {
