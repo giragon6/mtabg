@@ -17,6 +17,7 @@
   let storageUsedProgress: number | null = $state(null);
   let sortBy: SortOption = $state(SortOption.color)
   let isAscendingSort: boolean = $state(true);
+  let isTableMode: boolean = $state(false);
 
   onMount(async () => {
     cards = await MTabGStorage.getAllCards();
@@ -52,6 +53,10 @@
       cards = cards.reverse();
     }
   }
+
+  function sellCard(card: Card) {
+
+  }
 </script>
 
 <a href="/newtab"><button>Go back</button></a>
@@ -68,13 +73,39 @@
     <option value={true}>Ascending</option>
     <option value={false}>Descending</option>
   </select>
+  <button onclick={() => isTableMode = !isTableMode}>{isTableMode ? 'Dis' : 'En'}able Table Mode</button>
 </div>
 
 {#if capitalismState.capitalismMode}
   <ValueStatus cards={cards} /> 
 {/if}
 
-<CardContainer cards={cards} />
+{#if isTableMode}
+  <table>
+    <thead>
+    <tr>
+      <th>Card Name</th>
+      {#if capitalismState.capitalismMode}
+        <th>Price</th>
+        <th>Actions</th>
+      {/if}
+    </tr>
+  </thead>
+  <tbody>
+    {#each cards as c}
+    <tr>
+      <td>{c.name}</td>
+      {#if capitalismState.capitalismMode}
+        <td>${c.price}</td>
+        <td><button onclick={() => sellCard(c)}>Sell</button></td>
+      {/if}
+    </tr>
+    {/each}
+  </tbody>
+  </table>
+{:else}
+  <CardContainer cards={cards} />
+{/if}
 
 <style>
   label {
@@ -88,6 +119,21 @@
   .sortFilterOptions {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
     gap: 10%;
+    width: 80%;
+  }
+
+  table {
+    margin: 5%;
+  }
+
+  tr {
+    background-color: #e3e3e3;
+  }
+
+  tr:nth-child(even) {
+    background-color: #c7c8c9;
   }
 </style>
