@@ -16,11 +16,9 @@
   }
 
   onMount(async () => {
-    if (capitalismState.capitalismMode) await updateCollectionValue();
+    await updateCollectionValue();
     afterNavigate(async () => {
-      if (capitalismState.capitalismMode) {
-        await updateCollectionValue()
-      }
+      await updateCollectionValue()
     });
   })
 </script>
