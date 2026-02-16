@@ -47,7 +47,7 @@
   <HoverTilt 
     tiltFactor={1.1}
     scaleFactor={1.1} 
-    style="border-radius: 4.5%; visibility: visible; z-index: 2;"
+    style="border-radius: 4.5%; visibility: visible; z-index: 1;"
     class="glare" >
     <div class:foil={isFoil} class="card-faces-container">
       <img src={imageUri} class="card" class:card-front={isFlippable} width=336 height=468 alt={name}>
@@ -96,6 +96,7 @@ button {
   backface-visibility: hidden;
   grid-row-start: 1;
   grid-column-start: 1;
+  z-index: -1;
 }
 
 
