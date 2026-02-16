@@ -21,10 +21,12 @@ class QueryGenerator {
     if (cc.rarity) queryList.push("r:" + cc.rarity); 
     if (cc.frame) queryList.push("is:" + cc.frame);
     if (cc.foil && cc.foil == FoilType.foil) queryList.push("is:" + cc.foil);
-    if (cc.land == LandType.basic) {
-      queryList.push("t:" + cc.land);
-    } else {
-      queryList.push("is:" + cc.land);
+    if (cc.land) {
+      if (cc.land == LandType.basic) {
+        queryList.push("t:" + cc.land);
+      } else {
+        queryList.push("is:" + cc.land);
+      }
     }
     // we already checked if the special included id list
     // so it must include query
