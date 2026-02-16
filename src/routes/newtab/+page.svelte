@@ -21,9 +21,10 @@
     let quotaReachedMsg: string | null = $state(null);
     let packVisible: boolean = $state(true);
 
-    let set: MtGSet = $state(MtGSet.tdm);
+    let curSet: MtGSet = $state(MtGSet.tdm);
     let boosterType: BoosterType = $state(BoosterType.play);
     let availableSets: MtGSet[] = Object.values(MtGSet);
+    let availableBoosterTypes: BoosterType[] = $derived(getBoosterTypesForSet(curSet));
 
     async function openPack() {
         let packData: PackData;
@@ -76,18 +77,18 @@
     <button>Go to collection</button>
 </a>
 <br>
-<button onclick={capitalismState.capitalismMode = !capitalismState.capitalismMode}>
+<button onclick={() => capitalismState.capitalismMode = !capitalismState.capitalismMode}>
     {capitalismState.capitalismMode ? "Dis" : "En"}able capitalism mode
 </button>
 <br>
 <div class="selects">
-    <select name="set" bind:value={set}>
+    <select bind:value={curSet}>
         {#each availableSets as s}
             <option value={s}>{toFullName(s)}</option>
         {/each}
     </select>
     <select name="type" bind:value={boosterType}>
-        {#each getBoosterTypesForSet(set) as bt}
+        {#each availableBoosterTypes as bt}
             <option value={bt}>{titleCase(bt)}</option>
         {/each}
     </select>
@@ -105,7 +106,7 @@
     <BoosterButton 
         loading={loading} 
         onclick={openPack}
-        set={set}
+        set={curSet}
         boosterType={boosterType} />
 {:else}
     <button onclick={reset} class="open-another">Open another!</button>
