@@ -29,7 +29,7 @@
     async function openPack() {
         let packData: PackData;
         try {
-            const res = await fetch(`booster_data/${set}-${boosterType}.json`);
+            const res = await fetch(`booster_data/${curSet}-${boosterType}.json`);
             if (!res.ok) throw new Error("Pack data response wasn't ok");
             packData = await res.json();
             if (!packData) throw new Error("Pack data was null")
