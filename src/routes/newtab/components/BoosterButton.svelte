@@ -14,7 +14,7 @@
 </script>
 
 <div class="container" class:laser-open={loading} style={`--mask-image=url(/booster_pack_bitmasks/${set}-play-bitmask.png)`}>
-  <HoverTilt tiltFactor={1.1} scaleFactor={1} glareMask={`url(/booster_pack_bitmasks/${set}-play-bitmask.png)`} glareMaskMode="luminance">
+  <HoverTilt tiltFactor={1.1} scaleFactor={1} glareMask={`url(/booster_pack_bitmasks/${set}-${boosterType}-bitmask.png)`} glareMaskMode="luminance">
     <button class:loading={loading} disabled={loading} onclick={onclick} title="Open pack">
       <img class="pack" src={images[`/src/lib/assets/booster_pack_images/${set}-${boosterType}.png`]} alt="Booster pack" width=342>
     </button>

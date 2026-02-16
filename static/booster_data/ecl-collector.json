@@ -1,0 +1,197 @@
+{
+  "type": "collector",
+  "set": "ecl",
+  "slots": [
+    {
+      "amount": 5,
+      "chances": [
+        {
+          "rarity": "common",
+          "foil": "foil",
+          "chance": 1.0
+        }
+      ]
+    },
+    {
+      "amount": 4,
+      "chances": [
+        {
+          "rarity": "uncommon",
+          "foil": "foil",
+          "chance": 0.636
+        },
+        {
+          "rarity": "uncommon",
+          "foil": "foil",
+          "special": 0,
+          "chance": 0.364
+        }
+      ]
+    },
+    {
+      "amount": 1,
+      "chances": [
+        {
+          "land": "basic",
+          "full_art": true,
+          "foil": "foil",
+          "chance": 1.0
+        }
+      ]
+    },
+    {
+      "amount": 1,
+      "chances": [
+        {
+          "rarity": "rare",
+          "foil": "foil",
+          "chance": 0.855
+        },
+        {
+          "rarity": "mythic",
+          "foil": "foil",
+          "chance": 0.145
+        }
+      ]
+    },
+    {
+      "amount": 1,
+      "chances": [
+        {
+          "special": 1,
+          "rarity": "rare",
+          "chance": 0.91
+        },
+        {
+          "special": 1,
+          "rarity": "mythic",
+          "chance": 0.09
+        }
+      ]
+    },
+    {
+      "amount": 2,
+      "chances": [
+        {
+          "rarity": "rare",
+          "frame": "extendedart",
+          "chance": 0.377
+        },
+        {
+          "rarity": "rare",
+          "special": 0,
+          "chance": 0.337
+        },
+        {
+          "rarity": "mythic",
+          "special": 0,
+          "chance": 0.091
+        },
+        {
+          "rarity": "rare",
+          "special": 2,
+          "chance": 0.13
+        },
+        {
+          "rarity": "mythic",
+          "special": 2,
+          "chance": 0.045
+        },
+        {
+          "special": 3,
+          "chance": 0.02
+        }
+      ]
+    },
+    {
+      "amount": 1,
+      "chances": [
+        {
+          "rarity": "rare",
+          "frame": "extendedart",
+          "foil": "foil",
+          "chance": 0.304
+        },
+        {
+          "rarity": "rare",
+          "foil": "foil",
+          "special": 0,
+          "chance": 0.272
+        },
+        {
+          "rarity": "mythic",
+          "foil": "foil",
+          "special": 0,
+          "chance": 0.073
+        },
+        {
+          "rarity": "rare",
+          "foil": "foil",
+          "special": 2,
+          "chance": 0.052
+        },
+        {
+          "rarity": "mythic",
+          "foil": "foil",
+          "special": 2,
+          "chance": 0.042
+        },
+        {
+          "special": 3,
+          "foil": "foil",
+          "chance": 0.052
+        },
+        {
+          "special": 4,
+          "foil": "foil",
+          "chance": 0.105
+        },
+        {
+          "special": 5,
+          "foil": "foil",
+          "chance": 0.09
+        },
+        {
+          "special": 5,
+          "foil": "fracture",
+          "chance": 0.01
+        },
+        {
+          "special": 6,
+          "foil": "double_rainbow",
+          "chance": 0.00017
+        }
+      ]
+    }
+  ],
+  "special": [
+    {
+      "name": "0.fable frame",
+      "query": "s:ecl+cn>=297+cn<=346"
+    },
+    {
+      "name": "1.lorwyn eclipsed commander borderless/extended art",
+      "query": "s:ecc+cn>=25+cn<=44"
+    },
+    {
+      "name": "2.borderless nonland",
+      "query": "s:ecl+cn>=284+cn<=296"
+    },
+    {
+      "name": "3.borderless reversible shock land",
+      "query": "s:ecl+cn>=347+cn<=351"
+    },
+    {
+      "name": "4.special guest",
+      "query": "e:spg+cn>=129+cn<=148"
+    },
+    {
+      "name": "5.japan showcase",
+      "query": "s:ecl+cn>=382+cn<=391"
+    },
+    {
+      "name": "6.serialized bitterbloom bearer",
+      "ids": ["895e7a6e-cd10-4a00-bfec-30e6330e193c"]
+    }
+  ]
+}
