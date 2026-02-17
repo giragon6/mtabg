@@ -122,12 +122,16 @@ export type QuotaReport = {
   usage: number | undefined
 }
 
-export type MetaTable = {
-  capitalismMode: boolean,
-  cardPricesLastFetched: Date
-}
+// export type MetaTable =
+//   {['capitalismMode']: boolean} |
+//   {['cardPricesLastFetched']: Date}
 
 export type CapitalismState = {
   capitalismMode: boolean,
-  collectionValue: number
+  collectionValue: number,
+  money: number
+}
+
+export type CapitalismStore = {
+  money: number
 }

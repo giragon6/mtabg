@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { capitalismState } from '$lib/capitalism/capitalismMode.svelte.ts'
+  import { capitalismState } from '$lib/capitalism/capitalismMode.svelte'
   import { afterNavigate } from '$app/navigation'
   import { MTabGStorage } from '$lib/storage/storage'
 
@@ -15,10 +15,19 @@
     capitalismState.collectionValue = collectionValue;
   }
 
+  async function updateMoneyState() {
+    const money = await MTabGStorage.getMoney();
+    if (money !== null) {
+      capitalismState.money = money;
+    }
+  }
+
   onMount(async () => {
     await updateCollectionValue();
+    await updateMoneyState();
     afterNavigate(async () => {
       await updateCollectionValue()
+      await updateMoneyState();
     });
   })
 </script>

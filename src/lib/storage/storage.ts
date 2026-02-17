@@ -1,28 +1,75 @@
-import { SortOption, type CardStore, type MetaTable, type QuotaReport } from "$lib/types/types";
+import { SortOption, type CapitalismStore, type CardStore, type MetaTable, type QuotaReport } from "$lib/types/types";
 import Card from "$lib/models/card";
 import Dexie, { type EntityTable } from "dexie";
 
 const DB_NAME = 'MTabGDatabase';
-const DB_VERSION = 2;
+const DB_VERSION = 3;
 
 export namespace MTabGStorage {
   export const db = new Dexie(DB_NAME) as Dexie & {
     cards: EntityTable<CardStore, 'hash'>;
-    meta: MetaTable;
+    //@ts-ignore
+    meta: EntityTable<string, 'key'>;
+    //@ts-ignore
+    capitalism: EntityTable<string, 'key'>;
   };
 
-  export let quotaReached = false;
-
   db.version(DB_VERSION).stores({
-    meta: '',
+    meta: '&key',
+    capitalism: '&key',
     cards: 'hash,name,price,rarity,set,colors,color_identity,power,toughness,mana_cost,cmc'
   });
+
+  export let quotaReached = false;
 
   function handleStorageError(err: Error) {
     console.error(`IDB transaction failed! Error: ${err.stack}`);
     if (err instanceof Dexie.QuotaExceededError) {
       quotaReached = true;
     }
+  }
+
+  export async function addMoney(amt: number): Promise<boolean> {
+    let success = false;
+    try {
+      db.capitalism.where('key').equals('money').modify(a => {++a.value});
+      success = true;
+    } catch(err: any) {
+      handleStorageError(err);
+    }
+    return success;
+  }
+
+  export async function subtractMoney(amt: number): Promise<boolean> {
+    let success = false;
+    try {
+      db.capitalism.money -= amt;
+      success = true;
+    } catch(err: any) {
+      handleStorageError(err);
+    }
+    return success;
+  }
+
+  export async function setMoney(amt: number): Promise<boolean> {
+    let success = false;
+    try {
+      db.capitalism.money = amt;
+      success = true;
+    } catch(err: any) {
+      handleStorageError(err);
+    }
+    return success;
+  }
+
+  export async function getMoney(): Promise<number | null> {
+    let ret = null;
+    try {
+      ret = db.capitalism.get('money');
+    } catch(err: any) {
+      handleStorageError(err);
+    }
+    return ret;
   }
 
   export async function syncCardPrices(cards: Card[]): Promise<boolean> {

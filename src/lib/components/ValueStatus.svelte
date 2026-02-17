@@ -20,14 +20,28 @@
   }
 </script>
 
-<p class="cardsValue">Collection value: ${capitalismState.collectionValue.toFixed(2)}</p>
-<button onclick={async () => await refreshCollectionValue()} disabled={loading}>Refresh Collection Value</button>
+<div class="capitalismStatus">
+  <p class="cardsValue">Collection value: ${capitalismState.collectionValue.toFixed(2)}</p>
+  <p class="money">Money: ${capitalismState.money}</p>
+  <button onclick={async () => await refreshCollectionValue()} disabled={loading}>Refresh Collection Value</button>
+</div>
 {#if errMsg}
   <p class="errorMessage">Collection value error: {errMsg}</p>
 {/if}
 
 <style>
+  .capitalismStatus {
+    /* display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 0 */
+  }
+
   .cardsValue {
+    color: white;
+  }
+
+  .money {
     color: white;
   }
 </style>

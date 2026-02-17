@@ -8,14 +8,16 @@
   import ValueStatus from '$lib/components/ValueStatus.svelte'
   import { titleCase } from '$lib/util/formatUtil'
   import { MTabGStorage } from '$lib/storage/storage'
-  import { SortOption, sortOrders } from '$lib/types/types'
-  import { capitalismState } from '$lib/capitalism/capitalismMode.svelte.ts'
+  import { SortOption, sortOrders, type QuotaReport } from '$lib/types/types'
+  import { capitalismState } from '$lib/capitalism/capitalismMode.svelte'
   
   import { onMount } from 'svelte';
+	import TableView from './components/TableView.svelte';
+	import type Card from '$lib/models/card';
 
   let cards: Card[] = $state([]);
   let storageUsedProgress: number | null = $state(null);
-  let sortBy: SortOption = $state(SortOption.color)
+  let sortBy: SortOption = $state(SortOption.colors)
   let isAscendingSort: boolean = $state(true);
   let isTableMode: boolean = $state(false);
 
@@ -53,10 +55,6 @@
       cards = cards.reverse();
     }
   }
-
-  function sellCard(card: Card) {
-
-  }
 </script>
 
 <a href="/newtab"><button>Go back</button></a>
@@ -81,28 +79,7 @@
 {/if}
 
 {#if isTableMode}
-  <table>
-    <thead>
-    <tr>
-      <th>Card Name</th>
-      {#if capitalismState.capitalismMode}
-        <th>Price</th>
-        <th>Actions</th>
-      {/if}
-    </tr>
-  </thead>
-  <tbody>
-    {#each cards as c}
-    <tr>
-      <td>{c.name}</td>
-      {#if capitalismState.capitalismMode}
-        <td>${c.price}</td>
-        <td><button onclick={() => sellCard(c)}>Sell</button></td>
-      {/if}
-    </tr>
-    {/each}
-  </tbody>
-  </table>
+  <TableView cards={cards} />
 {:else}
   <CardContainer cards={cards} />
 {/if}
@@ -123,17 +100,5 @@
     justify-content: center;
     gap: 10%;
     width: 80%;
-  }
-
-  table {
-    margin: 5%;
-  }
-
-  tr {
-    background-color: #e3e3e3;
-  }
-
-  tr:nth-child(even) {
-    background-color: #c7c8c9;
   }
 </style>
