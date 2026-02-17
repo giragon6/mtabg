@@ -8,12 +8,13 @@
 	import CardContainer from '$lib/components/card/CardContainer.svelte'
 	import BoosterButton from './components/BoosterButton.svelte'
     import ValueStatus from '$lib/components/ValueStatus.svelte'
-    import { capitalismState } from '$lib/capitalism/capitalismMode.svelte.ts'
+    import { capitalismState } from '$lib/capitalism/capitalismMode.svelte'
 
     import type { PackData } from '$lib/types/types'
-    import { MtGSet, BoosterType, getBoosterTypesForSet, toFullName } from '$lib/types/boosters'
+    import { MtGSet, BoosterType, getBoosterTypesForSet, toFullName, getBoosterPrice } from '$lib/types/boosters'
 	import { titleCase } from '$lib/util/formatUtil'
 	import { MTabGStorage } from '$lib/storage/storage'
+	import { Money } from '$lib/capitalism/money.svelte';
 
     let cards: Card[] = $state([]);
     let loading: boolean = $state(false);
@@ -24,7 +25,7 @@
     let curSet: MtGSet = $state(MtGSet.tdm);
     let boosterType: BoosterType = $state(BoosterType.play);
     let availableSets: MtGSet[] = Object.values(MtGSet);
-    let availableBoosterTypes: BoosterType[] = $derived(getBoosterTypesForSet(curSet));
+    let availableBoosterTypes: Set<BoosterType> = $derived(getBoosterTypesForSet(curSet));
 
     async function openPack() {
         let packData: PackData;
@@ -61,6 +62,9 @@
             }
             console.log(`Error opening pack: ${err}`)
         }
+        if (capitalismState.capitalismMode) {
+            Money.buyPack(getBoosterPrice(curSet, boosterType));
+        }
         loading = false;
     }
 
@@ -89,7 +93,7 @@
     </select>
     <select name="type" bind:value={boosterType}>
         {#each availableBoosterTypes as bt}
-            <option value={bt}>{titleCase(bt)}</option>
+            <option value={bt}>{titleCase(bt)}{capitalismState.capitalismMode ? ` ($${getBoosterPrice(curSet, bt)})` : ''}</option>
         {/each}
     </select>
 </div>
