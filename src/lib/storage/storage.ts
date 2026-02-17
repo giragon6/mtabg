@@ -1,4 +1,4 @@
-import { SortOption, type CapitalismStore, type CardStore, type MetaTable, type QuotaReport } from "$lib/types/types";
+import { SortOption, type CardStore, type KeyValuePair, type QuotaReport } from "$lib/types/types";
 import Card from "$lib/models/card";
 import Dexie, { type EntityTable } from "dexie";
 
@@ -7,16 +7,14 @@ const DB_VERSION = 3;
 
 export namespace MTabGStorage {
   export const db = new Dexie(DB_NAME) as Dexie & {
+    capitalism: EntityTable<KeyValuePair<number>, 'key'>;
+    meta: EntityTable<KeyValuePair<any>, 'key'>;
     cards: EntityTable<CardStore, 'hash'>;
-    //@ts-ignore
-    meta: EntityTable<string, 'key'>;
-    //@ts-ignore
-    capitalism: EntityTable<string, 'key'>;
   };
 
   db.version(DB_VERSION).stores({
-    meta: '&key',
     capitalism: '&key',
+    meta: '&key',
     cards: 'hash,name,price,rarity,set,colors,color_identity,power,toughness,mana_cost,cmc'
   });
 
@@ -29,10 +27,17 @@ export namespace MTabGStorage {
     }
   }
 
+  // there is almost certainly a better way to do this
   export async function addMoney(amt: number): Promise<boolean> {
     let success = false;
     try {
-      db.capitalism.where('key').equals('money').modify(a => {++a.value});
+      const money = await getMoney();
+      let moneySet: boolean;
+      if (money !== null) {
+        moneySet = await setMoney(Number(money) + Number(amt));
+      } else {
+        moneySet = await setMoney(0);
+      }
       success = true;
     } catch(err: any) {
       handleStorageError(err);
@@ -43,7 +48,13 @@ export namespace MTabGStorage {
   export async function subtractMoney(amt: number): Promise<boolean> {
     let success = false;
     try {
-      db.capitalism.money -= amt;
+      const money = await getMoney();
+      let moneySet: boolean;
+      if (money !== null) {
+        moneySet = await setMoney(Number(money) - Number(amt));
+      } else {
+        moneySet = await setMoney(0);
+      }
       success = true;
     } catch(err: any) {
       handleStorageError(err);
@@ -54,7 +65,7 @@ export namespace MTabGStorage {
   export async function setMoney(amt: number): Promise<boolean> {
     let success = false;
     try {
-      db.capitalism.money = amt;
+      db.capitalism.upsert('money', { 'value': Number(amt) });
       success = true;
     } catch(err: any) {
       handleStorageError(err);
@@ -65,7 +76,9 @@ export namespace MTabGStorage {
   export async function getMoney(): Promise<number | null> {
     let ret = null;
     try {
-      ret = db.capitalism.get('money');
+      const money = await db.capitalism.get('money');
+      if (money === null || money === undefined) await setMoney(0.0);
+      ret = money && money.value !== null ? money.value : null;
     } catch(err: any) {
       handleStorageError(err);
     }

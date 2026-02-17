@@ -22,7 +22,7 @@
 
 <div class="capitalismStatus">
   <p class="cardsValue">Collection value: ${capitalismState.collectionValue.toFixed(2)}</p>
-  <p class="money">Money: ${capitalismState.money}</p>
+  <p class="money">Money: ${capitalismState.money.toFixed(2)}</p>
   <button onclick={async () => await refreshCollectionValue()} disabled={loading}>Refresh Collection Value</button>
 </div>
 {#if errMsg}
