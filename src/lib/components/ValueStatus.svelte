@@ -32,10 +32,11 @@
 
 <style>
   .capitalismStatus {
-    /* display: flex;
+    display: flex;
     align-items: center;
     flex-direction: column;
-    gap: 0 */
+    gap: 0;
+    margin: 20px;
   }
 
   .cardsValue {
@@ -44,5 +45,9 @@
 
   .money {
     color: white;
+  }
+
+  p {
+    margin: 5px;
   }
 </style>

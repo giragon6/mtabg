@@ -9,7 +9,7 @@
   import ValueStatus from '$lib/components/ValueStatus.svelte'
 	import type Card from '$lib/models/card';
   import { MTabGStorage } from '$lib/storage/storage'
-  import { MtGColor, SortOption, sortOrders, type QuotaReport } from '$lib/types/types'
+  import { SortOption, sortOrders, type QuotaReport } from '$lib/types/types'
   import { titleCase } from '$lib/util/formatUtil'
   
   import QuotaStatus from './components/QuotaStatus.svelte'
@@ -63,17 +63,22 @@
 <button onclick={clearCards}>Clear collection</button><br>
 <label for="storageUsed">Browser storage used:</label>
 <QuotaStatus progress={storageUsedProgress ? storageUsedProgress : 0} /><br>
-<div class="sortFilterOptions">
-  <select name="sortBy" bind:value={sortBy} onchange={sortCards}>
-    {#each Object.values(SortOption) as s}
-        <option value={s}>{titleCase(s)}</option>
-    {/each}
-  </select>
-  <select name="isAscendingSort" bind:value={isAscendingSort} onchange={sortCards}>
-    <option value={true}>Ascending</option>
-    <option value={false}>Descending</option>
-  </select>
-  <button onclick={() => isTableMode = !isTableMode}>{isTableMode ? 'Dis' : 'En'}able Table Mode</button>
+<div class="sortFormatContainer">
+  <div class="sortFilterOptions">
+    <label for="">
+      Sort options:
+      <select name="sortBy" bind:value={sortBy} onchange={sortCards}>
+        {#each Object.values(SortOption) as s}
+            <option value={s}>{titleCase(s)}</option>
+        {/each}
+      </select>
+      <select name="isAscendingSort" bind:value={isAscendingSort} onchange={sortCards}>
+        <option value={true}>Ascending</option>
+        <option value={false}>Descending</option>
+      </select>
+    </label>
+  </div>
+  <button class="tableMode" onclick={() => isTableMode = !isTableMode}>{isTableMode ? 'Dis' : 'En'}able Table Mode</button>
 </div>
 
 {#if capitalismState.capitalismMode}
@@ -99,8 +104,20 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
     gap: 10%;
     width: 80%;
+  }
+
+  .sortFormatContainer {
+    display: flex;
+    width: 75%;
+    flex-direction: row;
+    justify-content: space-between;
+
+  }
+
+  .tableMode {
+    width: fit-content;
   }
 </style>
