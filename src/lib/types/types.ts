@@ -1,4 +1,5 @@
 import type { ScryfallCard } from "@scryfall/api-types"
+
 import type { MtGSet } from "./boosters"
 
 export enum Rarity {

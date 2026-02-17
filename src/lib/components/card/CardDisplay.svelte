@@ -1,6 +1,5 @@
 <script lang="ts">
   import { HoverTilt } from 'hover-tilt';
-	import { flip } from 'svelte/animate';
 
   export let name: string;
   export let imageUri: string;

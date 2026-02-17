@@ -1,6 +1,7 @@
-import type { MtGSet } from "$lib/types/boosters.js";
+import type { MtGSet } from "$lib/types/boosters";
 import { FoilType, MtGColor, Rarity, type CardStore } from "$lib/types/types"
-import Foil from "./foil.js"
+
+import Foil from "./foil"
 
 class Card {
   id: string;

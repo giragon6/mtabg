@@ -1,5 +1,6 @@
 import Card from "$lib/models/card"
 import { MTabGStorage } from "$lib/storage/storage"
+
 import { capitalismState } from './capitalismMode.svelte'
 
 export namespace Money {

@@ -1,6 +1,7 @@
 <script lang='ts'>
-  import { capitalismState } from '$lib/capitalism/capitalismMode.svelte.ts'
-  import { refreshAndSyncCardVals } from '$lib/capitalism/collectionValue.svelte.ts'
+  import { capitalismState } from '$lib/capitalism/capitalismMode.svelte'
+  import { refreshAndSyncCardVals } from '$lib/capitalism/collectionValue.svelte'
+  
   let { cards = [] } = $props();
 
   let loading: boolean = $state(false);

@@ -1,5 +1,6 @@
 <script lang='ts'>
   import CardDisplay from './CardDisplay.svelte';
+  
   let { cards = [] } = $props();
 
   let dragStartIndex = $state(-1)

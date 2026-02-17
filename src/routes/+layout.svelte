@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { capitalismState } from '$lib/capitalism/capitalismMode.svelte'
   import { afterNavigate } from '$app/navigation'
+  import { capitalismState } from '$lib/capitalism/capitalismMode.svelte'
   import { MTabGStorage } from '$lib/storage/storage'
 
   import { onMount } from 'svelte';

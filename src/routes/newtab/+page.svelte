@@ -3,18 +3,18 @@
 </svelte:head>
 
 <script lang='ts'>
-    import { Pack } from '$lib/models/pack'
+    import { MtGSet, BoosterType, getBoosterTypesForSet, toFullName, getBoosterPrice } from '$lib/types/boosters'
+    import { capitalismState } from '$lib/capitalism/capitalismMode.svelte'
+	import { Money } from '$lib/capitalism/money.svelte';
     import Card from '$lib/models/card'
 	import CardContainer from '$lib/components/card/CardContainer.svelte'
-	import BoosterButton from './components/BoosterButton.svelte'
     import ValueStatus from '$lib/components/ValueStatus.svelte'
-    import { capitalismState } from '$lib/capitalism/capitalismMode.svelte'
-
-    import type { PackData } from '$lib/types/types'
-    import { MtGSet, BoosterType, getBoosterTypesForSet, toFullName, getBoosterPrice } from '$lib/types/boosters'
 	import { titleCase } from '$lib/util/formatUtil'
+    import { Pack } from '$lib/models/pack'
 	import { MTabGStorage } from '$lib/storage/storage'
-	import { Money } from '$lib/capitalism/money.svelte';
+    import type { PackData } from '$lib/types/types'
+
+	import BoosterButton from './components/BoosterButton.svelte'
 
     let cards: Card[] = $state([]);
     let loading: boolean = $state(false);

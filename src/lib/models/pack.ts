@@ -1,9 +1,10 @@
-import Card from "./card.js"
-import QueryGenerator from "$lib/util/queryGenerator.js"
-import CardFetcher from "$lib/util/cardFetcher.js"
-import { weightedRandom } from "$lib/util/randUtil.js"
+import type { MtGSet } from "$lib/types/boosters"
 import type { PackData, Special, PackSlot, CardChance } from "$lib/types/types"
-import type { MtGSet } from "$lib/types/boosters.js"
+import CardFetcher from "$lib/util/cardFetcher"
+import QueryGenerator from "$lib/util/queryGenerator"
+import { weightedRandom } from "$lib/util/randUtil"
+
+import Card from "./card"
 
 export class Pack {
   packData: PackData

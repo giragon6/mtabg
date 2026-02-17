@@ -1,6 +1,7 @@
-import { SortOption, type CardStore, type KeyValuePair, type QuotaReport } from "$lib/types/types";
-import Card from "$lib/models/card";
 import Dexie, { type EntityTable } from "dexie";
+
+import Card from "$lib/models/card";
+import { SortOption, type CardStore, type KeyValuePair, type QuotaReport } from "$lib/types/types";
 
 const DB_NAME = 'MTabGDatabase';
 const DB_VERSION = 3;

@@ -3,17 +3,17 @@
 </svelte:head>
 
 <script lang="ts">
-	import CardContainer from '$lib/components/card/CardContainer.svelte';
-  import QuotaStatus from './components/QuotaStatus.svelte'
-  import ValueStatus from '$lib/components/ValueStatus.svelte'
-  import { titleCase } from '$lib/util/formatUtil'
-  import { MTabGStorage } from '$lib/storage/storage'
-  import { SortOption, sortOrders, type QuotaReport } from '$lib/types/types'
-  import { capitalismState } from '$lib/capitalism/capitalismMode.svelte'
-  
   import { onMount } from 'svelte';
-	import TableView from './components/TableView.svelte';
+  import { capitalismState } from '$lib/capitalism/capitalismMode.svelte'
+	import CardContainer from '$lib/components/card/CardContainer.svelte';
+  import ValueStatus from '$lib/components/ValueStatus.svelte'
 	import type Card from '$lib/models/card';
+  import { MTabGStorage } from '$lib/storage/storage'
+  import { MtGColor, SortOption, sortOrders, type QuotaReport } from '$lib/types/types'
+  import { titleCase } from '$lib/util/formatUtil'
+  
+  import QuotaStatus from './components/QuotaStatus.svelte'
+	import TableView from './components/TableView.svelte';
 
   let cards: Card[] = $state([]);
   let storageUsedProgress: number | null = $state(null);
@@ -42,12 +42,14 @@
   // not sure if it's better to do this via the dexie backend or manually like this
   function sortCards() {
     // TODO: less janky way of doing this
-    const sortByKey = sortBy as keyof Card;
+    const sortByKey = sortBy as SortOption;
     const sbkeyString = sortByKey.toString();
-    const sortSpecialOrder = (a, b) => {
-      return sortOrders[sbkeyString][a[sortByKey]] < sortOrders[sbkeyString][b[sortByKey]] ? -1 : 1
+    const sortSpecialOrder = (a: Card, b: Card) => {
+      const aSortVal = a[sortByKey] instanceof Array ? a[sortByKey].join('') : a[sortByKey];
+      const bSortVal = b[sortByKey] instanceof Array ? b[sortByKey].join('') : b[sortByKey];
+      return sortOrders[sbkeyString][aSortVal] < sortOrders[sbkeyString][bSortVal] ? -1 : 1
     };
-    const sortNormal = (a, b) => {
+    const sortNormal = (a: Card, b: Card) => {
       return a[sortByKey] < b[sortByKey] ? -1 : 1
     };
     cards = cards.sort(Object.keys(sortOrders).includes(sbkeyString) ? sortSpecialOrder : sortNormal)
@@ -60,7 +62,7 @@
 <a href="/newtab"><button>Go back</button></a>
 <button onclick={clearCards}>Clear collection</button><br>
 <label for="storageUsed">Browser storage used:</label>
-<QuotaStatus id="storageUsed" progress={storageUsedProgress} /><br>
+<QuotaStatus progress={storageUsedProgress ? storageUsedProgress : 0} /><br>
 <div class="sortFilterOptions">
   <select name="sortBy" bind:value={sortBy} onchange={sortCards}>
     {#each Object.values(SortOption) as s}

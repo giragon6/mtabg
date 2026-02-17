@@ -1,8 +1,9 @@
 <script lang='ts'>
-  let { cards = [] } = $props();
   import { capitalismState } from '$lib/capitalism/capitalismMode.svelte'
   import { Money } from '$lib/capitalism/money.svelte'
 	import type Card from '$lib/models/card';
+  
+  let { cards = [] } = $props();
 
   async function sellCardFromTable(card: Card) {
     let confirm = true;
