@@ -34,7 +34,7 @@
   <tr>
     <td>{c.name}</td>
     {#if capitalismState.capitalismMode}
-      <td>${c.price}</td>
+      <td>${Number(c.price).toFixed(2)}</td>
       <td><button onclick={async () => await sellCardFromTable(c)}>Sell</button></td>
     {/if}
   </tr>

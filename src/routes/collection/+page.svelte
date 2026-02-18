@@ -55,8 +55,6 @@
       if (sortByKey == "price") {
         aSortVal = Number(aSortVal);
         bSortVal = Number(bSortVal);
-        console.log(aSortVal, bSortVal)
-        console.log(aSortVal < bSortVal)
       }
       return aSortVal < bSortVal ? -1 : 1
     };
