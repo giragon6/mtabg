@@ -50,7 +50,15 @@
       return sortOrders[sbkeyString][aSortVal] < sortOrders[sbkeyString][bSortVal] ? -1 : 1
     };
     const sortNormal = (a: Card, b: Card) => {
-      return a[sortByKey] < b[sortByKey] ? -1 : 1
+      let aSortVal = a[sortByKey];
+      let bSortVal = b[sortByKey];
+      if (sortByKey == "price") {
+        aSortVal = Number(aSortVal);
+        bSortVal = Number(bSortVal);
+        console.log(aSortVal, bSortVal)
+        console.log(aSortVal < bSortVal)
+      }
+      return aSortVal < bSortVal ? -1 : 1
     };
     cards = cards.sort(Object.keys(sortOrders).includes(sbkeyString) ? sortSpecialOrder : sortNormal)
     if (!isAscendingSort) {
