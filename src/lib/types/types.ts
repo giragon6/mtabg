@@ -146,3 +146,7 @@ export type CapitalismState = {
 export interface KeyValuePair<T> { 
   key: string; value: T 
 }
+
+export type FlagOption = 
+  "capitalismMode" |
+  "tableMode"

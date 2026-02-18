@@ -1,10 +1,17 @@
 <script lang="ts">
   import { afterNavigate } from '$app/navigation'
   import { capitalismState } from '$lib/capitalism/capitalismMode.svelte'
+	import { uiState } from '$lib/state/uiState.svelte';
   import { MTabGStorage } from '$lib/storage/storage'
 
   import { onMount } from 'svelte';
   const { children } = $props();
+
+  async function updateStates() {
+    await updateCollectionValue();
+    await updateMoneyState();
+    await updateUiState();
+  }
   
   async function updateCollectionValue() {
     const cards = await MTabGStorage.getAllCards();
@@ -22,12 +29,17 @@
     }
   }
 
+  async function updateUiState() {
+    const tableMode = await MTabGStorage.getFlag('tableMode');
+    if (tableMode !== null) {
+      uiState.isTableMode = tableMode;
+    }
+  }
+
   onMount(async () => {
-    await updateCollectionValue();
-    await updateMoneyState();
+    await updateStates();
     afterNavigate(async () => {
-      await updateCollectionValue()
-      await updateMoneyState();
+      await updateStates();
     });
   })
 </script>

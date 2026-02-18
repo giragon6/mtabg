@@ -5,6 +5,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { capitalismState } from '$lib/capitalism/capitalismMode.svelte'
+  import { uiState } from '$lib/state/uiState.svelte';
 	import CardContainer from '$lib/components/card/CardContainer.svelte';
   import ValueStatus from '$lib/components/ValueStatus.svelte'
 	import type Card from '$lib/models/card';
@@ -19,7 +20,7 @@
   let storageUsedProgress: number | null = $state(null);
   let sortBy: SortOption = $state(SortOption.colors)
   let isAscendingSort: boolean = $state(true);
-  let isTableMode: boolean = $state(false);
+  let tableModeLoading: boolean = $state(false);
 
   onMount(async () => {
     cards = await MTabGStorage.getAllCards();
@@ -63,6 +64,13 @@
       cards = cards.reverse();
     }
   }
+
+  async function toggleTableMode() {
+    tableModeLoading = true;
+    uiState.isTableMode = !uiState.isTableMode;
+    await MTabGStorage.setFlag('tableMode', uiState.isTableMode);
+    tableModeLoading = false;
+  }
 </script>
 
 <a href="/newtab"><button>Go back</button></a>
@@ -84,14 +92,16 @@
       </select>
     </label>
   </div>
-  <button class="tableMode" onclick={() => isTableMode = !isTableMode}>{isTableMode ? 'Dis' : 'En'}able Table Mode</button>
+  <button class="tableMode" onclick={toggleTableMode} disabled={tableModeLoading}>
+    {uiState.isTableMode ? 'Dis' : 'En'}able Table Mode
+  </button>
 </div>
 
 {#if capitalismState.capitalismMode}
   <ValueStatus cards={cards} /> 
 {/if}
 
-{#if isTableMode}
+{#if uiState.isTableMode}
   <TableView cards={cards} />
 {:else}
   <CardContainer cards={cards} />

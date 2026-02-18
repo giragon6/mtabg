@@ -1,7 +1,7 @@
 import Dexie, { type EntityTable } from "dexie";
 
 import Card from "$lib/models/card";
-import { SortOption, type CardStore, type KeyValuePair, type QuotaReport } from "$lib/types/types";
+import { SortOption, type CardStore, type FlagOption, type KeyValuePair, type QuotaReport } from "$lib/types/types";
 
 const DB_NAME = 'MTabGDatabase';
 const DB_VERSION = 3;
@@ -26,6 +26,25 @@ export namespace MTabGStorage {
     if (err instanceof Dexie.QuotaExceededError) {
       quotaReached = true;
     }
+  }
+
+  export async function setFlag(flag: FlagOption, enabled: boolean): void {
+    try {
+      await db.meta.put({ value: enabled }, flag);
+    } catch(err: any) {
+      handleStorageError(err);
+    }
+  }
+
+  export async function getFlag(flag: FlagOption): Promise<boolean | null> {
+    let ret = null;
+    try {
+      const res = await db.meta.get(flag);
+      ret = res?.value;
+    } catch(err: any) {
+      handleStorageError(err);
+    }
+    return ret
   }
 
   // there is almost certainly a better way to do this
