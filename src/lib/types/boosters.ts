@@ -1,6 +1,8 @@
 export enum MtGSet {
   tdm = "tdm",
-  ecl = "ecl"
+  tdc = "tdc",
+  ecl = "ecl",
+  ecc = "ecc"
 }
 
 export enum BoosterType {
@@ -8,7 +10,7 @@ export enum BoosterType {
   collector = "collector"
 }
 
-const boosterAvailabilityMap: Record<MtGSet, Set<BoosterType>> = {
+const boosterAvailabilityMap: Partial<Record<MtGSet, Set<BoosterType>>> = {
   [MtGSet.tdm]: new Set([BoosterType.play, BoosterType.collector]),
   [MtGSet.ecl]: new Set([BoosterType.play, BoosterType.collector])
 }
@@ -19,14 +21,16 @@ export const getBoosterTypesForSet = (set: MtGSet) => {
 
 const setFullnameMap: Record<MtGSet, String> = {
   [MtGSet.tdm]: "Tarkir: Dragonstorm",
-  [MtGSet.ecl]: "Lorwyn Eclipsed"
+  [MtGSet.tdc]: "Tarkir: Dragonstorm Commander",
+  [MtGSet.ecl]: "Lorwyn Eclipsed",
+  [MtGSet.ecc]: "Lorwyn Eclipsed Commander"
 }
 
 export const toFullName = (set: MtGSet) => {
   return setFullnameMap[set]
 }
 
-const boosterPriceMap: Record<MtGSet, Record<BoosterType, number>> = {
+const boosterPriceMap: Partial<Record<MtGSet, Record<BoosterType, number>>> = {
   [MtGSet.tdm]: {
     [BoosterType.play]: 5.49,
     [BoosterType.collector]: 24.99
@@ -38,5 +42,5 @@ const boosterPriceMap: Record<MtGSet, Record<BoosterType, number>> = {
 }
 
 export const getBoosterPrice = (set: MtGSet, boosterType: BoosterType) => {
-  return boosterPriceMap[set][boosterType]
+  return boosterPriceMap[set] ? boosterPriceMap[set][boosterType] : 0;
 }
