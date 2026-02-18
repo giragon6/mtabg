@@ -1,21 +1,24 @@
+// TODO: less messy way of handling this
 export enum MtGSet {
   tdm = "tdm",
   tdc = "tdc",
   ecl = "ecl",
   ecc = "ecc"
 }
+export type BoosterAvailableSet = MtGSet.tdm | MtGSet.ecl;
+export const allBoosterAvailableSets: BoosterAvailableSet[] = [MtGSet.tdm, MtGSet.ecl];
 
 export enum BoosterType {
   play = "play",
   collector = "collector"
 }
 
-const boosterAvailabilityMap: Partial<Record<MtGSet, Set<BoosterType>>> = {
+const boosterAvailabilityMap: Record<BoosterAvailableSet, Set<BoosterType>> = {
   [MtGSet.tdm]: new Set([BoosterType.play, BoosterType.collector]),
   [MtGSet.ecl]: new Set([BoosterType.play, BoosterType.collector])
 }
 
-export const getBoosterTypesForSet = (set: MtGSet) => {
+export const getBoosterTypesForSet = (set: BoosterAvailableSet): Set<BoosterType> => {
   return boosterAvailabilityMap[set]
 }
 

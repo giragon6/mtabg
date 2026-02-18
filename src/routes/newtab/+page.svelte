@@ -3,7 +3,7 @@
 </svelte:head>
 
 <script lang='ts'>
-    import { MtGSet, BoosterType, getBoosterTypesForSet, toFullName, getBoosterPrice } from '$lib/types/boosters'
+    import { MtGSet, BoosterType, getBoosterTypesForSet, toFullName, getBoosterPrice, type BoosterAvailableSet, allBoosterAvailableSets } from '$lib/types/boosters'
     import { capitalismState } from '$lib/capitalism/capitalismMode.svelte'
 	import { Money } from '$lib/capitalism/money.svelte';
     import Card from '$lib/models/card'
@@ -24,7 +24,7 @@
 
     let curSet: MtGSet = $state(MtGSet.tdm);
     let boosterType: BoosterType = $state(BoosterType.play);
-    let availableSets: MtGSet[] = Object.values(MtGSet);
+    let availableSets: BoosterAvailableSet[] = allBoosterAvailableSets;
     let availableBoosterTypes: Set<BoosterType> = $derived(getBoosterTypesForSet(curSet));
 
     async function openPack() {
