@@ -3,7 +3,7 @@
   import { Money } from '$lib/capitalism/money.svelte'
 	import type Card from '$lib/models/card';
 	import { toFullName } from '$lib/types/boosters';
-	import { colorsToStyle, FoilType } from '$lib/types/types';
+	import { colorsToStyle, FoilType } from '$lib/types/cards';
   
   let { cards = [] } = $props();
 

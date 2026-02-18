@@ -10,11 +10,13 @@
   import ValueStatus from '$lib/components/ValueStatus.svelte'
 	import type Card from '$lib/models/card';
   import { MTabGStorage } from '$lib/storage/storage'
-  import { SortOption, sortOrders, type QuotaReport } from '$lib/types/types'
+  import { type QuotaReport } from '$lib/types/meta'
   import { titleCase } from '$lib/util/formatUtil'
   
   import QuotaStatus from './components/QuotaStatus.svelte'
 	import TableView from './components/TableView.svelte';
+	import { SortOption } from '$lib/types/packs';
+	import { sortOrders } from '$lib/types/cards';
 
   let cards: Card[] = $state([]);
   let storageUsedProgress: number | null = $state(null);

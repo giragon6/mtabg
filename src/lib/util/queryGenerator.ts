@@ -1,5 +1,5 @@
-import type { CardChance, Special } from "$lib/types/types"
-import { FoilType, LandType } from "$lib/types/types"
+import type { CardChance, Special } from "$lib/types/packs"
+import { FoilType, LandType } from "$lib/types/cards"
 
 class QueryGenerator {
   /**

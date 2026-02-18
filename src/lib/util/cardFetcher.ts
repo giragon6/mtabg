@@ -1,5 +1,5 @@
 import type { ScryfallCard } from "@scryfall/api-types";
-import type { ScryfallResponse } from "$lib/types/types";
+import type { ScryfallResponse } from "$lib/types/packs";
 
 class CardFetcher {
   readonly url = "https://api.scryfall.com/cards/"

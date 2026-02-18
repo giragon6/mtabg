@@ -1,5 +1,6 @@
 import type { MtGSet } from "$lib/types/boosters";
-import { FoilType, MtGColor, Rarity, type CardStore } from "$lib/types/types"
+import { FoilType, type MtGColor, type Rarity } from "$lib/types/cards";
+import { type CardStore } from "$lib/types/meta"
 
 import Foil from "./foil"
 

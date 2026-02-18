@@ -12,7 +12,7 @@
 	import { titleCase } from '$lib/util/formatUtil'
     import { Pack } from '$lib/models/pack'
 	import { MTabGStorage } from '$lib/storage/storage'
-    import type { PackData } from '$lib/types/types'
+    import type { PackData } from '$lib/types/packs'
 
 	import BoosterButton from './components/BoosterButton.svelte'
 

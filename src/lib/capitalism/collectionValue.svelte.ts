@@ -1,6 +1,6 @@
 import Card from "$lib/models/card";
 import { MTabGStorage } from "$lib/storage/storage";
-import { FoilType } from "$lib/types/types";
+import { FoilType } from "$lib/types/cards";
 import CardFetcher from "$lib/util/cardFetcher";
 
 const fetcher = new CardFetcher();

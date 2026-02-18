@@ -1,5 +1,5 @@
 import type { MtGSet } from "$lib/types/boosters"
-import type { PackData, Special, PackSlot, CardChance } from "$lib/types/types"
+import type { PackData, Special, PackSlot, CardChance } from "$lib/types/meta"
 import CardFetcher from "$lib/util/cardFetcher"
 import QueryGenerator from "$lib/util/queryGenerator"
 import { weightedRandom } from "$lib/util/randUtil"

@@ -1,7 +1,8 @@
 import Dexie, { type EntityTable } from "dexie";
 
 import Card from "$lib/models/card";
-import { SortOption, type CardStore, type FlagOption, type KeyValuePair, type QuotaReport } from "$lib/types/types";
+import { type CardStore, type FlagOption, type KeyValuePair, type QuotaReport } from "$lib/types/meta";
+import { SortOption } from "$lib/types/packs";
 
 const DB_NAME = 'MTabGDatabase';
 const DB_VERSION = 3;
@@ -28,7 +29,7 @@ export namespace MTabGStorage {
     }
   }
 
-  export async function setFlag(flag: FlagOption, enabled: boolean): void {
+  export async function setFlag(flag: FlagOption, enabled: boolean): Promise<void> {
     try {
       await db.meta.put({ value: enabled }, flag);
     } catch(err: any) {
