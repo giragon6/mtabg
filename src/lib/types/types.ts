@@ -51,6 +51,20 @@ export enum MtGColor {
   R = "R", // red
   G = "G" //green
 }
+const colorMap: Record<MtGColor, string> = {
+  [MtGColor.W]: "#fffbd5",
+  [MtGColor.U]: "#aae0fa",
+  [MtGColor.B]: "#cbc2bf",
+  [MtGColor.R]: "#f9aa8f",
+  [MtGColor.G]: "#9bd3ae"
+}
+export function colorsToStyle(colors: MtGColor[]): string {
+  if (colors.length === 1) {
+    return colorMap[colors[0]];
+  }
+  return "#e9d28f";
+}
+
 
 export enum SortOption {
   name = "name",
