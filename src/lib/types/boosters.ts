@@ -22,7 +22,7 @@ export enum BoosterType {
 const boosterAvailabilityMap: Record<BoosterAvailableSet, Set<BoosterType>> = {
   [MtGSet.tdm]: new Set([BoosterType.play, BoosterType.collector]),
   [MtGSet.ecl]: new Set([BoosterType.play, BoosterType.collector]),
-  [MtGSet.eoe]: new Set([BoosterType.play])
+  [MtGSet.eoe]: new Set([BoosterType.play, BoosterType.collector])
 }
 
 export const getBoosterTypesForSet = (set: BoosterAvailableSet): Set<BoosterType> => {

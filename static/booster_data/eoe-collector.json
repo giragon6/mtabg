@@ -1,0 +1,316 @@
+{
+  "type": "collector",
+  "set": "eoe",
+  "slots": [
+    {
+      "amount": 5,
+      "chances": [
+        {
+          "rarity": "common",
+          "foil": "foil",
+          "chance": 1.0
+        }
+      ]
+    },
+    {
+      "amount": 4,
+      "chances": [
+        {
+          "rarity": "uncommon",
+          "foil": "foil",
+          "chance": 1.0
+        }
+      ]
+    },
+    {
+      "amount": 1,
+      "chances": [
+        {
+          "land": "basic",
+          "full_art": true,
+          "foil": "foil",
+          "chance": 0.6667
+        },
+        {
+          "land": "basic",
+          "full_art": true,
+          "foil": "galaxy",
+          "chance": 0.3333
+        }
+      ]
+    },
+    {
+      "amount": 1,
+      "chances": [
+        {
+          "rarity": "rare",
+          "foil": "foil",
+          "chance": 0.86
+        },
+        {
+          "rarity": "mythic",
+          "foil": "foil",
+          "chance": 0.14
+        }
+      ]
+    },
+    {
+      "amount": 1,
+      "chances": [
+        {
+          "rarity": "rare",
+          "frame": "extendedart",
+          "special": 0,
+          "chance": 0.91
+        },
+        {
+          "rarity": "mythic",
+          "full_art": true,
+          "special": 0,
+          "chance": 0.09
+        }
+      ]
+    },
+    {
+      "amount": 1,
+      "chances": [
+        {
+          "rarity": "rare",
+          "frame": "extendedart",
+          "chance": 0.47
+        },
+        {
+          "rarity": "mythic",
+          "frame": "extendedart",
+          "chance": 0.05
+        },
+        {
+          "rarity": "rare",
+          "special": 2,
+          "chance": 0.07
+        },
+        {
+          "rarity": "mythic",
+          "special": 2,
+          "chance": 0.04
+        },
+        {
+          "rarity": "rare",
+          "special": 3,
+          "chance": 0.17
+        },
+        {
+          "rarity": "mythic",
+          "special": 3,
+          "chance": 0.03
+        },
+        {
+          "rarity": "rare",
+          "special": 4,
+          "chance": 0.15
+        },
+        {
+          "rarity": "mythic",
+          "special": 4,
+          "chance": 0.02
+        }
+      ]
+    },
+    {
+      "amount": 1,
+      "chances": [
+        {
+          "rarity": "rare",
+          "special": 1,
+          "chance": 0.36
+        },
+        {
+          "rarity": "mythic",
+          "special": 1,
+          "chance": 0.09
+        },
+        {
+          "rarity": "rare",
+          "special": 5,
+          "chance": 0.18
+        },
+        {
+          "rarity": "mythic",
+          "special": 5,
+          "chance": 0.04
+        },
+        {
+          "rarity": "rare",
+          "foil": "foil",
+          "special": 1,
+          "chance": 0.12
+        },
+        {
+          "rarity": "mythic",
+          "foil": "foil",
+          "special": 1,
+          "chance": 0.03
+        },
+        {
+          "rarity": "rare",
+          "foil": "foil",
+          "special": 5,
+          "chance": 0.06
+        },
+        {
+          "rarity": "mythic",
+          "foil": "foil",
+          "special": 5,
+          "chance": 0.015
+        },
+        {
+          "rarity": "rare",
+          "foil": "galaxy",
+          "special": 1,
+          "chance": 0.06
+        },
+        {
+          "rarity": "mythic",
+          "foil": "galaxy",
+          "special": 1,
+          "chance": 0.015
+        },
+        {
+          "rarity": "rare",
+          "foil": "galaxy",
+          "special": 5,
+          "chance": 0.03
+        },
+        {
+          "rarity": "mythic",
+          "foil": "galaxy",
+          "special": 5,
+          "chance": 0.0025
+        }
+      ]
+    },
+    {
+      "amount": 1,
+      "chances": [
+        {
+          "rarity": "rare",
+          "foil": "foil",
+          "frame": "extendedart",
+          "chance": 0.38
+        },
+        {
+          "rarity": "mythic",
+          "foil": "foil",
+          "frame": "extendedart",
+          "chance": 0.04
+        },
+        {
+          "rarity": "rare",
+          "foil": "foil",
+          "special": 2,
+          "chance": 0.06
+        },
+        {
+          "rarity": "mythic",
+          "foil": "foil",
+          "special": 2,
+          "chance": 0.03
+        },
+        {
+          "rarity": "rare",
+          "foil": "foil",
+          "special": 3,
+          "chance": 0.13
+        },
+        {
+          "rarity": "mythic",
+          "foil": "foil",
+          "special": 3,
+          "chance": 0.02
+        },
+        {
+          "rarity": "rare",
+          "foil": "foil",
+          "special": 4,
+          "chance": 0.12
+        },
+        {
+          "rarity": "mythic",
+          "foil": "foil",
+          "special": 4,
+          "chance": 0.02
+        },
+        {
+          "special": 6,
+          "foil": "foil",
+          "chance": 0.06
+        },
+        {
+          "special": 7,
+          "foil": "foil",
+          "chance": 0.09
+        },
+        {
+          "special": 7,
+          "foil": "fracture",
+          "chance": 0.01
+        },
+        {
+          "rarity": "rare",
+          "foil": "galaxy",
+          "special": 2,
+          "chance": 0.02
+        },
+        {
+          "rarity": "mythic",
+          "foil": "galaxy",
+          "special": 2,
+          "chance": 0.01
+        },
+        {
+          "special": 8,
+          "foil": "singularity",
+          "chance": 0.00017
+        }
+      ]
+    }
+  ],
+  "special": [
+    {
+      "name": "0.eoe commander",
+      "query": "s:eoc"
+    },
+    {
+      "name": "1.stellar sights",
+      "query": "s:eos+cn<=45"
+    },
+    {
+      "name": "2.borderless viewport land",
+      "query": "s:eoe+cn>=277+cn<=286"
+    },
+    {
+      "name": "3.borderless triumphant card",
+      "query": "s:eoe+cn>=287+cn<=302"
+    },
+    {
+      "name": "4.borderless surreal space card",
+      "query": "s:eoe+cn>=303+cn<=316"
+    },
+    {
+      "name": "5.stellar sights",
+      "query": "s:eos+cn>45"
+    },
+    {
+      "name": "6.special guests",
+      "query": "e:spg+cn>=119+cn<=128"
+    },
+    {
+      "name": "7.japan showcase",
+      "query": "s:eoe+cn>=357+cn<=366"
+    },
+    {
+      "name": "8.textless singularity foil Sothera, the Supervoid",
+      "ids": ["07b10f1b-b03b-4f19-bc7e-69d5eaa5ff07"]
+    }
+  ]
+}

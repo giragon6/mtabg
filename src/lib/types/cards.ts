@@ -32,7 +32,8 @@ export enum FoilType {
   dragonscale = "dragonscale",
   double_rainbow = "double_rainbow",
   halo = "halo",
-  fracture = "fracture"
+  fracture = "fracture",
+  singularity = "singularity"
 }
 
 export enum LandType {
