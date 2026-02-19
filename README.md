@@ -6,15 +6,17 @@ An app that simulates opening booster packs from the trading card game Magic: Th
 
 Supported sets:
 - Tarkir: Dragonstorm
+- Lorwyn Eclipsed
+- Edge of Eternities
 
 Current features:
 - Open packs with accurate card chances
 - View cards with cool effects
 - Not going bankrupt
+- Build a collection with accurate card prices
+- Going bankrupt with fake money
 
 Planned features:
-- Build a collection with accurate card prices
 - Better UI
-- Going bankrupt with fake money
 
 LET'S GO GAMBLING!!!
