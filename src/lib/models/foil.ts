@@ -1,4 +1,4 @@
-import { FoilType } from "$lib/types/meta";
+import { FoilType } from "$lib/types/cards";
 
 class Foil {
   effect: string = '';
