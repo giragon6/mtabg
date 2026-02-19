@@ -33,6 +33,7 @@ export type CardChance = {
   foil?: FoilType,
   land?: LandType,
   include_nonbasic_lands?: boolean,
+  full_art?: boolean,
   chance: number,
 }
 

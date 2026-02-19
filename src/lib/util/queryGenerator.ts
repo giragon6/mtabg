@@ -20,6 +20,7 @@ class QueryGenerator {
 
     if (cc.rarity) queryList.push("r:" + cc.rarity); 
     if (cc.frame) queryList.push("is:" + cc.frame);
+    if (cc.full_art) queryList.push("is:full_art")
     if (cc.foil && cc.foil == FoilType.foil) queryList.push("is:" + cc.foil);
     if (cc.land) {
       if (cc.land == LandType.basic) {
@@ -27,6 +28,8 @@ class QueryGenerator {
       } else {
         queryList.push("is:" + cc.land);
       }
+    } else {
+      queryList.push("-t:basic")
     }
     // we already checked if the special included id list
     // so it must include query
