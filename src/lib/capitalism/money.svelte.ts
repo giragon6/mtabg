@@ -16,15 +16,17 @@ export namespace Money {
     return true
   }
 
+  // returns qty
   export async function sellCard(card: Card): Promise<number | null> {
     const moneyAdded = await addMoneyAndUpdateState(card.price);
     if (!moneyAdded) {
       console.error("Failed to add money and set money state!");
       return null
     }
-    const success = await MTabGStorage.removeCard(Card.hash(card));
+    const success = await MTabGStorage.removeCard(card);
+    console.log(success)
     if (success) {
-      return card.price;
+      return card.quantity;
     } else {
       console.error("Failed to remove sold card!");
       return null

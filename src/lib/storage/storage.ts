@@ -191,21 +191,42 @@ export namespace MTabGStorage {
     return cardStores.map(c => Card.fromIDB(c))
   }
 
-  export async function removeCard(hash: string): Promise<boolean> {
-    let success = false;
-    try {
-      await db.cards.delete(hash);
-      success = true;
-    } catch(err: any) {
-      handleStorageError(err);
-    }
-    return success;
+  export async function removeCard(card: Card): Promise<boolean> {
+    // let success = false;
+    // try {
+    //   await db.cards.delete(hash);
+    //   success = true;
+    // } catch(err: any) {
+    //   handleStorageError(err);
+    // }
+    // return success;
+    return await removeCards([card]);
   }
 
-  export async function removeCards(hashes: string[]): Promise<boolean> {
+  export async function removeCards(cards: Card[]): Promise<boolean> {
+    // let success = false;
+    // try {
+    //   await db.cards.bulkDelete(hashes);
+    //   success = true;
+    // } catch(err: any) {
+    //   handleStorageError(err);
+    // }
+    // return success;
     let success = false;
     try {
-      await db.cards.bulkDelete(hashes);
+      db.transaction('rw', db.cards, async () => {
+        for (let c of cards) {
+          // update quantity of existing card or add new card
+          const card = (await db.cards.get(Card.hash(c))) || c;
+          if (card.quantity > 1) {
+            --card.quantity; // card quantity initialized to 0 so this works
+            await db.cards.put(card);
+          } else {
+            await db.cards.delete(Card.hash(c));
+          }
+        }
+      })
+      console.log(`IDB transaction successful: updated ${cards.length} cards`);
       success = true;
     } catch(err: any) {
       handleStorageError(err);

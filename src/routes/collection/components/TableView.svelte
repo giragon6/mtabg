@@ -6,6 +6,8 @@
 	import { colorsToStyle, FoilType } from '$lib/types/cards';
   
   let { cards = [] } = $props();
+  let loading = $state(false);
+  let dummy = $state(0)
 
   async function sellCardFromTable(card: Card) {
     let confirm = true;
@@ -13,10 +15,14 @@
       confirm = window.confirm(`Really sell ${card.name}? (value: $${card.price})`);
     }
     if (confirm) {
+      card.quantity -= 1;
       const success = await Money.sellCard(card);
-      if (success) {
-        cards.splice(cards.indexOf(card), 1);
+      if (success !== null) {
+        if (card.quantity === 0) {
+          cards.splice(cards.indexOf(card), 1);
+        }
       }
+      
     }
   }
 </script>
