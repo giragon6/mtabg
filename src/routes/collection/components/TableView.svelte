@@ -24,6 +24,7 @@
 <table>
   <thead>
   <tr>
+    <th>Qty</th>
     <th>Card Name</th>
     <th>Set</th>
     <th>Effect</th>
@@ -36,6 +37,7 @@
 <tbody>
   {#each cards as c}
   <tr style="color: {c.foil == FoilType.none ? "#000000" : "#100cf9"};"> 
+    <td>{c.quantity}</td>
     <td style="background-color: {colorsToStyle(c.colors)};">{c.name}</td>
     <td>{toFullName(c.set)}</td>
     <td>{c.foil ? c.foil : "None"}</td>
