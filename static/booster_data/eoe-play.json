@@ -1,0 +1,256 @@
+{
+  "type": "play",
+  "set": "eoe",
+  "slots": [
+    {
+      "amount": "1",
+      "chances": [
+        {
+          "special": 0,
+          "chance": 0.002571428571
+        },
+        {
+          "rarity": "common",
+          "chance": 0.997428571429
+        }
+      ]
+    },
+    {
+      "amount": 6,
+      "chances": [
+        {
+          "rarity": "common",
+          "chance": 1.0
+        }
+      ]
+    },
+    {
+      "amount": 3,
+      "chances": [
+        {
+          "rarity": "uncommon",
+          "chance": 1.0
+        }
+      ]
+    },
+    {
+      "amount": 1,
+      "chances": [
+        {
+          "rarity": "common",
+          "chance": 0.125
+        },
+        {
+          "rarity": "uncommon",
+          "chance": 0.625
+        },
+        {
+          "rarity": "rare",
+          "chance": 0.106
+        },
+        {
+          "rarity": "mythic",
+          "chance": 0.0025
+        },
+        {
+          "rarity": "rare",
+          "special": 1,
+          "chance": 0.1
+        },
+        {
+          "rarity": "mythic",
+          "special": 1,
+          "chance": 0.025
+        },
+        {
+          "rarity": "rare",
+          "special": 2,
+          "chance": 0.01
+        },
+        {
+          "rarity": "mythic",
+          "special": 2,
+          "chance": 0.0025
+        },
+        {
+          "rarity": "rare",
+          "special": 3,
+          "chance": 0.00125
+        },
+        {
+          "rarity": "mythic",
+          "special": 3,
+          "chance": 0.00125
+        },
+        {
+          "rarity": "rare",
+          "special": 4,
+          "chance": 0.00125
+        },
+        {
+          "rarity": "mythic",
+          "special": 4,
+          "chance": 0.00125
+        }
+      ]
+    },
+    {
+      "amount": 1,
+      "chances": [
+        {
+          "rarity": "rare",
+          "chance": 0.804
+        },
+        {
+          "rarity": "mythic",
+          "chance": 0.142
+        },
+        {
+          "rarity": "rare",
+          "special": 3,
+          "chance": 0.02
+        },
+        {
+          "rarity": "mythic",
+          "special": 3,
+          "chance": 0.00333
+        },
+        {
+          "rarity": "rare",
+          "special": 4,
+          "chance": 0.02
+        },
+        {
+          "rarity": "mythic",
+          "special": 4,
+          "chance": 0.00333
+        },
+        {
+          "rarity": "mythic",
+          "special": 2,
+          "chance": 0.00334
+        }
+      ]
+    },
+    {
+      "amount": 1,
+      "chances": [
+        {
+          "rarity": "common",
+          "foil": "foil",
+          "chance": 0.58
+        },
+        {
+          "rarity": "uncommon",
+          "foil": "foil",
+          "chance": 0.32
+        },
+        {
+          "rarity": "rare",
+          "foil": "foil",
+          "chance": 0.064
+        },
+        {
+          "rarity": "mythic",
+          "foil": "foil",
+          "chance": 0.011
+        },
+        {
+          "rarity": "rare",
+          "foil": "foil",
+          "special": 1,
+          "chance": 0.01
+        },
+        {
+          "rarity": "mythic",
+          "foil": "foil",
+          "special": 1,
+          "chance": 0.0025
+        },
+        {
+          "rarity": "rare",
+          "foil": "foil",
+          "special": 2,
+          "chance": 0.0025
+        },
+        {
+          "rarity": "mythic",
+          "foil": "foil",
+          "special": 2,
+          "chance": 0.0025
+        },
+        {
+          "rarity": "rare",
+          "foil": "foil",
+          "special": 3,
+          "chance": 0.0025
+        },
+        {
+          "rarity": "mythic",
+          "foil": "foil",
+          "special": 3,
+          "chance": 0.0025
+        },
+        {
+          "rarity": "rare",
+          "foil": "foil",
+          "special": 4,
+          "chance": 0.0025
+        },
+        {
+          "rarity": "mythic",
+          "foil": "foil",
+          "special": 4,
+          "chance": 0.0025
+        }
+      ]
+    },
+    {
+      "amount": 1,
+      "chances": [
+        {
+          "land": "basic",
+          "chance": 0.64
+        },
+        {
+          "land": "basic",
+          "foil": "foil",
+          "chance": 0.16
+        },
+        {
+          "land": "basic",
+          "full_art": true,
+          "chance": 0.16
+        },
+        {
+          "land": "basic",
+          "foil": "foil",
+          "full_art": true,
+          "chance": 0.04
+        }
+      ]
+    }
+  ],
+  "special": [
+    {
+      "name": "0.special guests",
+      "query": "e:spg+cn>=119+cn<=128"
+    },
+    {
+      "name": "1.stellar sights",
+      "query": "s:eos+cn<=45"
+    },
+    {
+      "name": "2.borderless viewport land",
+      "query": "s:eoe+cn>=277+cn<=286"
+    },
+    {
+      "name": "3.borderless triumphant card",
+      "query": "s:eoe+cn>=287+cn<=302"
+    },
+    {
+      "name": "4.borderless surreal space card",
+      "query": "s:eoe+cn>=303+cn<=316"
+    }
+  ]
+}

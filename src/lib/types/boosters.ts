@@ -3,10 +3,16 @@ export enum MtGSet {
   tdm = "tdm",
   tdc = "tdc",
   ecl = "ecl",
-  ecc = "ecc"
+  ecc = "ecc",
+  eoe = "eoe",
+  eos = "eos"
 }
-export type BoosterAvailableSet = MtGSet.tdm | MtGSet.ecl;
-export const allBoosterAvailableSets: BoosterAvailableSet[] = [MtGSet.tdm, MtGSet.ecl];
+export type BoosterAvailableSet = MtGSet.tdm | MtGSet.ecl | MtGSet.eoe;
+export const allBoosterAvailableSets: BoosterAvailableSet[] = [
+  MtGSet.tdm, 
+  MtGSet.ecl,
+  MtGSet.eoe
+];
 
 export enum BoosterType {
   play = "play",
@@ -15,7 +21,8 @@ export enum BoosterType {
 
 const boosterAvailabilityMap: Record<BoosterAvailableSet, Set<BoosterType>> = {
   [MtGSet.tdm]: new Set([BoosterType.play, BoosterType.collector]),
-  [MtGSet.ecl]: new Set([BoosterType.play, BoosterType.collector])
+  [MtGSet.ecl]: new Set([BoosterType.play, BoosterType.collector]),
+  [MtGSet.eoe]: new Set([BoosterType.play])
 }
 
 export const getBoosterTypesForSet = (set: BoosterAvailableSet): Set<BoosterType> => {
@@ -26,14 +33,16 @@ const setFullnameMap: Record<MtGSet, String> = {
   [MtGSet.tdm]: "Tarkir: Dragonstorm",
   [MtGSet.tdc]: "Tarkir: Dragonstorm Commander",
   [MtGSet.ecl]: "Lorwyn Eclipsed",
-  [MtGSet.ecc]: "Lorwyn Eclipsed Commander"
+  [MtGSet.ecc]: "Lorwyn Eclipsed Commander",
+  [MtGSet.eoe]: "Edge of Eternities",
+  [MtGSet.eos]: "Edge of Eternities: Stellar Sights"
 }
 
 export const toFullName = (set: MtGSet) => {
   return setFullnameMap[set]
 }
 
-const boosterPriceMap: Partial<Record<MtGSet, Record<BoosterType, number>>> = {
+const boosterPriceMap: Record<BoosterAvailableSet, Record<BoosterType, number>> = {
   [MtGSet.tdm]: {
     [BoosterType.play]: 5.49,
     [BoosterType.collector]: 24.99
@@ -41,9 +50,13 @@ const boosterPriceMap: Partial<Record<MtGSet, Record<BoosterType, number>>> = {
   [MtGSet.ecl]: {
     [BoosterType.play]: 5.49,
     [BoosterType.collector]: 26.99
+  },
+  [MtGSet.eoe]: { 
+    [BoosterType.play]: 5.49,
+    [BoosterType.collector]: 24.99
   }
 }
 
-export const getBoosterPrice = (set: MtGSet, boosterType: BoosterType) => {
+export const getBoosterPrice = (set: BoosterAvailableSet, boosterType: BoosterType) => {
   return boosterPriceMap[set] ? boosterPriceMap[set][boosterType] : 0;
 }
