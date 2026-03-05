@@ -22,3 +22,17 @@ Planned features:
 - Better UI
 
 LET'S GO GAMBLING!!!
+
+## More information
+
+### Why this project was made
+
+I love gambling with the funny cardboard rectangles, but I have no money, so I wanted to simulate gambling to fill the void!!!
+
+### How this project was made
+
+This project was built with the Svelte framework and uses the Scryfall API to fetch Magic cards based on queries. I wanted semi-persistent data, but I didn't want an external server, so I also implemented local storage with IndexedDB.
+
+### What I struggled with and what I learned
+
+I struggled with the Scryfall API syntax at times, but I learned a lot more about fetching and async JavaScript since I don't use a lot of REST APIs generally.
